@@ -1,0 +1,35 @@
+[[plugins]]
+repo = 'elzr/vim-json'
+on_ft = ['json']
+
+[[plugins]]
+repo = 'stephpy/vim-yaml'
+on_ft = ['yaml']
+
+[[plugins]]
+repo = 'StanAngeloff/php.vim'
+on_ft = ['php']
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = ['toml']
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+on_ft = ['coffee']
+
+[[plugins]]
+repo = 'yuezk/vim-js'
+on_ft = ['javascript', 'javascript.jsx']
+
+[[plugins]]
+repo = 'maxmellon/vim-jsx-pretty'
+on_ft = ['javascript', 'javascript.jsx']
+
+[[plugins]]
+repo = 'heavenshell/vim-jsdoc'
+build = 'make install'
+hook_add = '''
+	nnoremap jd :JsDoc <Enter>
+'''
+on_ft = ['typescript', 'typescript.tsx', 'javascript', 'javascript.jsx']

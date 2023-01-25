@@ -1,0 +1,187 @@
+######### dein.vim ##########
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+
+
+########## git setting ##########
+# [[plugins]]
+# repo = 'airblade/vim-gitgutter'
+# hook_add = '''
+#   set signcolumn=yes
+#   let g:gitgutter_async = 1
+#   let g:gitgutter_sign_modified = 'rw'
+#   highlight GitGutterAdd ctermfg=green
+#   highlight GitGutterChange ctermfg=yellow
+#   highlight GitGutterDelete ctermfg=red
+#   highlight GitGutterChangeDelete ctermfg=yellow
+# '''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+on_evnet = 'BufReadPost'
+
+########## fuzy finder ##########
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+dev = '0.1.0'
+hook_add = '''
+  source $HOME/.config/nvim/plugins/telescope_rc.vim
+'''
+
+
+
+######### theme setting ##########
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+hook_add = '''
+  let g:airline_theme = 'codedark'
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+depends = ['vim-airline-themes', 'vim-fugitive']
+hook_add = '''
+  let g:airline_powerline_fonts = 1
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#buffer_nr_show = 1
+  let g:airline#extensions#branch#enabled=1
+  let g:airline#extensions#hunks#enabled=0
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+  let g:airline_section_a = airline#section#create(['mode', 'crypt'])
+'''
+
+
+## ##### color scheem ###### ##
+[[plugins]]
+repo = 'tomasiser/vim-code-dark'
+hook_add = '''
+  autocmd! VimEnter * nested colorscheme codedark
+'''
+
+
+## ##### vim file icons ##### ##
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+[[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+
+
+
+########## visual support and anction support ##########
+## ##### lsp setting ##### ##
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+hook_add = '''
+  source $HOME/.config/nvim/plugins/coc_rc.vim
+'''
+
+
+## ##### file and directory search ##### ##
+[[plugins]]
+repo = 'junegunn/fzf'
+
+
+## ##### auto pair ##### ##
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+
+[[plugins]]
+repo = 'luochen1990/rainbow'
+hook_add = '''
+  let g:rainbow_active = 1
+'''
+
+
+## ##### auto indent and visualize ##### ##
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+  "indentline"
+  let g:indentLine_color_term =239
+  let g:indentLine_color_gui = '#708090'
+  let g:indentLine_char = '¦'
+'''
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+
+
+## ##### window setting ##### ##
+[[plugins]]
+repo = 'simeji/winresizer'
+hook_add = '''
+  let g:winresizer_vert_resize = 1
+  let g:winresizer_horiz_resize = 1
+'''
+
+
+[[plugins]]
+repo = 'kristijanhusak/defx-git'
+hook_add = '''
+  source $HOME/.config/nvim/plugins/defx-git_rc.vim
+'''
+
+[[plugins]]
+repo = 'kristijanhusak/defx-icons'
+hook_add = '''
+  source $HOME/.config/nvim/plugins/defx-icons_rc.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+depends = ['defx-git', 'defx-icons']
+hook_add = '''
+  source $HOME/.config/nvim/plugins/defx_rc.vim
+'''
+
+
+
+# ############  handling directory and file  ############ #
+#[[plugins]]
+#repo = 'Shougo/deol.nvim'
+#hook_add = '''
+#  source $HOME/.config/nvim/plugins/deol.rc.vim
+#'''
+
+
+
+# ############  Initialazation or not ...  ############ #
+# Yet Another Remote Plugin Framework for Neovim
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = '''!has('nvim')'''
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = '''!has('nvim')'''
+[[plugins]]
+repo = 'neovim/python-client'
+if = '''!has('nvim')'''
+
+
+
+# ############  Operation Optimization  ############ #
+#[[plugins]]
+#repo = 'Shougo/vimproc.vim'
+#hook_post_update = '''
+#  if dein#util#_is_windows()
+#    let cmd = 'tools\\update-dll-mingw'
+#  elseif dein#util#_is_cygwin()
+#    let cmd = 'make -f make_cygwin.mak'
+#  elseif executable('gmake')
+#    let cmd = 'gmake'
+#  else
+#    let cmd = 'make'
+#  endif
+#  let g:dein#plugin.build = cmd
+#'''
+
