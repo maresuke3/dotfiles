@@ -9,6 +9,9 @@
 node_modules/
 .idea/
 
+# node
+.node-version
+
 # Logs
 logs
 *.log
