@@ -57,10 +57,6 @@ eval "$(anyenv init -)"
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-# plenv
-export PATH="$HOME/.plenv/bin:$PATH"
-eval "$(plenv init -)"
-
 # rbenv
 eval "$(rbenv init -)"
 
