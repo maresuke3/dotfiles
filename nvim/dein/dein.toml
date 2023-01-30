@@ -1,17 +1,17 @@
 ##########   dein.vim  ##########
 ########## git setting ##########
-#[[plugins]]
-#repo = 'tpope/vim-fugitive'
+# [[plugins]]
+# repo = 'tpope/vim-fugitive'
 
 
 ########## fuzy finder ##########
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
-
 [[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
+rev = '0.1.1'
 hook_add = '''
-  source $HOME/.config/nvim/plugins/telescope_rc.vim
+  source ~/.config/nvim/plugins/telescope.rc.lua
 '''
 
 
@@ -53,52 +53,14 @@ hook_add = '''
 # [[plugins]]
 # repo = 'kyazdani42/nvim-web-devicons'
 
-[[plugins]]
-repo = 'nvim-treesitter/nvim-treesitter'
-on_event = 'BufRead'
-hook_post_update = 'TSUpdate'
-hook_source = 'source ~/.config/nvim/plugins/nvim-treesitter.lua'
-
 ########## visual support and anction support ##########
 ## ##### lsp setting ##### ##
-[[plugins]]
-repo = 'neoclide/coc.nvim'
-rev = 'release'
-merged = 0
-hook_add = '''
-  source $HOME/.config/nvim/plugins/coc_rc.vim
-'''
 
-
-## ##### file and directory search ##### ##
-# [[plugins]]
-# repo = 'junegunn/fzf'
 
 
 ## ##### auto pair ##### ##
-# [[plugins]]
-# repo = 'jiangmiao/auto-pairs'
-
-# [[plugins]]
-# repo = 'luochen1990/rainbow'
-# hook_add = '''
-#   let g:rainbow_active = 1
-# '''
-
-
-## ##### auto indent and visualize ##### ##
-# [[plugins]]
-# repo = 'Yggdroot/indentLine'
-# hook_add = '''
-#   "indentline"
-#   let g:indentLine_color_term =239
-#   let g:indentLine_color_gui = '#708090'
-#   let g:indentLine_char = '¦'
-# '''
-
-# [[plugins]]
-# repo = 'nathanaelkane/vim-indent-guides'
-
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
 
 ## ##### window setting ##### ##
 # [[plugins]]
@@ -106,19 +68,6 @@ hook_add = '''
 # hook_add = '''
 #   let g:winresizer_vert_resize = 1
 #   let g:winresizer_horiz_resize = 1
-# '''
-
-
-# [[plugins]]
-# repo = 'kristijanhusak/defx-git'
-# hook_add = '''
-#   source $HOME/.config/nvim/plugins/defx-git_rc.vim
-# '''
-
-# [[plugins]]
-# repo = 'kristijanhusak/defx-icons'
-# hook_add = '''
-#   source $HOME/.config/nvim/plugins/defx-icons_rc.vim
 # '''
 
 
@@ -134,8 +83,6 @@ hook_add = '''
 # [[plugins]]
 # repo = 'neovim/python-client'
 # if = '''!has('nvim')'''
-
-
 
 # ############  Operation Optimization  ############ #
 #[[plugins]]
