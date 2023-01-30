@@ -65,3 +65,6 @@ dist
 
 # Go workspace file
 go.work
+
+# local
+configs/local.toml
