@@ -37,7 +37,6 @@ alias ll="ls -l"
 alias la="ls -la"
 alias ..="cd .."
 alias vim="nvim"
-alias vi="nvim"
 alias sed="gsed"
 
 # gitのalias
