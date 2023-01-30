@@ -4,8 +4,7 @@
   "coc.preferences.formatOnSaveFiletypes": [
     "python",
     "go",
-    "dart",
-    "cs",
+    "jedi",
     "javascript",
     "typescript",
     "html",
@@ -14,7 +13,6 @@
     "json",
     "javascriptreact",
     "typescriptreact",
-    "svelte",
     "markdown"
   ],
   "tsserver.formatOnType": true,
@@ -42,36 +40,11 @@
       "rootPatterns": ["go.mod"],
       "trace.server": "verbose",
       "filetypes": ["go"]
+    },
+    "jedi": {
+      "enable": true,
+      "startupMessage": false,
+      "executable.command": "~/.anyenv/envs/pyenv/versions/neovim3/bin/jedi-language-server"
     }
-  },
-  "diagnostic.errorSign": "✘",
-  "diagnostic.warningSign": "",
-  "diagnostic.infoSign": "",
-  "suggest.completionItemKindLabels": {
-    "keyword": "\uf1de",
-    "variable": "\ue79b",
-    "value": "\uf89f",
-    "operator": "\u03a8",
-    "function": "\u0192",
-    "reference": "\ufa46",
-    "constant": "\uf8fe",
-    "method": "\uf09a",
-    "struct": "\ufb44",
-    "class": "\uf0e8",
-    "interface": "\uf417",
-    "text": "\ue612",
-    "enum": "\uf435",
-    "enumMember": "\uf02b",
-    "module": "\uf40d",
-    "color": "\ue22b",
-    "property": "\ue624",
-    "field": "\ue624",
-    "unit": "\uf475",
-    "event": "\ufacd",
-    "file": "\uf723",
-    "folder": "\uf114",
-    "snippet": "\ue60b",
-    "typeParameter": "\uf728",
-    "default": "\uf29c"
   }
 }

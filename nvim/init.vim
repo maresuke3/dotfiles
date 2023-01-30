@@ -3,7 +3,6 @@
 " =================================================================== "
 let g:python_host_prog=$PYENV_ROOT.'/versions/neovim2/bin/python'
 let g:python3_host_prog=$PYENV_ROOT.'/versions/neovim3/bin/python'
-"let g:perl_host_prog = '/Users/daiki-fukushima/.anyenv/envs/plenv/shims/perl'
 
 
 
@@ -54,10 +53,12 @@ syntax enable
 " ===================================================================="
 "                           Checking keymapp                          "
 " ===================================================================="
-"autocmd VimEnter * execute 'Defx'
-"nnoremap <silent> <Leader>f :<C-u> Defx <CR>
-"autocmd BufWritePost * call defx#redraw()
-"autocmd BufEnter * call defx#redraw()
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap ss :<C-u>sp<CR><C-w>j
+nnoremap sv :<C-u>vs<CR><C-w>l
 
 
 
@@ -65,38 +66,31 @@ syntax enable
 "                    more detail shell style setting                  "
 " ===================================================================="
 " line number
-"set number
-" automatically indent
+set number
 set smartindent
 set autoindent
-" tab space setting (2)
 set tabstop=2
 set shiftwidth=2
+
 " display executed command
 set showcmd
+
 " display title
 set title
 
 " カーソル
 set ruler
-" set cursorline
-set nocursorline
-set norelativenumber
 set splitright
 set clipboard=unnamed
 
-" not create backup file
 set nobackup
-" not create swap file
 set noswapfile
-" enable indent highlight
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+
 " エンコーディング
 set encoding=utf-8
 scriptencoding utf-8
-" 挿入モードでバックスペースで削除できるようにする
-" set backspace=indent,eol,start
 
 " init.vimを保存したら自動反映
 autocmd BufWritePost  ~/.config/nvim/init.vim  so ~/.config/nvim/init.vim
@@ -106,11 +100,6 @@ autocmd BufWritePost  ~/.config/nvim/init.vim  so ~/.config/nvim/init.vim
 set hlsearch
 " コマンドライン補完の拡張
 set wildmenu
-
-"棒状カーソル"
-"let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-"let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-"inoremap <Esc> <Esc>lh
 
 " ヤンクするとクリップボードに保存される
 set clipboard+=unnamed
