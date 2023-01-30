@@ -29,10 +29,10 @@ endfunction
 
 function! CocJumpAction() abort
   let actions = [
-        \ {"text": "(s)plit", "value": "split"},
-        \ {"text": "(v)slit", "value": "vsplit"},
-        \ {"text": "(t)ab", "value": "tabedit"},
-        \ ]
+    \ {"text": "(s)plit", "value": "split"},
+    \ {"text": "(v)slit", "value": "vsplit"},
+    \ {"text": "(t)ab", "value": "tabedit"},
+    \ ]
   return ChoseAction(actions)
 endfunction
 nnoremap <silent> <C-t> :<C-u>call CocActionAsync('jumpDefinition', CocJumpAction())<CR>
@@ -50,28 +50,21 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " lsp setting
 let g:coc_global_extensions = [
-    \ 'coc-sql',
     \ 'coc-go',
-    \ 'coc-jedi',
-    \ 'coc-diagnostic',
-    \ 'coc-rls',
-    \ 'coc-omnisharp',
     \ 'coc-tsserver',
-    \ 'coc-vetur',
-    \ 'coc-vimlsp',
-    \ 'coc-docker',
-    \ 'coc-markdownlint',
-    \ 'coc-json',
-    \ 'coc-xml',
-    \ 'coc-yaml',
-    \ 'coc-toml',
+    \ 'coc-prettier',
+    \ 'coc-eslint',
     \ 'coc-css',
     \ 'coc-cssmodules',
     \ '@yaegassy/coc-tailwindcss3',
+    \ 'coc-jedi',
+    \ 'coc-json',
+    \ 'coc-toml',
+    \ 'coc-yaml',
+    \ 'coc-sql',
+    \ 'coc-diagnostic',
+    \ 'coc-vimlsp',
+    \ 'coc-docker',
+    \ 'coc-markdownlint',
     \ 'coc-spell-checker',
-    \ 'coc-snippets',
-    \ 'coc-prettier',
-    \ 'coc-eslint',
-    \ 'coc-explorer',
-    \ 'coc-snippets'
     \ ]
