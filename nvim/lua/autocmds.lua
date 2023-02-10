@@ -1,5 +1,3 @@
-print('autocmds.lua')
-
 local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 local augroup = vim.api.nvim_create_augroup-- Create/get autocommand group
 
@@ -7,6 +5,16 @@ local augroup = vim.api.nvim_create_augroup-- Create/get autocommand group
 autocmd("BufWritePost", {
   pattern = "*.lua",
   command = "source ~/.config/nvim/init.lua"
+})
+
+autocmd("BufWritePost", {
+  pattern = {"plugins.lua"},
+  command = "PackerInstall",
+})
+
+autocmd("BufWritePost", {
+  pattern = {"plugins.lua"},
+  command = "PackerCompile",
 })
 
 augroup( 'lua', {} )
