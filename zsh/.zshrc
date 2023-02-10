@@ -64,6 +64,7 @@ export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/shims:$PATH"
 export GO111MODULE=on
 eval "$(goenv init -)"
+export GOPRIVATE=gitlab.chamo-chat.com/*
 
 # gcp sdk
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'

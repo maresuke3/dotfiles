@@ -1,5 +1,4 @@
-print('base.lua')
-
+--
 vim.scriptencoding = 'utf-8'
 vim.encoding = 'utf-8'
 vim.fileencoding = 'utf-8'
@@ -10,6 +9,7 @@ vim.opt.title = true
 vim.opt.showcmd = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 2
+vim.opt.cursorline = true
 
 -- search and command helper
 vim.opt.hlsearch = true
