@@ -12,34 +12,38 @@ local on_attach = function(client, bufnr)
   set("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
 end
 
--- local status, mason = pcall(require, 'mason')
--- if (not status) then return end
--- local status2, mason_lspconfig = pcall(require, 'mason-lspconfig')
--- if (not status2) then return end
--- local status3, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
--- if (not status3) then return end
-
--- local capabilities = cmp_nvim_lsp.default_capabilities()
-
--- mason.setup()
--- mason_lspconfig.setup()
--- mason_lspconfig.setup_handlers {
---   function (server_name)
---     require("lspconfig")[server_name].setup {
---       on_attach = on_attach,
---       capabilities = capabilities,
---     }
---   end
--- }
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local status, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+if (not status) then 
+  print('not install cmp-nvim-lsp')
+  return
+end
+local capabilities = cmp_nvim_lsp.default_capabilities()
 
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup{
+  sure_installed = {
+    "typescript-language-server",
+    "eslint-lsp",
+    "prettier",
+    "gopls",
+    "goimports",
+    "css-lsp",
+    "cssmodules-language-server",
+    "tailwindcss-language-server",
+    "jedi-language-server",
+  }
+}
 require("mason-lspconfig").setup_handlers {
   function (server_name) -- default handler (optional)
     require("lspconfig")[server_name].setup {
       on_attach = on_attach, --keyバインドなどの設定を登録
       capabilities = capabilities, --cmpを連携
     }
-  end,
+  end
 }
+
+local signs = { Error = " ", Warn = ">>", Hint = ">", Info = ">" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl ="" })
+end
