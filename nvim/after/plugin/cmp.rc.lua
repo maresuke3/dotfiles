@@ -1,14 +1,20 @@
 -- Lspkindのrequire
-local lspkind = require 'lspkind'
+local status, lspkind = pcall(require,'lspkind')
+if (not status) then
+  print("not install lspkind")
+end
 --補完関係の設定
-local cmp = require("cmp")
+local staus2, cmp = pcall(require, "cmp")
+if (not staus2) then
+  print("not install cmp")
+end
 cmp.setup({
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
     end,
   },
-  sources = { 
+  sources = {
     { name = "nvim_lsp" },--ソース類を設定
     { name = 'vsnip' }, -- For vsnip users.
     { name = "buffer" },
@@ -17,9 +23,10 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ["<C-p>"] = cmp.mapping.select_prev_item(), --Ctrl+pで補完欄を一つ上に移動
     ["<C-n>"] = cmp.mapping.select_next_item(), --Ctrl+nで補完欄を一つ下に移動
+    ["<Tab>"] = cmp.mapping.select_next_item(), --Tabで補完欄を一つずつ先に移動
     ['<C-l>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ["<C-y>"] = cmp.mapping.confirm({ select = true }),--Ctrl+yで補完を選択確定
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),--Ctrl+yで補完を選択確定
   }),
   experimental = {
     ghost_text = false,
@@ -39,12 +46,23 @@ cmp.setup({
 cmp.setup.cmdline('/', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = 'buffer' }　--ソース類を設定
+    { name = 'buffer' } --ソース類を設定
   }
 })
 cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = "path" },　--ソース類を設定
+    { name = "path" }, --ソース類を設定
   },
 })
+
+vim.cmd([[
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.javascript = ['javascriptreact']
+let g:vsnip_filetypes.typescript = ['typescriptreact']
+]])
+
+vim.cmd([[
+set completeopt=menuone,noinsert,noinsert
+highlight! default link CmpItemKind CmpItemMenuDefault
+]])

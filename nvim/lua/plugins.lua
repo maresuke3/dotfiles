@@ -51,16 +51,23 @@ packer.startup(function()
     "williamboman/mason-lspconfig.nvim",
   }
 
-  use 'hrsh7th/nvim-cmp'
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-emoji"
-  use "hrsh7th/vim-vsnip"
-  use "hrsh7th/cmp-vsnip"
-  use "hrsh7th/cmp-path"
-  use "onsails/lspkind.nvim"
-      -- {
-      --   "onsails/lspkind.nvim",
-      --   event = {"InsertEnter"},
-      -- }
+  use {
+    "hrsh7th/nvim-cmp",
+    requires = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-calc',
+      'hrsh7th/cmp-emoji',
+      'hrsh7th/vim-vsnip',
+      'hrsh7th/cmp-vsnip',
+      'onsails/lspkind.nvim',
+    }
+  }
+  -- {
+  --   "onsails/lspkind.nvim",
+  --   event = {"InsertEnter"},
+  -- }
 
 end)
