@@ -6,7 +6,7 @@ end
 
 vim.cmd [[packadd packer.nvim]]
 
-packer.startup(function()
+packer.startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
