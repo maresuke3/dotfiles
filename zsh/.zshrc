@@ -1,7 +1,9 @@
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+
 # starship setting
 eval "$(starship init zsh)"
+
 # plugin manager setting
 eval "$(sheldon source)"
 
@@ -53,11 +55,13 @@ alias log='git log'
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="PYENV_ROOT/bin/:$PATH"
+eval "$(pyenv init -)"
+
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-
-# rbenv
-eval "$(rbenv init -)"
 
 # goenv
 export GOENV_ROOT="$HOME/.goenv"
@@ -67,9 +71,9 @@ eval "$(goenv init -)"
 export GOPRIVATE=gitlab.chamo-chat.com/*
 
 # gcp sdk
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-export GOOGLE_APPLICATION_CREDENTIALS='~/.gcp/credential.json'
+#source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+#source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+#export GOOGLE_APPLICATION_CREDENTIALS='~/.gcp/credential.json'
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
