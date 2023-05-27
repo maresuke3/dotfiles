@@ -1,13 +1,9 @@
 -- Lspkindのrequire
-local status, lspkind = pcall(require,'lspkind')
-if (not status) then
-  print("not install lspkind")
-end
+local lspkind = require('lspkind')
+
 --補完関係の設定
-local staus2, cmp = pcall(require, "cmp")
-if (not staus2) then
-  print("not install cmp")
-end
+local cmp = require("cmp")
+
 cmp.setup({
   snippet = {
     expand = function(args)
