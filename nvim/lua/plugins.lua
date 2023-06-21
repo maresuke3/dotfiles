@@ -10,7 +10,15 @@ packer.startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- color theme
+  use {
+    'svrana/neosolarized.nvim',
+    requires = {'tjdevries/colorbuddy.nvim'}
+  }
+
+  -- auto paire
   use 'windwp/nvim-autopairs'
+  use 'windwp/nvim-ts-autotag'
 
   -- Fuzy finder
   use {
@@ -51,6 +59,10 @@ packer.startup(function(use)
     "williamboman/mason-lspconfig.nvim",
   }
 
+  -- snipet
+  use 'L3MON4D3/LuaSnip'
+
+  -- auto complete
   use {
     "hrsh7th/nvim-cmp",
     requires = {
@@ -65,9 +77,9 @@ packer.startup(function(use)
       'onsails/lspkind.nvim',
     }
   }
-  -- {
-  --   "onsails/lspkind.nvim",
-  --   event = {"InsertEnter"},
-  -- }
+
+  -- git
+  use 'lewis6991/gitsigns.nvim'
+  use 'dinhhuy158/git.nvim'
 
 end)

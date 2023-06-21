@@ -1,5 +1,9 @@
+-- language protcol
+--os.getenv('PYTHON_ROOT')..'/shims/python3'
+
 -- lua settings
 require('base')
+require('highlights')
 require('autocmds')
 require('plugins')
 
@@ -8,8 +12,9 @@ local is_mac = has "macunix"
 local is_win = has "win32"
 
 if is_mac then
-  require('operatesystem.macintosh')
+  require('macos')
 end
 if is_win then
-  require('operatesystem.windows')
+  require('win64')
 end
+
