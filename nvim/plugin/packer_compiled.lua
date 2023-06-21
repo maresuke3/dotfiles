@@ -74,6 +74,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -109,6 +114,16 @@ _G.packer_plugins = {
     path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
+  ["colorbuddy.nvim"] = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim",
+    url = "https://github.com/tjdevries/colorbuddy.nvim"
+  },
+  ["git.nvim"] = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/git.nvim",
+    url = "https://github.com/dinhhuy158/git.nvim"
+  },
   ["lspkind.nvim"] = {
     loaded = true,
     path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
@@ -129,6 +144,11 @@ _G.packer_plugins = {
     path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["neosolarized.nvim"] = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/neosolarized.nvim",
+    url = "https://github.com/svrana/neosolarized.nvim"
+  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
@@ -148,6 +168,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-ts-autotag"] = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
+    url = "https://github.com/windwp/nvim-ts-autotag"
   },
   ["nvim-web-devicons"] = {
     loaded = false,
