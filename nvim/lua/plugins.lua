@@ -38,6 +38,7 @@ packer.startup(function(use)
   }
 
   -- status line
+  use 'kyazdani42/nvim-web-devicons'
   use {
     'nvim-lualine/lualine.nvim',
     requires = {
@@ -78,8 +79,13 @@ packer.startup(function(use)
     }
   }
 
+  -- anotation comment
+  use {
+    "folke/todo-comments.nvim"
+  }
+
   -- git
   use 'lewis6991/gitsigns.nvim'
-  use 'dinhhuy158/git.nvim'
+  use 'dinhhuy258/git.nvim'
 
 end)
