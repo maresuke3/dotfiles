@@ -122,7 +122,12 @@ _G.packer_plugins = {
   ["git.nvim"] = {
     loaded = true,
     path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/git.nvim",
-    url = "https://github.com/dinhhuy158/git.nvim"
+    url = "https://github.com/dinhhuy258/git.nvim"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["lspkind.nvim"] = {
     loaded = true,
@@ -175,9 +180,8 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-ts-autotag"
   },
   ["nvim-web-devicons"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
@@ -213,6 +217,11 @@ _G.packer_plugins = {
     path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim",
     wants = { "telescope-file-browser.nvim", "telescope-ghq.nvim", "telescope-z.nvim" }
+  },
+  ["todo-comments.nvim"] = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
+    url = "https://github.com/folke/todo-comments.nvim"
   },
   ["vim-vsnip"] = {
     loaded = true,

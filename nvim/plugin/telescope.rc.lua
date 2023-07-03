@@ -13,6 +13,11 @@ local function extensions(name, prop)
 end
 
 telescope.setup {
+  defaults = {
+    file_ignore_patterns = {
+      '.gitignore'
+    },
+  },
   vim.keymap.set('n', ';ff', function()
     builtin.find_files({
       noignore = false,
