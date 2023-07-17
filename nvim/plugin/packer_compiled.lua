@@ -74,6 +74,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -109,6 +114,7 @@ _G.packer_plugins = {
     path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
+<<<<<<< HEAD
   cmp_luasnip = {
     loaded = true,
     path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
@@ -118,6 +124,22 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/copilot.vim",
     url = "https://github.com/github/copilot.vim"
+=======
+  ["colorbuddy.nvim"] = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim",
+    url = "https://github.com/tjdevries/colorbuddy.nvim"
+  },
+  ["git.nvim"] = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/git.nvim",
+    url = "https://github.com/dinhhuy258/git.nvim"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
+>>>>>>> 7fe53d036c1caa9d99e6aed070665a96f43ed54f
   },
   ["lspkind.nvim"] = {
     loaded = true,
@@ -139,10 +161,17 @@ _G.packer_plugins = {
     path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+<<<<<<< HEAD
   nerdcommenter = {
     loaded = true,
     path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/nerdcommenter",
     url = "https://github.com/preservim/nerdcommenter"
+=======
+  ["neosolarized.nvim"] = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/neosolarized.nvim",
+    url = "https://github.com/svrana/neosolarized.nvim"
+>>>>>>> 7fe53d036c1caa9d99e6aed070665a96f43ed54f
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -164,10 +193,20 @@ _G.packer_plugins = {
     path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-ts-autotag"] = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
+    url = "https://github.com/windwp/nvim-ts-autotag"
+  },
   ["nvim-web-devicons"] = {
+<<<<<<< HEAD
     loaded = false,
     needs_bufread = false,
     path = "/home/maresuke/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+=======
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+>>>>>>> 7fe53d036c1caa9d99e6aed070665a96f43ed54f
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
@@ -203,6 +242,11 @@ _G.packer_plugins = {
     path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim",
     wants = { "telescope-file-browser.nvim", "telescope-ghq.nvim", "telescope-z.nvim" }
+  },
+  ["todo-comments.nvim"] = {
+    loaded = true,
+    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
+    url = "https://github.com/folke/todo-comments.nvim"
   },
   ["vim-vsnip"] = {
     loaded = true,

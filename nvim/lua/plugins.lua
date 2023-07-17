@@ -10,7 +10,15 @@ packer.startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- color theme
+  use {
+    'svrana/neosolarized.nvim',
+    requires = {'tjdevries/colorbuddy.nvim'}
+  }
+
+  -- auto paire
   use 'windwp/nvim-autopairs'
+  use 'windwp/nvim-ts-autotag'
 
   -- status line
   use {
@@ -67,21 +75,43 @@ packer.startup(function(use)
     },
   }
 
-  -- nvim-treesitter
+  -- status line
+  use 'kyazdani42/nvim-web-devicons'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+      opt = true
+    },
+  }
+
   use {
     'nvim-treesitter/nvim-treesitter',
     tun = ':TSUpdate'
   }
 
-  -- copilot
+  -- lsp
   use {
-    'github/copilot.vim',
-    requires = {
-      'nvim-treesitter/nvim-treesitter'
-    }
+    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
   }
 
-  -- comment out
-  use 'preservim/nerdcommenter'
+  -- copilot
+  use 'github/copilot.vim'
+  
+  -- snipet
+  use 'L3MON4D3/LuaSnip'
+
+  -- auto complete
+
+  -- anotation comment
+  use {
+    "folke/todo-comments.nvim"
+  }
+
+  -- git
+  use 'lewis6991/gitsigns.nvim'
+  use 'dinhhuy258/git.nvim'
 
 end)

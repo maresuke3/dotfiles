@@ -13,12 +13,22 @@ local function extensions(name, prop)
 end
 
 telescope.setup {
+  defaults = {
+    file_ignore_patterns = {
+      '.gitignore'
+    },
+  },
   vim.keymap.set('n', ';ff', function()
     builtin.find_files({
       noignore = false,
       hidden = false,
     })
   end),
+  pickers = {
+    find_files = {
+      show_untracked = true,
+    }
+  },
   vim.keymap.set('n', ';fg', builtin.live_grep, {}),
   vim.keymap.set('n', ';fb', builtin.buffers, {}),
   vim.keymap.set('n', ';fh', builtin.help_tags, {}),
