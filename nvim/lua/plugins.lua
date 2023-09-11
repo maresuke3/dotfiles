@@ -59,6 +59,17 @@ packer.startup(function(use)
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
   }
+  use {
+    "glepnir/lspsaga.nvim",
+    opt = true,
+    branch = "main",
+    event = "LspAttach",
+    requires = {
+      {"nvim-tree/nvim-web-devicons"},
+      --Please make sure you install markdown and markdown_inline parser
+      {"nvim-treesitter/nvim-treesitter"}
+    }
+  }
 
   -- snipet
   use 'L3MON4D3/LuaSnip'
@@ -87,5 +98,10 @@ packer.startup(function(use)
   -- git
   use 'lewis6991/gitsigns.nvim'
   use 'dinhhuy258/git.nvim'
+
+  -- command line
+  use {
+    'tpope/vim-eunuch'
+  }
 
 end)
