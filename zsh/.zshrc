@@ -53,11 +53,13 @@ alias log='git log'
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 
+# pyenv
+
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-# rbenv
-eval "$(rbenv init -)"
+# ndoenv
+eval "$(nodenv init - zsh)"
 
 # goenv
 export GOENV_ROOT="$HOME/.goenv"
@@ -66,12 +68,16 @@ export GO111MODULE=on
 eval "$(goenv init -)"
 export GOPRIVATE=gitlab.chamo-chat.com/*
 
+# gomock
+#export PATH=$PATH:$(go env GOPATH)/bin
+
 # gcp sdk
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 export GOOGLE_APPLICATION_CREDENTIALS='~/.gcp/credential.json'
 
 export PATH="/usr/local/sbin:$PATH"
+
+# glow
+alias md='glow -p -'
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
