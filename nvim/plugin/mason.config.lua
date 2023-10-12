@@ -8,11 +8,11 @@ mason.setup({})
 
 lspconfig.setup({
   ensure_installed = {
-    -- "lua-language-server",
-    -- "typescript-language-server",
-    -- "eslint-lsp",
-    -- "prettier",
-    -- "gopls",
+    "tsserver",
+    "gopls",
+    "pyright",
+    "eslint",
+    "diagnosticls",
     -- "poimports",
     -- "jedi-language-server",
     -- "sqls",
@@ -21,3 +21,5 @@ lspconfig.setup({
     -- "tailwindcss-language-server"
   }
 })
+
+require('lspconfig').diagnosticls.setup({})
