@@ -10,32 +10,37 @@ packer.startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- color theme
+  -- lsp
   use {
-    'svrana/neosolarized.nvim',
-    requires = {'tjdevries/colorbuddy.nvim'}
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
   }
 
-  -- auto paire
+  -- lsp sapport
+  use({
+    'nvimdev/lspsaga.nvim',
+    after = 'nvim-lspconfig',
+  })
+
+  -- syntax highlight
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+
+  use {
+    "nvim-telescope/telescope-file-browser.nvim",
+    requires = {
+      "nvim-telescope/telescope.nvim",
+      --"nvim-telescope/telescope-fzf-native.nvim",
+      "nvim-lua/plenary.nvim"
+    },
+  }
+
+  -- auto tag or pair
   use 'windwp/nvim-autopairs'
   use 'windwp/nvim-ts-autotag'
-
-  -- Fuzy finder
-  use {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.1',
-    requires = {
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-telescope/telescope-file-browser.nvim', opt = true},
-      {'nvim-telescope/telescope-ghq.nvim', opt = true },
-      {'nvim-telescope/telescope-z.nvim', opt = true },
-    },
-    wants = {
-      "telescope-file-browser.nvim",
-      "telescope-ghq.nvim",
-      "telescope-z.nvim",
-    },
-  }
 
   -- status line
   use 'kyazdani42/nvim-web-devicons'
@@ -44,42 +49,15 @@ packer.startup(function(use)
     requires = {
       'kyazdani42/nvim-web-devicons',
       opt = true
-    },
-  }
-
-  -- Post-install/update hook with neovim command
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
-
-  -- lsp
-  use {
-    "neovim/nvim-lspconfig",
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-  }
-  use {
-    "glepnir/lspsaga.nvim",
-    opt = true,
-    branch = "main",
-    event = "LspAttach",
-    requires = {
-      {"nvim-tree/nvim-web-devicons"},
-      --Please make sure you install markdown and markdown_inline parser
-      {"nvim-treesitter/nvim-treesitter"}
     }
   }
 
-  -- snipet
-  use 'L3MON4D3/LuaSnip'
-
   -- auto complete
   use {
-    "hrsh7th/nvim-cmp",
+    'hrsh7th/nvim-cmp',
     requires = {
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-nvim-lsp",
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-calc',
@@ -90,18 +68,23 @@ packer.startup(function(use)
     }
   }
 
+  -- snipet
+  use 'L3MON4D3/LuaSnip'
+
+  -- git
+  use {
+    'lewis6991/gitsigns.nvim',
+    'dinhhuy258/git.nvim',
+  }
+
   -- anotation comment
   use {
     "folke/todo-comments.nvim"
   }
 
-  -- git
-  use 'lewis6991/gitsigns.nvim'
-  use 'dinhhuy258/git.nvim'
-
-  -- command line
+  -- color theme
   use {
-    'tpope/vim-eunuch'
+    'svrana/neosolarized.nvim',
+    requires = { 'tjdevries/colorbuddy.nvim' }
   }
-
 end)
