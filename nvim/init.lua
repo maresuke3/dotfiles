@@ -1,11 +1,9 @@
--- language protcol
---os.getenv('PYTHON_ROOT')..'/shims/python3'
-
 -- lua settings
 require('base')
 require('highlights')
 require('autocmds')
 require('plugins')
+require('keymap')
 
 local has = vim.fn.has
 local is_mac = has "macunix"
