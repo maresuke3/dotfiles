@@ -86,7 +86,11 @@ lualine.setup {
       {
         'filename',
         file_status = true,
+      },
+      {
+        'path',
         path = 0
+
       },
       fileformat
     },
@@ -108,9 +112,14 @@ lualine.setup {
     lualine_a = {},
     lualine_b = {},
     lualine_c = {
-      'filename',
-      file_status = true,
-      path = 1
+      {
+        'filename',
+        file_status = true,
+      },
+      {
+        'path',
+        path = 1
+      },
     },
     lualine_x = {'location'},
     lualine_y = {},
