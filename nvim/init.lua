@@ -1,3 +1,6 @@
+-- language protcol
+--os.getenv('PYTHON_ROOT')..'/shims/python3'
+
 -- lua settings
 require('base')
 require('highlights')

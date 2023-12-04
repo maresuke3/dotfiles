@@ -76,53 +76,48 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["cmp-buffer"] = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/cmp-buffer",
     url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-calc"] = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/cmp-calc",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/cmp-calc",
     url = "https://github.com/hrsh7th/cmp-calc"
   },
   ["cmp-emoji"] = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/cmp-emoji",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/cmp-emoji",
     url = "https://github.com/hrsh7th/cmp-emoji"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   ["cmp-nvim-lua"] = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
     url = "https://github.com/hrsh7th/cmp-nvim-lua"
   },
   ["cmp-path"] = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/cmp-path",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
   ["cmp-vsnip"] = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
   ["colorbuddy.nvim"] = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim",
     url = "https://github.com/tjdevries/colorbuddy.nvim"
-  },
-  ["fzf-lua"] = {
-    loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/fzf-lua",
-    url = "https://github.com/ibhagwan/fzf-lua"
   },
   ["git.nvim"] = {
     loaded = true,
@@ -136,7 +131,7 @@ _G.packer_plugins = {
   },
   ["lspkind.nvim"] = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
     url = "https://github.com/onsails/lspkind.nvim"
   },
   ["lspsaga.nvim"] = {
@@ -163,7 +158,7 @@ _G.packer_plugins = {
   },
   ["neosolarized.nvim"] = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/neosolarized.nvim",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/neosolarized.nvim",
     url = "https://github.com/svrana/neosolarized.nvim"
   },
   ["nvim-autopairs"] = {
@@ -173,7 +168,7 @@ _G.packer_plugins = {
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
@@ -223,7 +218,7 @@ _G.packer_plugins = {
   },
   ["vim-vsnip"] = {
     loaded = true,
-    path = "/Users/daiki-fukushima/.local/share/nvim/site/pack/packer/start/vim-vsnip",
+    path = "/home/maresuke/.local/share/nvim/site/pack/packer/start/vim-vsnip",
     url = "https://github.com/hrsh7th/vim-vsnip"
   }
 }
