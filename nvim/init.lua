@@ -6,6 +6,7 @@ require('base')
 require('highlights')
 require('autocmds')
 require('plugins')
+require('keymap')
 
 local has = vim.fn.has
 local is_mac = has "macunix"
