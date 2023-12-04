@@ -1,5 +1,9 @@
 local status, cmp = pcall(require, 'cmp')
-if (not status) then return end
+if (not status) then
+  print("not installed nvim-cmp")
+  return
+end
+
 local lspkind = require('lspkind')
 
 cmp.setup({
@@ -21,10 +25,10 @@ cmp.setup({
     })
   }),
   sources = cmp.config.sources({
-    {name = "nvim_lsp"},
-    {name = "vsnip"},
-    {name = "buffer"},
-    {name = "path"}
+    { name = "nvim_lsp" },
+    { name = "vsnip" },
+    { name = "buffer" },
+    { name = "path" }
   }),
   formatting = {
     format = lspkind.cmp_format({
@@ -33,7 +37,6 @@ cmp.setup({
     })
   }
 })
-
 vim.cmd [[
   set completeopt=menuone,noinsert,noselect
   highlight! default link CmpItemKind CmpItemMenuDefault
