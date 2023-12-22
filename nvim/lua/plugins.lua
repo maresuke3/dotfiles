@@ -15,12 +15,37 @@ packer.startup(function(use)
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
+    'mfussenegger/nvim-lint',
+    'mhartington/formatter.nvim',
+    'mfussenegger/nvim-dap',
+    'rcarriga/nvim-dap-ui'
   }
 
   -- lsp sapport
   use({
     'nvimdev/lspsaga.nvim',
     after = 'nvim-lspconfig',
+  })
+  -- github copilot
+  use({
+    'github/copilot.vim',
+    config = function()
+      vim.g.copilot_no_tab_map = true
+      vim.api.nvim_set_keymap(
+        "i",
+        "<C-g>",
+        'copilot#Accept("<CR>")',
+        { silent = true, expr = true, script = true, replace_keycodes = false }
+      )
+
+      local keymap = vim.keymap.set
+
+      --
+      keymap("i", "<C-j>", "<Plug>(copilot-next)")
+      keymap("i", "<C-k>", "<Plug>(copilot-previous)")
+      keymap("i", "<C-o>", "<Plug>(copilot-dismiss)")
+      keymap("i", "<C-s>", "<Plug>(copilot-suggest)")
+    end,
   })
 
   -- syntax highlight
@@ -37,17 +62,6 @@ packer.startup(function(use)
       "nvim-lua/plenary.nvim"
     },
   }
-  -- use {
-  --   "glepnir/lspsaga.nvim",
-  --   opt = true,
-  --   branch = "main",
-  --   event = "LspAttach",
-  --   requires = {
-  --     {"nvim-tree/nvim-web-devicons"},
-  --     --Please make sure you install markdown and markdown_inline parser
-  --     {"nvim-treesitter/nvim-treesitter"}
-  --   }
-  -- }
 
   -- auto tag or pair
   use 'windwp/nvim-autopairs'
@@ -90,7 +104,8 @@ packer.startup(function(use)
 
   -- anotation comment
   use {
-    "folke/todo-comments.nvim"
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim"
   }
 
   -- color theme
