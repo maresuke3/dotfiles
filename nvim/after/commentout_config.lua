@@ -17,15 +17,26 @@ vim.cmd('highlight TodoCommentWarning guifg=#ffffff guibg=#FF8C00')
 
 -- TODO-comments.nvimの設定
 comments.setup {
+  signs = true,
+  sign_priority = 8,
   keywords = {
-    FIX = { icon = " ", color = "TodoCommentFixme", alt = { "FIXME", "BUG" } },
+    FIX = {
+      icon = " ",
+      color = "TodoCommentFixme",
+      alt = {
+        "FIXME",
+        "BUG",
+        "FIXIT",
+        "ISSUE",
+      }
+    },
     TODO = { icon = " ", color = "TodoCommentTodo", alt = { "NOTE" } },
     HACK = { icon = " ", color = "TodoCommentHack" },
     XXX = { icon = " ", color = "TodoCommentXXX", alt = { "DEBUG" } },
     PREVIEW = { icon = " ", color = "TodoCommentPreview", alt = { "PRE" } },
     OPTIMIZE = { icon = " ", color = "TodoCommentOptimize", alt = { "opt" } },
     CHANGED = { icon = " ", color = "TodoCommentChanged", alt = { "CHG" } },
-    NOTE = { icon = " ", color = "TodoCommentNote" },
+    NOTE = { icon = " ", color = "TodoCommentNote", alt = { "INFO" } },
     WARNING = { icon = " ", color = "TodoCommentWarning", alt = { "WARN" } },
   },
   highlight = {
