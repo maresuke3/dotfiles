@@ -48,6 +48,16 @@ packer.startup(function(use)
     end,
   })
 
+  -- file tree 
+  use {
+    'nvim-neo-tree/neo-tree.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim'
+    }
+  }
+
   -- syntax highlight
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -101,6 +111,13 @@ packer.startup(function(use)
     'lewis6991/gitsigns.nvim',
     'dinhhuy258/git.nvim',
   }
+  use({
+    "kdheepak/lazygit.nvim",
+    -- optional for floating window border decoration
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+  })
 
   -- anotation comment
   use {
@@ -108,9 +125,18 @@ packer.startup(function(use)
     requires = "nvim-lua/plenary.nvim"
   }
 
-  -- color theme
+  -- toggle terminal
   use {
-    'svrana/neosolarized.nvim',
-    requires = { 'tjdevries/colorbuddy.nvim' }
+    'akinsho/toggleterm.nvim',
+    tag = '*',
+    config = function()
+      require('toggleterm').setup()
+    end
   }
+
+  -- color theme
+  use('Tsuzat/NeoSolarized.nvim')
+
+  -- colorhighliter
+  use 'uga-rosa/ccc.nvim'
 end)
