@@ -38,6 +38,13 @@ config.keys = {
       domain = "CurrentPaneDomain"
     }
   },
+  {
+    key = "h",
+    mods = "CTRL",
+    action = act.PaneSelect {
+      alphabet = "1234567890"
+    }
+  }
 }
 -- mac setting
 if wezterm.target_triple == 'x86_64-apple-darwin' then

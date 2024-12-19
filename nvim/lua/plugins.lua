@@ -25,6 +25,30 @@ packer.startup(function(use)
   use({
     'nvimdev/lspsaga.nvim',
     after = 'nvim-lspconfig',
+    config = function()
+      require('lspsaga').setup({
+        border_style = "single",
+        symbol_in_winbar = {
+          enabled = false,
+          icon = "",
+          -- symbol used for show diagnostic in the winbar
+          -- by default: ''
+        },
+        code_action_lightbulb = {
+          enable = true,
+        },
+        show_outline = {
+          win_width = 50,
+          auto_preview = false,
+        },
+        finder = {
+          max_height = 0.6,
+          keys = {
+            vsplit = 'v',
+          }
+        }
+      })
+    end,
   })
   -- github copilot
   use({
@@ -47,22 +71,31 @@ packer.startup(function(use)
       keymap("i", "<C-s>", "<Plug>(copilot-suggest)")
     end,
   })
-
-  -- file tree 
+  -- file tree
   use {
     'nvim-neo-tree/neo-tree.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
       'MunifTanjim/nui.nvim'
-    }
+    },
+    config = function()
+      require('neo-tree').setup({
+        filesystem = {
+          filtered_items = {
+            visible = true,
+            show_hidden_count = true,
+            hide_dotfiles = false,
+            hide_gitignore = true,
+            never_show = {}
+          }
+        }
+      })
+    end,
   }
 
   -- syntax highlight
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
+  use 'nvim-treesitter/nvim-treesitter'
 
   use {
     "nvim-telescope/telescope-file-browser.nvim",
@@ -139,4 +172,58 @@ packer.startup(function(use)
 
   -- colorhighliter
   use 'uga-rosa/ccc.nvim'
+
+  -- markdown auto_preview
+  use("echasnovski/mini.nvim", { opt = true })
+  use({
+    'MeanderingProgrammer/render-markdown.nvim',
+    after = { 'nvim-treesitter' },
+    requires = {
+      'echasnovski/mini.nvim',
+      opt = true
+    },
+    config = function()
+      require('render-markdown').setup({})
+    end
+  })
+
+  --use {
+  --  "3rd/image.nvim",
+  --  config = function()
+  --    require("image").setup({
+  --      markdown = {
+  --        enable = true,
+  --      }
+  --    })
+  --  end,
+  --}
+  --use {
+  --  "3rd/diagram.nvim",
+  --  requires = { "3rd/image.nvim" },
+  --  config = function()
+  --    require("diagram").setup({
+  --      integrations = {
+  --        require("diagram.integrations.markdown"),
+  --        require("diagram.integrations.neorg"),
+  --      },
+  --      render_options = {
+  --        mermaid = {
+  --          background = "transparent",
+  --          theme = "dark",
+  --          scale = 1,
+  --        },
+  --        plantuml = {
+  --          charset = "utf-8",
+  --        },
+  --        d2 = {
+  --          theme_id = 1,
+  --          dark_theme_id = 200,
+  --          scale = -1,
+  --          layout = nil,
+  --          sketch = nil,
+  --        }
+  --      }
+  --    })
+  --  end,
+  --}
 end)
