@@ -16,11 +16,19 @@ return {
         "regex",
         "tsx",
         "typescript",
-        "go",
         "vim",
         "yaml",
       },
     },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+      vim.filetype.add({
+        extension = {
+          mdx = "mdx",
+        },
+      })
+      vim.treesitter.language.register("markdown", "mdx")
+    end,
   },
 
   -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
@@ -33,8 +41,6 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "tsx",
         "typescript",
-        "go",
-        "php",
       })
     end,
   },
