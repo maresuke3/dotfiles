@@ -24,15 +24,7 @@ return {
           -- highlights.Include.fg = colors.red -- Using `red` foreground for Includes
         end,
       })
-      -- Set colorscheme to NeoSolarized
-      --      vim.cmd([[
-      --        try
-      --            colorscheme NeoSolarized
-      --        catch /^Vim\%((\a\+)\)\=:E18o
-      --            colorscheme default
-      --            set background=dark
-      --        endtry
-      --      ]])
+
       vim.cmd([[
         try
           colorscheme NeoSolarized
