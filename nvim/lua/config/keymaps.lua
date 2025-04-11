@@ -25,7 +25,7 @@ keyset.set("n", "<C-m>", "<C-i>", opts)
 
 -- diagnostic
 keyset.set("n", "<C-j>", function()
-  vim.diagnotic.goto_next()
+  vim.diagnostic.goto_next()
 end, opts)
 
 --- lspsaga
@@ -39,3 +39,8 @@ end)
 
 -- any
 keyset.set("n", "gd", vim.lsp.buf.definition)
+
+-- fzf disable
+--vim.api.nvim_del_keymap("n", "<leader>ff")
+--local telescope = require("telescope.builtin")
+--keyset.set("n", "<leader>ff", telescope.find_files, opts)

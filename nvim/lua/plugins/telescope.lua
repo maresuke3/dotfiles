@@ -17,14 +17,13 @@ return {
         desc = "Find Plugin File",
       },
       {
-        "<leader>ff",
+        "<leader>FF",
         function()
           require("telescope.builtin").find_files()
         end,
-        desc = "Find Files",
       },
       {
-        "<leader>fg",
+        "<leader>FG",
         function()
           require("telescope.builtin").live_grep()
         end,
@@ -92,6 +91,21 @@ return {
       local actions = require("telescope.builtin")
       local fb_actions = require("telescope").extensions.file_browser.actions
 
+      telescope.setup({
+        defaults = {
+          files_ignore_patterns = {
+            "^node_modules/",
+            "mock/",
+            "^.git/",
+            "lib/",
+            "dist/",
+            "^.cache/",
+          },
+        },
+      })
+      telescope.load_extension("fzf")
+      telescope.load_extension("file_browser")
+
       opts.defaults = opts.defaults or {}
 
       opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
@@ -140,21 +154,6 @@ return {
           },
         },
       }
-
-      telescope.setup({
-        defaults = {
-          files_ignore_patterns = {
-            "^node_modules/",
-            "mock/",
-            "^.git/",
-            "lib/",
-            "dist/",
-            "^.cache/",
-          },
-        },
-      })
-      telescope.load_extension("fzf")
-      telescope.load_extension("file_browser")
     end,
   },
 }

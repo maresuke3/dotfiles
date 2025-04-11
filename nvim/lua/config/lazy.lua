@@ -50,4 +50,10 @@ require("lazy").setup({
       },
     },
   },
+}, {
+  rocks = {
+    enabled = false, -- enable rocks server
+    -- hererocks = false, -- use hererocks to install rocks
+    -- path = "/opt/homebrew/etc/luarocks",
+  },
 })

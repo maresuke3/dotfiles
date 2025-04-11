@@ -10,8 +10,7 @@ return {
     lazy = false,
     keys = {
       {
-        "n",
-        "<leader>tn",
+        "<leader>tr",
         "<cmd>Neotree<CR>",
       },
     },
