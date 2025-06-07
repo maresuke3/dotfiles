@@ -29,7 +29,8 @@ mason.setup ({
 mason_lsp.setup {
   ensure_installed = {
     "gopls",
-    "tsserver",
+    --"denols",
+    "ts_ls",
   },
   automatic_installation = false,
   handlers = nil

@@ -51,7 +51,7 @@ packer.startup(function(use)
   -- syntax highlight
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
+    --run = ':TSUpdate'
   }
 
   use {
@@ -77,6 +77,42 @@ packer.startup(function(use)
     }
   }
 
+  use({
+    'kdheepak/lazygit.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    }
+  })
+
+  -- filer
+  use {
+    'nvim-neo-tree/neo-tree.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim'
+    },
+    config = function() 
+      require("neo-tree").setup({
+        filesystem = {
+          filtered_items = {
+            visible = false,
+            show_hidden_count = true,
+            hide_dotfiles = false,
+            hide_gitignored = false,
+            hide_by_name = {
+              "node_modules"
+            },
+            never_show = {
+              ".git",
+              ".DS_Store",
+            }
+          }
+        }
+      })
+    end
+  }
+
   -- auto complete
   use {
     'hrsh7th/nvim-cmp',
@@ -98,7 +134,7 @@ packer.startup(function(use)
 
   -- git
   use {
-    'lewis6991/gitsigns.nvim',
+    --'lewis6991/gitsigns.nvim',
     'dinhhuy258/git.nvim',
   }
 
@@ -109,8 +145,5 @@ packer.startup(function(use)
   }
 
   -- color theme
-  use {
-    'svrana/neosolarized.nvim',
-    requires = { 'tjdevries/colorbuddy.nvim' }
-  }
+  use ('Tsuzat/NeoSolarized.nvim')
 end)
