@@ -84,12 +84,11 @@ return {
               indent_style
             },
           },
-          --lualine_x = {
-          --  {todos.get_top_todo, color = {fg="#FFFF99"}},
-          --  'encoding', 'filetype', {'filename', path=1}},
+          lualine_x = {
+            'encoding', 'filetype', {'filename', path=1}},
           lualine_y = {
             {total_lines, color={fg="#FF99FF"}},
-            {yank_register, icon = '📋'},
+            {yank_register, icon = '📋', color={fg="#FF99FF"}},
           },
           lualine_z = {
             {lsp_clients, color={fg="#99FF99", bg="#3c3c6c"}},

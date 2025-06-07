@@ -104,6 +104,7 @@ return {
 
     pcall(telescope.load_extension, "fzf")
     pcall(telescope.load_extension, "file_browser")
+    pcall(telescope.load_extension, "noice")
 
     -- keymap settings
     local map = vim.keymap.set
@@ -112,7 +113,7 @@ return {
     map("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
     map("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
     map("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
-    --map("n", "<leader>fh", builtin.help_tag, { desc = "Find help" })
+    map("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
 
     -- git action
     map("n", "<leader>gf", builtin.git_files, { desc = "Git files" })
