@@ -10,7 +10,7 @@ end
 
 -- lsp_checker
 local function lsp_clients()
-  local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
   if next(clients) == nil then
     return "none LSP"
   end
