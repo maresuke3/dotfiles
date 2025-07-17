@@ -1,47 +1,35 @@
 return {
-  {
-    "nvimdev/lspsaga.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter", -- optional
-      "nvim-tree/nvim-web-devicons", -- optional
+	{
+		"nvimdev/lspsaga.nvim",
+		dependencies = {
+        'nvim-treesitter/nvim-treesitter', -- optional
+        'nvim-tree/nvim-web-devicons',     -- optional
     },
-    lazy = false,
-    config = function()
-      local saga = require("lspsaga")
-      local setKeymaps = vim.keymap
-      local opts = { noremap = true, silent = true }
-      saga.setup({
-        definition = {},
-        diagnostic = {
-          max_height = 0.8,
-          keys = {
-            quit = { "q", "<ESC>" },
-          },
-        },
-        finder = {
-          max_hegit = 0.6,
-          keys = {
-            vsplit = "v",
-          },
-        },
-      })
-      setKeymaps.set("n", "<C-d>", "<cmd>Lspsaga term_toggle<CR>", opts)
-      setKeymaps.set("n", "<leader>gD", "<cmd>Lspsaga peek_definition<CR>", opts)
-      setKeymaps.set("n", "<leader>gtd", "<cmd>Lspsaga peek_type_definition<CR>", opts)
+		config = function()
+      require('lspsaga').setup({
+				definition = {},
+				finder = {},
+			})
+
+			local keymap = vim.keymap.set
+			-- Definition jump
+			keymap("n", "gd", ":Lspsaga goto_definition<cr>")
+			keymap("n", "gD", ":Lspsaga peek_definition<cr>")
+			keymap("n", "td", ":Lspsaga goto_type_definition<cr>")
+			keymap("n", "tD", ":Lspsaga peek_type_definition<cr>")
+
+			-- finder
+			keymap("n", "gr", ":Lspsaga finder<cr>")
+
+			-- code action
+			keymap("n", "ca", ":Lspsaga code_action<cr>")
+
+			-- rename action
+			keymap("n", "rn", ":Lspsaga rename<cr>")
+
+
+			-- hover
+			keymap("n", "K", ":Lspsaga hover_doc ++keep<cr>")
     end,
-    --keys = {
-    --  {
-    --    "<leader>gD",
-    --    "<cmd>Lspsaga peek_definition<CR>",
-    --  },
-    --  {
-    --    "<leader>gtd",
-    --    "<cmd>Lspsaga peek_type_definition<CR>",
-    --  },
-    --  {
-    --    "<C-d>",
-    --    "<cmd>Lspsaga term_toggle<CR>",
-    --  },
-    --},
-  },
+	}
 }

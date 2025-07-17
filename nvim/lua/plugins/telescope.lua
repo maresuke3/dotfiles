@@ -3,6 +3,8 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
+		--event = "VeryLazy",
+		lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -17,13 +19,14 @@ return {
         desc = "Find Plugin File",
       },
       {
-        "<leader>FF",
+        "<leader>ff",
         function()
           require("telescope.builtin").find_files()
         end,
+        desc = "Find Files",
       },
       {
-        "<leader>FG",
+        "<leader>fg",
         function()
           require("telescope.builtin").live_grep()
         end,
@@ -85,32 +88,24 @@ return {
           })
         end,
       },
+			{
+				"<leader>sk",
+				function()
+					require("telescope.builtin").keymaps()
+				end,
+				desc = "Find Keymaps",
+			},
     },
     config = function(_, opts)
       local telescope = require("telescope")
       local actions = require("telescope.builtin")
       local fb_actions = require("telescope").extensions.file_browser.actions
 
-      telescope.setup({
-        defaults = {
-          files_ignore_patterns = {
-            "^node_modules/",
-            "mock/",
-            "^.git/",
-            "lib/",
-            "dist/",
-            "^.cache/",
-          },
-        },
-      })
-      telescope.load_extension("fzf")
-      telescope.load_extension("file_browser")
-
       opts.defaults = opts.defaults or {}
 
       opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
         wrap_results = true,
-        layout_strategy = "horizontal",
+      layout_strategy = "horizontal",
         layout_config = { prompt_position = "bottom" },
         sorting_strategy = "ascending",
         winblend = 0,
@@ -154,6 +149,21 @@ return {
           },
         },
       }
+
+      telescope.setup({
+        defaults = {
+          files_ignore_patterns = {
+            "^node_modules/",
+            "mock/",
+            "^.git/",
+            "lib/",
+            "dist/",
+            "^.cache/",
+          },
+        },
+      })
+      --telescope.load_extension("fzf")
+      telescope.load_extension("file_browser")
     end,
   },
 }
