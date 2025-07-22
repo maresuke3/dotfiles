@@ -54,6 +54,11 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 
 # goenv
 export GO111MODULE=on
+export GOROOT=$(mise where go)
+export PATH=$GOROOT/bin:$PATH
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+
 export GOPRIVATE=<REDACTED>
 export GOPRIVATE=<REDACTED>
 
