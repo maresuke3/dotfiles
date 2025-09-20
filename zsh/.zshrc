@@ -49,27 +49,12 @@ alias gpl='git pull'
 alias gps='git push'
 alias log='git log'
 
-# anyenvの設定
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-
-# pyenv
-
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-# ndoenv
-eval "$(nodenv init - zsh)"
-
-# goenv
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/shims:$PATH"
+# go env
 export GO111MODULE=on
-eval "$(goenv init -)"
 export GOPRIVATE=<REDACTED>
-
-# gomock
-#export PATH=$PATH:$(go env GOPATH)/bin
 
 # gcp sdk
 export GOOGLE_APPLICATION_CREDENTIALS=<REDACTED>
@@ -83,3 +68,8 @@ alias md='glow -p -'
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
 eval "(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+eval "$(mise activate zsh)"
+
+# z
+. `brew --prefix`/etc/profile.d/z.sh
