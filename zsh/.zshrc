@@ -49,23 +49,17 @@ alias gpl='git pull'
 alias gps='git push'
 alias log='git log'
 
-# anyenvの設定
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-
-# pyenv
-
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-# ndoenv
-eval "$(nodenv init - zsh)"
-
 # goenv
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/shims:$PATH"
 export GO111MODULE=on
-eval "$(goenv init -)"
+export GOROOT=$(mise where go)
+export PATH=$GOROOT/bin:$PATH
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+
+export GOPRIVATE=<REDACTED>
 export GOPRIVATE=<REDACTED>
 
 # gomock
@@ -82,4 +76,15 @@ alias md='glow -p -'
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
-eval "(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# mise activate
+eval "$(mise activate zsh)"
+
+# z
+. `brew --prefix`/etc/profile.d/z.sh
+
+# PHP env value
+export PHP_CONFIGURE_OPTS="--without-gd"
+
+# shellenv
+# eval "(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "(/opt/homebrew/bin/brew shellenv)"
