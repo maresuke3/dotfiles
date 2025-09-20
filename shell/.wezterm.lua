@@ -1,24 +1,23 @@
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 -- initial setting
 local config = {}
 
 if wezterm.config_builder then
-  config = wezterm.config_builder()
+	config = wezterm.config_builder()
 end
 
-config.color_scheme = 'Solarized Dark - Patched'
+config.color_scheme = "Solarized Dark - Patched"
 config.window_background_opacity = 0.91
 
 -- custom config
 -- /*'font-fira-code-nerd-font'*/
-config.font =
-    wezterm.font('font-fira-code-nerd-font', { weight = 'Bold', stretch = 'Normal', style = 'Normal' })
-config.font = wezterm.font_with_fallback {
-  'Fira Code',
-  'DengXian',
-}
-config.font_size = 20.0
+config.font = wezterm.font("font-fira-code-nerd-font", { weight = "Bold", stretch = "Normal", style = "Normal" })
+config.font = wezterm.font_with_fallback({
+	"Fira Code",
+	"DengXian",
+})
+config.font_size = 18.0
 config.adjust_window_size_when_changing_font_size = false
 
 local mux = wezterm.mux
@@ -49,17 +48,24 @@ config.keys = {
     mods="SHIFT",
     action=wezterm.action{SendString="\x1b\r"}
   },
+	{
+		key = "h",
+		mods = "CTRL",
+		action = act.PaneSelect({
+			alphabet = "1234567890",
+		}),
+	},
 }
 -- mac setting
-if wezterm.target_triple == 'x86_64-apple-darwin' then
-  -- window setting
-  config.window_background_opacity = 0.91
-  config.window_padding = {
-    left = 10,
-    right = 10,
-    top = 10,
-    bottom = 10,
-  }
+if wezterm.target_triple == "x86_64-apple-darwin" then
+	-- window setting
+	config.window_background_opacity = 0.91
+	config.window_padding = {
+		left = 10,
+		right = 10,
+		top = 10,
+		bottom = 10,
+	}
 end
 
 -- windows setting
@@ -71,7 +77,7 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     'DengXian',
     'FiraCode Nerd Font'
   }
-  config.font_size = 22.0
+	config.font_size = 20.0
   config.adjust_window_size_when_changing_font_size = false
 
   config.default_prog = {

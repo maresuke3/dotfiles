@@ -1,33 +1,24 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
-local keymap = vim.keymap
+local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- tab controle
-keymap.set("n", "<leader>te", "tabedit<return>", opts)
---keymap.set("n", "<tab>", ":tabnext<Return>", opts)
---keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
-keymap.set("n", "<leader>tx", ":tabdelete<return>", opts)
+-- tab controller
+keymap("n", "<leader>te", ":tabedit<cr>", opts)
+keymap("n", "<leader>tn", ":tabnew<cr>", opts)
+keymap("n", "<tab>", ":tabnext<cr>", opts)
+keymap("n", "<s-tab>", ":tabprevious<cr>", opts)
+keymap("n", "<leader>tx", ":tabdelete<cr>", opts)
 
--- buffer and
-keymap.set("n", "nb", "", opts)
-keymap.set("n", "<tab>", ":bnext<Return>", opts)
-keymap.set("n", "<s-tab>", ":bprevious<Return>", opts)
-keymap.set("n", "<leader>bd", ":bdelete<Return>", opts)
+-- buffer controller
+keymap("n", "<leader>bd", ":bdelete<cr>", opts)
 
--- window
-keymap.set("n", "<leader>sp", ":split<Return>", opts)
-keymap.set("n", "<leader>vs", ":vsplit<Return>", opts)
--- resize window
+-- winbow controller
+keymap("n", "<leader>sp", ":split<cr>", opts)
+keymap("n", "<leader>vs", ":vsplit<cr>", opts)
 
--- jump
-keymap.set("n", "<C-m>", "<C-i>", opts)
+-- jump list
+keymap("n", "<c-m>", "<c-i>", opts)
 
 -- diagnostics
-keymap.set("n", "<C-j>", function()
-  vim.diagnostic.goto_next()
+keymap("n", "<c-j>", function()
+	vim.diagnostic.goto_next()
 end, opts)
-
-
--- filer
-keymap.set("n", "<leader>e", "<cmd>Neotree<Return>", opts)

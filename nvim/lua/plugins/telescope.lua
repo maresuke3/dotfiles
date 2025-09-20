@@ -13,6 +13,104 @@ return {
     },
     "nvim-tree/nvim-web-devicons",
   },
+  keys = {
+    {
+      "<leader>fP",
+      function()
+        require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
+      end,
+      desc = "Find Plugin File",
+    },
+    {
+      "<leader>ff",
+      function()
+        require("telescope.builtin").find_files()
+      end,
+      desc = "Find Files",
+    },
+    {
+      "<leader>fg",
+      function()
+        require("telescope.builtin").live_grep()
+      end,
+      desc = "Live Grep File",
+    },
+    {
+      "<leader>sb",
+      function()
+        require("telescope.builtin").buffers()
+      end,
+      desc = "Switch Buffer",
+    },
+    {
+      "<leader>gf",
+      function()
+        require("telescope.builtin").git_files()
+      end,
+      desc = "Git Files",
+    },
+    {
+      "<leader>gs",
+      function()
+        local telescope = require("telescope.builtin")
+        telescope.git_status({})
+      end,
+      desc = "Git Status",
+    },
+    {
+      "<leader>gc",
+      function()
+        require("telescope.builtin").git_commits()
+      end,
+      desc = "Git Commits",
+    },
+    {
+      "<leader>gb",
+      function()
+        require("telescope.builtin").git_branches()
+      end,
+      desc = "Git Branches",
+    },
+    {
+      "<leader>sf",
+      function()
+        local telescope = require("telescope")
+        local function telescope_buffer_dir()
+          return vim.fn.expand("%:p:h")
+        end
+
+        telescope.extensions.file_browser.file_browser({
+          path = "%:p:h",
+          cwd = telescope_buffer_dir(),
+          respect_gitignore = false,
+          hidden = true,
+          grouped = true,
+          previewer = false,
+          initial_mode = "normal",
+          layout_config = { height = 40 },
+        })
+      end,
+    },
+		{
+			"<leader>sk",
+			function()
+				require("telescope.builtin").keymaps()
+			end,
+			desc = "Find Keymaps",
+    },
+    {
+      "<leader>/",
+      function ()
+        builtin.current_buffer_fuzzy_find(
+          require("telescope.themes").get_dropdown({
+            winblend = 10,
+            previewer =false
+          })
+        )
+      end,
+      desc = "Fuzzy search in current buffer"
+    },
+  },
   config = function(_, opts)
     local telescope = require("telescope")
     local builtin = require("telescope.builtin")
@@ -79,7 +177,12 @@ return {
           "dist/",
           "build/",
           "*.lock",
+            "mock/",
+            "lib/",
+            "^.cache/",
         },
+
+        telescope.load_extension("file_browser"),
 
         layout_config = {
           horizontal = {
@@ -102,44 +205,9 @@ return {
       },
     })
 
-    pcall(telescope.load_extension, "fzf")
-    pcall(telescope.load_extension, "file_browser")
-    pcall(telescope.load_extension, "noice")
-
-    -- keymap settings
-    local map = vim.keymap.set
-
-    -- base command
-    map("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
-    map("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
-    map("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
-    map("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
-
-    -- git action
-    map("n", "<leader>gf", builtin.git_files, { desc = "Git files" })
-    map("n", "<leader>gs", builtin.git_status, { desc = "Git status" })
-    map("n", "<leader>gb", builtin.git_branches, { desc = "Git branch" })
-    map("n", "<leader>gc", builtin.git_commits, { desc = "Git commit" })
-    
-    -- any other action
-    map("n", "<leader>fc", builtin.commands, { desc = "Find commands" })
-    map("n", "<leader>fk", builtin.keymaps, { desc = "Find keymaps" })
-
-    -- search current buffer
-    map("n", "<leader>/", function()
-      builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-        winblend = 10,
-        previewer = false,
-      }))
-    end, { desc = "Fuzzy search in curren buffer" })
-
-    map("n", "<leader>fa", function()
-      builtin.find_files({
-        hidden = true,
-        no_ignore = true,
-        prompt_titles = "All Files",
-      })
-    end, { desc = "Find all files" })
+    -- pcall(telescope.load_extension, "fzf")
+    -- pcall(telescope.load_extension, "file_browser")
+    -- pcall(telescope.load_extension, "noice")
 
   end,
 }
