@@ -62,9 +62,6 @@ export PATH=$GOPATH/bin:$PATH
 export GOPRIVATE=<REDACTED>
 export GOPRIVATE=<REDACTED>
 
-# gomock
-#export PATH=$PATH:$(go env GOPATH)/bin
-
 # gcp sdk
 export GOOGLE_APPLICATION_CREDENTIALS=<REDACTED>
 
@@ -75,6 +72,8 @@ alias md='glow -p -'
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+eval "(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # mise activate
 eval "$(mise activate zsh)"
