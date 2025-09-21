@@ -52,8 +52,14 @@ alias log='git log'
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-# go env
+# goenv
 export GO111MODULE=on
+export GOROOT=$(mise where go)
+export PATH=$GOROOT/bin:$PATH
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+
+export GOPRIVATE=<REDACTED>
 export GOPRIVATE=<REDACTED>
 
 # gcp sdk
@@ -69,7 +75,15 @@ alias md='glow -p -'
 
 eval "(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+# mise activate
 eval "$(mise activate zsh)"
 
 # z
 . `brew --prefix`/etc/profile.d/z.sh
+
+# PHP env value
+export PHP_CONFIGURE_OPTS="--without-gd"
+
+# shellenv
+# eval "(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "(/opt/homebrew/bin/brew shellenv)"
