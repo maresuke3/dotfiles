@@ -27,9 +27,11 @@ return {
 				ensure_installed = {
 					"gopls",
 					"intelephense",
+					"remark_ls",
 					"jsonls",
 					"lua_ls",
 					"ts_ls",
+					"html",
 				},
 				automatic_enable = {
 					exclude = {}

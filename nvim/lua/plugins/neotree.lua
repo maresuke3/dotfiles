@@ -7,6 +7,21 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	lazy = false,
+	config = function()
+		filesystem = {
+			filtered_items = {
+				hide_dotfiles = false,
+				hide_gitignore = true,
+				hode_hidden = true,
+				hide_by_name = {
+					"node_modules",
+					".git",
+					".DS_Store",
+					"dist",
+				}
+			}
+		}
+	end,
 	keys = {
 		{
 			"<leader>e",
