@@ -114,7 +114,7 @@ return {
         },
       })
 
-      opts.pikers = {
+      opts.pickers = {
         diagnostics = {
           theme = "ivy",
           initial_mode = "normal",
