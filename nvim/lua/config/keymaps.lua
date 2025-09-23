@@ -22,4 +22,3 @@ keymap("n", "<c-m>", "<c-i>", opts)
 keymap("n", "<c-j>", function()
 	vim.diagnostic.goto_next()
 end, opts)
-

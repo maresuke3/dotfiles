@@ -23,8 +23,12 @@ return {
 		-----@type TSConfig
 		-----@diagnostic disable-next-line: missing-fields
 		opts = {
-			highlight = { enable = true },
 			indent = { enable = true },
+      auto_install = true,
+      ignore_install = { "javascript" },
+      highlight = {
+        enable = true,
+      },
 			ensure_installed = {
 				"bash",
 				"go",
