@@ -7,7 +7,7 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	lazy = false,
-	config = function()
+  opts = {
 		filesystem = {
 			filtered_items = {
 				hide_dotfiles = false,
@@ -21,7 +21,7 @@ return {
 				}
 			}
 		}
-	end,
+  },
 	keys = {
 		{
 			"<leader>e",
