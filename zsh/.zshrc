@@ -53,7 +53,7 @@ alias log='git log'
 alias md='glow -p -'
 
 # mapr's alias
-alias dev:marp = 'marp -s . --html'
+alias devmarp='marp -s . --html'
 
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
