@@ -53,11 +53,9 @@ return {
           col = 1,
         },
       })
+      vim.cmd("highlight GitSignsCurrentLineBlame guifg=#555555 gui=bold")
     end,
-  })
-  
-  vim.cmd("highlight GitSignsCurrentLineBlame guifg=#555555 gui=bold")
-  end,
+  },
 }
 
 --   {

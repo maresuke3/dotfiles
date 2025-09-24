@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # starship setting
 eval "$(starship init zsh)"
 # plugin manager setting
@@ -26,7 +24,7 @@ zstyle ':completion::complete:*' use-cache true
 # 大文字、小文字を区別せず補完する
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# aliasの設定
+# base aliasの設定
 alias gonbe="pokemon 446"
 alias rukario="pokemon 448"
 alias syandera="pokemon 609"
@@ -49,34 +47,23 @@ alias gpl='git pull'
 alias gps='git push'
 alias log='git log'
 
+# glow's alias
+alias md='glow -p -'
+
+# mapr's alias
+alias devmarp='marp -s . --html'
+
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-# goenv
+# go env settings
 export GO111MODULE=on
-export GOROOT=$(mise where go)
-export PATH=$GOROOT/bin:$PATH
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
-
-export GOPRIVATE=<REDACTED>
 export GOPRIVATE=<REDACTED>
 
 # gcp sdk
 export GOOGLE_APPLICATION_CREDENTIALS=<REDACTED>
 
-export PATH="/usr/local/sbin:$PATH"
-
-# glow
-alias md='glow -p -'
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
-eval "(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# mise activate
-eval "$(mise activate zsh)"
+#export PATH="/usr/local/sbin:$PATH"
 
 # z
 . `brew --prefix`/etc/profile.d/z.sh
@@ -84,6 +71,3 @@ eval "$(mise activate zsh)"
 # PHP env value
 export PHP_CONFIGURE_OPTS="--without-gd"
 
-# shellenv
-# eval "(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-# eval "(/opt/homebrew/bin/brew shellenv)"
