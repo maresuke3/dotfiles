@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # starship setting
 eval "$(starship init zsh)"
 # plugin manager setting
@@ -58,12 +56,8 @@ alias devmarp='marp -s . --html'
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-# go settings
+# go env settings
 export GO111MODULE=on
-export GOROOT=$(mise where go)
-export PATH=$GOROOT/bin:$PATH
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
 export GOPRIVATE=<REDACTED>
 
 # gcp sdk

@@ -4,6 +4,7 @@ echo "Start setting file import"
 
 # ディレクトリがないときディレクトリを作成する
 mkdir -p ~/.config
+mkdir -p ~/work/{individual,prototype}
 
 # install brew
 if ! command -v brew &> /dev/null; then
