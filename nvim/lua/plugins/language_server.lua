@@ -1,5 +1,5 @@
 return {
-  { 
+  {
 		"mason-org/mason.nvim",
 		opts = {},
 		config = function()
@@ -23,6 +23,8 @@ return {
 				"neovim/nvim-lspconfig"
   	},
 		config = function()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 			require("mason-lspconfig").setup{
 				ensure_installed = {
 					"gopls",
@@ -39,7 +41,9 @@ return {
 
 				function(server_name)
 					local lspconfig = require("lspconfig")
-					lspconfig[server_name].setup({})
+					lspconfig[server_name].setup({
+            capabilities = capabilities,
+          })
 				end,
 			}
 		end,

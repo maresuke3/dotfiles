@@ -27,9 +27,11 @@ return {
 					["<c-space>"] = cmp.mapping.complete(),
 					["<c-e>"] = cmp.mapping.abort(),
 					["<cr>"] = cmp.mapping.confirm({ select = false }),
+          ["<tab>"] = cmp.mapping.select_next_item(),
+          ["<c-k>"] = cmp.mapping.select_prev_item(),
 				}),
 
-				source = cmp.config.sources({
+				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
 					{ name = "buffer" },
@@ -58,8 +60,6 @@ return {
 				},
 				matching = { disallow_symbol_nonprefix_matching = false },
 			})
-
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		end,
 	}
 }

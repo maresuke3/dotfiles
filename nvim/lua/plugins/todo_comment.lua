@@ -73,5 +73,26 @@ return {
   			},
 			})
 		end,
+
+    keys = {
+      {
+        "<leader>[t",
+        function()
+          require("todo-comments").jump_next()
+        end,
+        desc = "Next todo comment"
+      },
+      {
+        "<leader>]t",
+        function ()
+          require("todo_comments").jump_prev()
+        end,
+        desc = "Previous todo comments"
+      },
+      {
+        "<leader>;t",
+        ":TodoTelescope<cr>"
+      },
+    },
 	}
 }
