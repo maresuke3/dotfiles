@@ -1,16 +1,23 @@
 return {
 	{
 		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = true,
+		--event = {
+    --  "InsertEnter",
+    --  "BufNewFile",
+    --  "BufReadPre"
+    --},
+    event = "InsertEnter",
+		config = function ()
+		  require("nvim-autopairs").setup({})
+		end,
 	},
 	{
 		"windwp/nvim-ts-autotag",
-		lazy = "InsertEnter",
+		event = "InsertEnter",
 		opts = {
 			enable_close = true,
 			enable_rename = true,
-			enable_close_on_siash = false,
+			enable_close_on_slash = false,
 		}
 	}
 }

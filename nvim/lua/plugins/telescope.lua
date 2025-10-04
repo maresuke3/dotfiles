@@ -101,6 +101,7 @@ return {
     {
       "<leader>/",
       function ()
+        local builtin = require("telescope.builtin")
         builtin.current_buffer_fuzzy_find(
           require("telescope.themes").get_dropdown({
             winblend = 10,
@@ -113,7 +114,7 @@ return {
   },
   config = function(_, opts)
     local telescope = require("telescope")
-    local builtin = require("telescope.builtin")
+    local actions = require("telescope.actions")
     local fb_actions = telescope.extensions.file_browser.actions
 
     opts.defaults = opts.defaults or {}
@@ -177,9 +178,9 @@ return {
           "dist/",
           "build/",
           "*.lock",
-            "mock/",
-            "lib/",
-            "^.cache/",
+          "mock/",
+          "lib/",
+          "^.cache/",
         },
 
         telescope.load_extension("file_browser"),

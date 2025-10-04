@@ -106,4 +106,14 @@ return {
     statuscolumn = { enabled = true },
     words = { enabled = true },
 	},
+  keys = {
+    {
+      "<leader>st",
+      function ()
+        local snack = require("snacks")
+        snack.dashboard()
+      end,
+      desc = "Open Dashboard"
+    }
+  }
 }

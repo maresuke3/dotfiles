@@ -19,9 +19,6 @@ return {
 			{ "<c-space>", desc = "Increment Selection" },
 			{ "<bs>", desc = "Decrement Selection", mode = "x" },
 		},
-		--opts_extend = { "ensure_installed" },
-		-----@type TSConfig
-		-----@diagnostic disable-next-line: missing-fields
 		opts = {
 			indent = { enable = true },
       auto_install = true,
@@ -73,12 +70,5 @@ return {
 				},
 			},
 		},
-		---@param opts TSConfig
-		--config = function(_, opts)
-		--	if type(opts.ensure_installed) == "table" then
-		--		opts.ensure_installed = LazyVim.dedup(opts.ensure_installed)
-		--	end
-		--	require("nvim-treesitter.configs").setup(opts)
-		--end,
 	}
 }
