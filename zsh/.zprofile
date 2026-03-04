@@ -1,7 +1,3 @@
-# Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zprofile.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zprofile.pre.zsh"
-
-
 # shellenv
 # ## linux
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -9,10 +5,12 @@
 # ## macOS 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-
-# Added by OrbStack: command-line tools and integration
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
-
-
 # mise settings
 eval "$(mise activate zsh --shims)"
+
+# pyenv-virtualenv
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+# z
+. `brew --prefix`/etc/profile.d/z.sh
+

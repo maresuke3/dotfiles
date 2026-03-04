@@ -53,21 +53,6 @@ alias md='glow -p -'
 # mapr's alias
 alias devmarp='marp -s . --html'
 
-# pyenv-virtualenv
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-
-# go env settings
-export GO111MODULE=on
-export GOPRIVATE=<REDACTED>
-
-# gcp sdk
-export GOOGLE_APPLICATION_CREDENTIALS=<REDACTED>
-
-#export PATH="/usr/local/sbin:$PATH"
-
-# z
-. `brew --prefix`/etc/profile.d/z.sh
-
-# PHP env value
-export PHP_CONFIGURE_OPTS="--without-gd"
+# Added by OrbStack: command-line tools and integration
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
