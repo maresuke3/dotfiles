@@ -23,7 +23,7 @@ config.adjust_window_size_when_changing_font_size = false
 local mux = wezterm.mux
 wezterm.on("gui-startup", function(cmd)
   local tab, pane, window = mux.spawn_window(cmd or {})
-  window:gui_window():toggle_fullscreen()
+  --window:gui_window():toggle_fullscreen()
 end)
 
 -- ペイン分割のキーマッピング
@@ -82,9 +82,9 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
 
   config.default_prog = {
     "wsl"
-  } 
+  }
 
- config.keys = {
+  config.keys = {
     {
       key = 'd',
       mods = 'CTRL',
@@ -97,6 +97,14 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
       mods = 'CTRL|SHIFT',
       action = act.SplitVertical {
         domain = 'CurrentPaneDomain'
+      }
+    },
+    {
+      mods = "LEADER",
+      key = "s",
+      action = act.ShowLauncherArgs {
+        flags = "WORKSPACES",
+        title = "Select workspace"
       }
     }
   }
