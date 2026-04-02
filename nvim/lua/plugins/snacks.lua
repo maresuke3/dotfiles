@@ -83,15 +83,20 @@ return {
 		  },
 			sections = {
   			{ section = "header" },
-  			{ section = "keys", gap = 1, padding = 1 },
+  			{
+          section = "keys",
+          gap = 1,
+          padding = 1
+        },
   		  { section = "startup" },
   		  {
   		    section = "terminal",
-  			  cmd = "pokemon-colorscripts -r --no-title; sleep .1",
+  			  --cmd = "pokemon-colorscripts -r --no-title; sleep .1",
+          cmd = "pokemon-colorscripts --name mawile",
   			  random = 10,
   		    pane = 2,
-  		    indent = 4,
-  		    height = 30,
+  		    indent = 3,
+  		    height = 20,
   		  },
   		},
 		},

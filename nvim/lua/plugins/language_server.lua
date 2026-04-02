@@ -44,6 +44,8 @@ return {
 					lspconfig[server_name].setup({
             capabilities = capabilities,
           })
+
+
 				end,
 			}
 		end,

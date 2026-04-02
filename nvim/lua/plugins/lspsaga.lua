@@ -25,7 +25,7 @@ return {
 			keymap("n", "ca", ":Lspsaga code_action<cr>")
 
 			-- rename action
-			keymap("n", "rn", ":Lspsaga rename<cr>")
+			keymap("v", "rn", ":Lspsaga rename<cr>")
 
 
 			-- hover

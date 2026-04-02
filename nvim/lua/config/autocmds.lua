@@ -19,3 +19,14 @@ create_cmd("FileType", {
     vim.wo.conceallevel = 0
   end,
 })
+
+vim.opt.autoread = true
+-- create_cmd({
+--   "BufEnter",
+--   "CursorHold",
+--   "FocusGained",
+-- }, {
+--   --pattern = "*",
+--   command = "if !vim.b.is_gemini_buffer | checktime | endif",
+--   desc = "自動的に外部ファイル変更を読み込む",
+-- })
