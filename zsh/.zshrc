@@ -56,3 +56,4 @@ alias devmarp='marp -s . --html'
 # Added by OrbStack: command-line tools and integration
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
+eval "$(mise activate zsh)"
