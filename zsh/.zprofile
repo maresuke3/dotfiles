@@ -1,16 +1,28 @@
-# shellenv
-# ## linux
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+## ───────────────────────────────────────────
+## ログインシェルの初期化
+## ───────────────────────────────────────────
 
-# ## macOS 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Homebrew
+case "$OSTYPE" in
+  darwin*)
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    ;;
+  linux*)
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    ;;
+esac
 
 # mise settings
-eval "$(mise activate zsh --shims)"
+eval "$(mise activate zsh)"
 
 # pyenv-virtualenv
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+if (( $+commands[pyenv-virtualenv-init] )); then
+  eval "$(pyenv virtualenv-init -)"
+fi
 
-# z
-. `brew --prefix`/etc/profile.d/z.sh
+# zoxide
+eval "$(zoxide init zsh)"
 
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :

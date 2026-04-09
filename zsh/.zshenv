@@ -1,4 +1,9 @@
-. "$HOME/.cargo/env"
+## ───────────────────────────────────────────
+## 環境変数（全シェル共通）
+## ───────────────────────────────────────────
+
+# Cargo
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
 # go env settings
 export GO111MODULE=on
@@ -19,3 +24,5 @@ export CLAUDE_CODE_USE_VERTEX=1
 export CLOUD_ML_REGION=global
 export ANTHROPIC_VERTEX_PROJECT_ID=<REDACTED>
 
+# local bin (sheldon etc...)
+export PATH="$HOME/.local/bin:$PATH"

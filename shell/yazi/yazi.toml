@@ -1,0 +1,4 @@
+[plugin]
+prepend_previewrs = [
+  { name = "*.md", run = "glow" },
+]

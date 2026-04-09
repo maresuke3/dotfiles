@@ -1,0 +1,21 @@
+# style
+font-family = FiraCode Nerd Font Mono
+font-size = 16
+font-thicken = true
+adjust-cell-height = 2
+theme = TokyoNight Moon
+background-opacity = 0.6
+
+# copy paste
+copy-on-select = true
+
+# clip board
+clipboard-read = allow
+clipboard-write = allow
+
+# keybind
+# panel move
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+l=goto_split:right
+keybind = ctrl+j=goto_split:down
+keybind = ctrl+k=goto_split:top
