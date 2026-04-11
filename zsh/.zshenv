@@ -2,6 +2,10 @@
 ## 環境変数（全シェル共通）
 ## ───────────────────────────────────────────
 
+# editor setting
+export EDITOR=nvim
+export VISUAL=nvim
+
 # Cargo
 [[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 

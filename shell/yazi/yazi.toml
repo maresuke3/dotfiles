@@ -1,4 +1,5 @@
+[mgr]
+show_hidden = true
+show_symlink = true
+
 [plugin]
-prepend_previewrs = [
-  { name = "*.md", run = "glow" },
-]
