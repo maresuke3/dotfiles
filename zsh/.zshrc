@@ -1,30 +1,7 @@
 ## ───────────────────────────────────────────
 ## 補完設定
 ## ───────────────────────────────────────────
-autoload -Uz compinit
-
-# OSに応じた日次キャッシュ（macOS / Linux 両対応）
-_compinit_with_cache() {
-  local zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
-  local today
-  today=$(date +'%j')
-
-  local mtime
-  if [[ "$OSTYPE" == darwin* ]]; then
-    mtime=$(stat -f '%Sm' -t '%j' "$zcompdump" 2>/dev/null)
-  else
-    # Linux (GNU stat)
-    mtime=$(stat -c '%y' "$zcompdump" 2>/dev/null | date -d "$(cat)" +'%j' 2>/dev/null)
-  fi
-
-  if [[ "$today" != "$mtime" ]]; then
-    compinit
-  else
-    compinit -C
-  fi
-}
-_compinit_with_cache
-unfunction _compinit_with_cache
+fpath=(~/.zsh $fpath)
 
 # 単語の途中で補完を有効化
 setopt complete_in_word
@@ -80,13 +57,13 @@ alias gonbe="pokemon 446"
 alias rukario="pokemon 448"
 alias syandera="pokemon 609"
 alias arigeitsu="pokemon 159"
-alias ls="ls -FG"    # ディレクトリの色付け
-alias l="ls -a"
-alias ll="ls -l"
-alias la="ls -la"
-alias ..="cd .."
-alias vim="nvim"
-alias sed="gsed"
+#alias ls="ls -FG"    # ディレクトリの色付け
+#alias l="ls -a"
+#alias ll="ls -l"
+#alias la="ls -la"
+#alias ..="cd .."
+#alias vim="nvim"
+#alias sed="gsed"
 
 # gitのalias
 alias st='git status'
@@ -122,9 +99,25 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 ## -------------------------------------------
 ## any plugin settings
 ## -------------------------------------------
+# zoxide
+eval "$(zoxide init zsh)"
+
+# mise settings
+eval "$(mise activate zsh)"
+
 # starship setting
 eval "$(starship init zsh)"
+
 # plugin manager setting
 eval "$(sheldon source)"
-# mise setting
-eval "$(mise activate zsh)"
+
+# pyenv-virtualenv
+zsh-defer -c '(( $+commands[pyenv-virtualenv-init] )) && eval "$(pyenv virtualenv-init -)"'
+#if (( $+commands[pyenv-virtualenv-init] )); then
+#  eval "$(pyenv virtualenv-init -)"
+#fi
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+zsh-defer source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+

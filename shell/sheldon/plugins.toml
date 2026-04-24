@@ -22,7 +22,14 @@ apply = ["source"]
 defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
 
 [plugins.compinit]
-inline = 'autoload -Uz compinit && zsh-defer compinit'
+inline = '''
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+  zsh-defer compinit
+else
+  zsh-defer compinit -C
+fi
+'''
 
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"

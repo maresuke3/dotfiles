@@ -17,23 +17,39 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    pkgs.hello
-    pkgs.cowsay
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+  home.packages = with pkgs; [
+    # CLI Tools from Brewfile
+    autoconf
+    phpPackages.composer
+    fd
+    ffmpeg
+    fzf
+    glow
+    gnupg
+    grafana
+    imagemagick
+    jq
+    lazygit
+    mas
+    mise
+    #k1LoW/tap/mo
+    #TODO: nix-darwinを利用してhomebrew経由でインストールする方法に切り替え
+    #mysql-client 
+    neovim
+    openexr
+    poppler-utils
+    resvg
+    ripgrep
+    _7zz # sevenzip
+    sheldon
+    tmux
+    tree
+    tree-sitter
+    usage
+    yazi
+    zoxide
+    zellij
+    zsh
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -71,8 +87,12 @@
     EDITOR = "nvim";
   };
 
+  programs.zsh = {
+    enable = false;
+  };
+
   programs.git = {
-    enable = true;
+    enable = false;
   };
 
   # Let Home Manager install and manage itself.

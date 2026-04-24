@@ -12,17 +12,4 @@ case "$OSTYPE" in
     ;;
 esac
 
-# mise settings
-eval "$(mise activate zsh)"
-
-# pyenv-virtualenv
-if (( $+commands[pyenv-virtualenv-init] )); then
-  eval "$(pyenv virtualenv-init -)"
-fi
-
-# zoxide
-eval "$(zoxide init zsh)"
-
-# Added by OrbStack: command-line tools and integration
-# This won't be added again if you remove it.
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+export PATH="/etc/profiles/per-user/daiki-fukushima/bin:$PATH"

@@ -1,0 +1,5 @@
+#[[mgr.prepend_keymap]]
+#on = "M"
+#run = 'shell "mo \"$@\"" --confirm'
+#run = ""
+#desc = "Open markdown with mo"
