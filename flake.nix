@@ -17,10 +17,16 @@
   let
     system = "aarch64-darwin";
     username = "daiki-fukushima";
+    overlay = final: prev: {
+      direnv = prev.direnv.overrideAttrs (old: {
+        doCheck = false;
+      });
+    };
   in {
     darwinConfigurations."U0031" = nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
+        { nixpkgs.overlays = [ overlay ]; }
         ./nix/darwin/common.nix
         ./nix/darwin/hosts/U0031.nix
         home-manager.darwinModules.home-manager
