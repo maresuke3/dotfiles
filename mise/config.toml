@@ -1,4 +1,5 @@
 [tools]
+bun = "1.2.23"
 docker-compose = "2.35.1"
 gcloud = "latest"
 go = "1.24.5"
@@ -8,7 +9,7 @@ marp-cli = "latest"
 mysql = "8.0.33"
 node = "24.14.1"
 pnpm = "10.13.1"
-python = "3.13.5"
+python = "3.14.4"
 rust = "1.88.0"
 yarn = "4.9.2"
 
