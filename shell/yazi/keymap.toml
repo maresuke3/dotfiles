@@ -1,5 +1,4 @@
-#[[mgr.prepend_keymap]]
-#on = "M"
-#run = 'shell "mo \"$@\"" --confirm'
-#run = ""
-#desc = "Open markdown with mo"
+[[mgr.prepend_keymap]]
+on = "M"
+run = 'shell "$HOME/dotfiles/cmd/preview.sh \"$@\"" --confirm'
+desc = "Preview file with mo/open"

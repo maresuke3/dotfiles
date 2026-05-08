@@ -2,4 +2,6 @@
 show_hidden = true
 show_symlink = true
 
-[plugin]
+[[plugin.prepend_previewers]]
+url = "*.md"
+run = "mappy"

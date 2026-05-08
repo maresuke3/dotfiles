@@ -7,8 +7,8 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.color_scheme = "Solarized Dark - Patched"
-config.window_background_opacity = 0.91
+config.color_scheme = 'Solarized Dark Higher Contrast (Gogh)'
+config.window_background_opacity = 0.85
 
 -- custom config
 -- /*'font-fira-code-nerd-font'*/
@@ -23,7 +23,6 @@ config.adjust_window_size_when_changing_font_size = false
 local mux = wezterm.mux
 wezterm.on("gui-startup", function(cmd)
   local tab, pane, window = mux.spawn_window(cmd or {})
-  --window:gui_window():toggle_fullscreen()
 end)
 
 -- ペイン分割のキーマッピング
