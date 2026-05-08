@@ -102,8 +102,8 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 # zoxide
 eval "$(zoxide init zsh)"
 
-# mise settings
-eval "$(mise activate zsh)"
+# mise settings (shims mode: precmd hook を廃止し起動を高速化)
+path=($HOME/.local/share/mise/shims $path)
 
 # starship setting
 eval "$(starship init zsh)"

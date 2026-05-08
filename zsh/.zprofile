@@ -1,3 +1,5 @@
+typeset -U path
+
 ## ───────────────────────────────────────────
 ## ログインシェルの初期化
 ## ───────────────────────────────────────────
@@ -12,4 +14,3 @@ case "$OSTYPE" in
     ;;
 esac
 
-export PATH="/etc/profiles/per-user/daiki-fukushima/bin:$PATH"

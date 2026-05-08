@@ -1,3 +1,5 @@
+typeset -U path
+
 ## ───────────────────────────────────────────
 ## 環境変数（全シェル共通）
 ## ───────────────────────────────────────────
@@ -20,13 +22,10 @@ export GOOGLE_APPLICATION_CREDENTIALS=<REDACTED>
 # PHP env value
 export PHP_CONFIGURE_OPTS="--without-gd"
 
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-
 # ClaudeCode
 export CLAUDE_CODE_USE_VERTEX=1
 export CLOUD_ML_REGION=global
 export ANTHROPIC_VERTEX_PROJECT_ID=<REDACTED>
 
 # local bin (sheldon etc...)
-export PATH="$HOME/.local/bin:$PATH"
+path=($HOME/.local/bin $path)

@@ -26,6 +26,7 @@ inline = '''
 autoload -Uz compinit
 if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
   zsh-defer compinit
+  zsh-defer -c 'zcompile "${ZDOTDIR:-$HOME}/.zcompdump"'
 else
   zsh-defer compinit -C
 fi
