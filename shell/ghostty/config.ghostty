@@ -4,7 +4,7 @@ font-size = 16
 font-thicken = true
 adjust-cell-height = 2
 theme = TokyoNight Moon
-background-opacity = 0.6
+background-opacity = 0.7
 
 # copy paste
 copy-on-select = true
