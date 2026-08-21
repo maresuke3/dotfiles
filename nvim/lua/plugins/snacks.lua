@@ -82,22 +82,31 @@ return {
 		    end,
 		  },
 			sections = {
-  			{ section = "header" },
+  			{
+          section = "header",
+          enabled = function() return vim.o.columns >= 130 end,
+        },
+  		  {
+  		    section = "terminal",
+          cmd = "pokemon-colorscripts --name mawile --no-title; sleep 999999",
+  		    pane = 2,
+  		    indent = 3,
+  		    height = 15,
+          enabled = function() return vim.o.columns >= 130 end,
+  		  },
+  		  {
+  		    section = "terminal",
+          cmd = "pokemon-colorscripts --name mawile --no-title; sleep 999999",
+  		    indent = 3,
+  		    height = 15,
+          enabled = function() return vim.o.columns < 130 end,
+  		  },
   			{
           section = "keys",
           gap = 1,
           padding = 1
         },
   		  { section = "startup" },
-  		  {
-  		    section = "terminal",
-  			  --cmd = "pokemon-colorscripts -r --no-title; sleep .1",
-          cmd = "pokemon-colorscripts --name mawile",
-  			  random = 10,
-  		    pane = 2,
-  		    indent = 3,
-  		    height = 20,
-  		  },
   		},
 		},
     explorer = { enabled = true },
