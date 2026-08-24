@@ -15,8 +15,10 @@
 
   outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager }:
   let
-    system = "aarch64-darwin";
-    username = "daiki-fukushima";
+    darwinSystem = "aarch64-darwin";
+    linuxSystem = "x86_64-linux";
+    darwinUsername = "daiki-fukushima";
+    linuxUsername = "maresuke";
     overlay = final: prev: {
       direnv = prev.direnv.overrideAttrs (old: {
         doCheck = false;
@@ -24,7 +26,7 @@
     };
   in {
     darwinConfigurations."U0031" = nix-darwin.lib.darwinSystem {
-      inherit system;
+      system = darwinSystem;
       modules = [
         { nixpkgs.overlays = [ overlay ]; }
         ./nix/darwin/common.nix
@@ -33,7 +35,24 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${username} = import ./nix/home/home.nix;
+          home-manager.users.${darwinUsername} = { ... }: {
+            imports = [ ./nix/home/home.nix ];
+            home.username = darwinUsername;
+            home.homeDirectory = "/Users/${darwinUsername}";
+          };
+        }
+      ];
+    };
+
+    homeConfigurations."${linuxUsername}" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.${linuxSystem};
+      modules = [
+        ./nix/home/home.nix
+        {
+          home = {
+            username = linuxUsername;
+            homeDirectory = "/home/${linuxUsername}";
+          };
         }
       ];
     };

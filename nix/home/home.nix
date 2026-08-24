@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "daiki-fukushima";
-  home.homeDirectory = "/Users/daiki-fukushima";
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
@@ -17,7 +15,7 @@
     imagemagick
     jq
     lazygit
-    mas
+    # mas (Darwin only)
     mise
     neovim
     openexr
@@ -34,7 +32,7 @@
     zoxide
     zellij
     zsh
-  ];
+  ] ++ (lib.optionals stdenv.isDarwin [ mas ]);
 
   home.file = {};
 
