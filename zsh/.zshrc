@@ -57,12 +57,12 @@ alias gonbe="pokemon 446"
 alias rukario="pokemon 448"
 alias syandera="pokemon 609"
 alias arigeitsu="pokemon 159"
-#alias ls="ls -FG"    # ディレクトリの色付け
-#alias l="ls -a"
-#alias ll="ls -l"
-#alias la="ls -la"
-#alias ..="cd .."
-#alias vim="nvim"
+alias ls="ls --color=auto"    # ディレクトリの色付け
+alias l="ls -a"
+alias ll="ls -l"
+alias la="ls -la"
+alias ..="cd .."
+alias vim="nvim"
 #alias sed="gsed"
 
 # gitのalias
@@ -102,20 +102,27 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 # zoxide
 eval "$(zoxide init zsh)"
 
-# mise settings (shims mode: precmd hook を廃止し起動を高速化)
+# mise settings
+# shims mode: precmd hook を廃止し起動を高速化
 path=($HOME/.local/share/mise/shims $path)
+# もし自動的な環境切り替えが必要な場合は以下を有効にしてください
+# eval "$(mise activate zsh)"
 
 # starship setting
 eval "$(starship init zsh)"
 
 # plugin manager setting
-eval "$(sheldon source)"
+# sheldon source の出力をキャッシュして高速化
+if [[ ! -f ~/.zsh/sheldon.zsh || ~/.config/sheldon/plugins.toml -nt ~/.zsh/sheldon.zsh ]]; then
+  mkdir -p ~/.zsh
+  sheldon source > ~/.zsh/sheldon.zsh
+fi
+source ~/.zsh/sheldon.zsh
 
-# pyenv-virtualenv
-zsh-defer -c '(( $+commands[pyenv-virtualenv-init] )) && eval "$(pyenv virtualenv-init -)"'
-#if (( $+commands[pyenv-virtualenv-init] )); then
-#  eval "$(pyenv virtualenv-init -)"
-#fi
+# pyenv-virtualenv (if exists)
+if (( $+commands[pyenv-virtualenv-init] )); then
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
