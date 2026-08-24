@@ -14,3 +14,11 @@ opt.tabstop = 2
 opt.cursorline = true
 
 opt.clipboard:append({"unnamedplus"})
+
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+opt.foldenable = false
+
+-- Reduce updatetime to trigger CursorHold faster (default is 4000ms)
+opt.updatetime = 300

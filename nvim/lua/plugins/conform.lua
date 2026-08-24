@@ -14,11 +14,11 @@ return {
 	opts = {
 		formatters_by_ft = {
 			go = { "goimports" },
-			typescript = { "prettier" },
-			typescriptreact = { "prettier" },
-			javascript = { "prettier" },
-			javascriptreact = { "prettier" },
-			json = { "prettier" },
+			typescript = { "biome" },
+			typescriptreact = { "biome" },
+			javascript = { "biome" },
+			javascriptreact = { "biome" },
+			json = { "biome" },
 			html = { "prettier" },
 			css = { "prettier" },
 			markdown = { "prettier" },

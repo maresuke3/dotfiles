@@ -169,7 +169,7 @@ return {
     telescope.setup({
       defaults = {
         preview = {
-          treesitter = true,
+          treesitter = false,
         },
 
         file_ignore_patterns = {
