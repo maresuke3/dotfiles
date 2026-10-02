@@ -11,9 +11,9 @@ config.color_scheme = "Solarized Dark Higher Contrast (Gogh)"
 config.window_background_opacity = 0.85
 
 -- custom config
--- /*'font-fira-code-nerd-font'*/
-config.font = wezterm.font("font-fira-code-nerd-font", { weight = "Bold", stretch = "Normal", style = "Normal" })
 config.font = wezterm.font_with_fallback({
+	"Cica",
+	"FiraCode Nerd Font",
 	"Fira Code",
 	"DengXian",
 })
@@ -77,11 +77,11 @@ end
 
 -- windows setting
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-	config.font = wezterm.font("fira-code-nerd-font")
 	config.font = wezterm.font_with_fallback({
-		"Fira Code ",
-		"DengXian",
+		"Cica",
 		"FiraCode Nerd Font",
+		"Fira Code",
+		"DengXian",
 	})
 	config.font_size = 20.0
 	config.adjust_window_size_when_changing_font_size = false
@@ -114,4 +114,5 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	})
 end
 
+config.warn_about_missing_glyphs = false
 return config
