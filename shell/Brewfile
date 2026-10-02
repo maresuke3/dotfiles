@@ -32,7 +32,6 @@ brew "aarch64-elf-binutils"
 # ==============================================================================
 # 全OS共通 cask (フォント・CLIツール等)
 # ==============================================================================
-cask "antigravity-cli"
 cask "font-code-new-roman-nerd-font"
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
