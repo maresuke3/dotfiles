@@ -1,7 +1,7 @@
 return {
 	{
-		"neovim-treesitter/nvim-treesitter",
-		dependencies = { "neovim-treesitter/treesitter-parser-registry" },
+		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
