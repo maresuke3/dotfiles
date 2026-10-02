@@ -1,39 +1,5 @@
-## ───────────────────────────────────────────
-## 補完設定
-## ───────────────────────────────────────────
+# plugin manager setting
 fpath=(~/.zsh $fpath)
-
-# 単語の途中で補完を有効化
-setopt complete_in_word
-
-# 補完候補をハイライト
-zstyle ':completion:*' menu select=2
-
-# キャッシュの利用による補完の高速化
-zstyle ':completion::complete:*' use-cache true
-
-# 大文字、小文字を区別せず補完する
-zstyle ':completion:*' matcher-list \
-  'm:{a-zA-Z-_}={A-Za-z_-}' \
-  'r:|[._-]=* r:|=*' \
-  'l:|=* r:|=*'
-
-# 補完候補の説明グループを表示
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
-
-# 補完の背景色付け
-autoload -Uz colors
-colors
-zstyle ':completion:*' list-colors "${LS_COLORS}"
-
-# エラー時のメッセージ
-zstyle ':completion:*:warnings' format '%F{red}No matches%f'
-
-# プロセス補完（kill などで便利）
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
 
 ## ───────────────────────────────────────────
 ## ヒストリ設定
@@ -99,32 +65,79 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 ## -------------------------------------------
 ## any plugin settings
 ## -------------------------------------------
-# zoxide
-eval "$(zoxide init zsh)"
-
 # mise settings
 # shims mode: precmd hook を廃止し起動を高速化
 path=($HOME/.local/share/mise/shims $path)
 # もし自動的な環境切り替えが必要な場合は以下を有効にしてください
 # eval "$(mise activate zsh)"
 
-# starship setting
-eval "$(starship init zsh)"
 
-# plugin manager setting
 # sheldon source の出力をキャッシュして高速化
 if [[ ! -f ~/.zsh/sheldon.zsh || ~/.config/sheldon/plugins.toml -nt ~/.zsh/sheldon.zsh ]]; then
   mkdir -p ~/.zsh
+  sheldon completions --shell zsh > ~/.zsh/_sheldon
   sheldon source > ~/.zsh/sheldon.zsh
+
+  rm -f "${ZDOTDIR:-$HOME}/.zcompdump"
 fi
 source ~/.zsh/sheldon.zsh
-
-# pyenv-virtualenv (if exists)
-if (( $+commands[pyenv-virtualenv-init] )); then
-  eval "$(pyenv virtualenv-init -)"
-fi
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 zsh-defer source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
+
+## ───────────────────────────────────────────
+## 補完設定
+## ───────────────────────────────────────────
+# 単語の途中で補完を有効化
+setopt complete_in_word
+
+# 補完候補をハイライト
+zstyle ':completion:*' menu select=2
+
+# キャッシュの利用による補完の高速化
+zstyle ':completion::complete:*' use-cache true
+
+# 大文字、小文字を区別せず補完する
+zstyle ':completion:*' matcher-list \
+  'm:{a-zA-Z-_}={A-Za-z_-}' \
+  'r:|[._-]=* r:|=*' \
+  'l:|=* r:|=*'
+
+# 補完候補の説明グループを表示
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+
+# 補完の背景色付け
+autoload -Uz colors
+colors
+zstyle ':completion:*' list-colors "${LS_COLORS}"
+
+# エラー時のメッセージ
+zstyle ':completion:*:warnings' format '%F{red}No matches%f'
+
+# プロセス補完（kill などで便利）
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# Google Cloud SDK のインストール先を取得して補完スクリプトを読み込む
+if [ -f "$(gcloud info --format='value(installation.sdk_root)')/completion.zsh.inc" ]; then
+  source "$(gcloud info --format='value(installation.sdk_root)')/completion.zsh.inc"
+elif [ -f "/usr/share/google-cloud-sdk/completion.zsh.inc" ]; then
+  source "/usr/share/google-cloud-sdk/completion.zsh.inc"
+fi
+
+# Terraform completion (must be after compinit/sheldon)
+autoload -U +X bashcompinit && bashcompinit
+_TF_LATEST=$(find "$HOME/.local/share/mise/installs/terraform" -maxdepth 2 -type f -name terraform 2>/dev/null | sort -V | tail -n 1)
+if [ -n "$_TF_LATEST" ]; then
+  complete -o nospace -C "$_TF_LATEST" terraform
+fi
+
+
+## ───────────────────────────────────────────
+## zoxide & starship (must be after compinit)
+## ───────────────────────────────────────────
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
