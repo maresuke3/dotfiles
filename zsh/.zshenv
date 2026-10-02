@@ -16,7 +16,7 @@ export GO111MODULE=on
 export GOPRIVATE=<REDACTED>
 
 # gcp sdk
-export GOOGLE_APPLICATION_CREDENTIALS=<REDACTED>
+# export GOOGLE_APPLICATION_CREDENTIALS=<REDACTED>
 #export PATH="/usr/local/sbin:$PATH"
 
 # PHP env value
