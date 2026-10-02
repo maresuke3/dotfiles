@@ -1,0 +1,28 @@
+2026-10-02T19:10:04.358779Z  INFO herdr::api::server: api server listening path=/home/maresuke/.config/herdr/herdr.sock
+2026-10-02T19:10:04.359987Z  INFO herdr::persist::io: session file is missing event="persist.restore" subsystem="persist" outcome="missing" path=/home/maresuke/.config/herdr/session.json
+2026-10-02T19:10:04.359998Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-10-02T19:10:04.722699Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-02T19:10:04.724330Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=40 cols=120 scrollback_limit_bytes=10000000
+2026-10-02T19:10:04.725276Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=518137
+2026-10-02T19:10:04.725589Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w1" pane_id=1
+2026-10-02T19:10:04.725597Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-10-02T19:10:04.725601Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-10-02T19:10:04.725608Z  INFO herdr::server::headless::bootstrap: created startup workspace cwd=/home/maresuke/dotfiles
+2026-10-02T19:10:04.725658Z  INFO herdr::server::headless: client protocol socket listening path=/home/maresuke/.config/herdr/herdr-client.sock
+2026-10-02T19:10:04.725683Z  INFO herdr::server::headless::bootstrap: herdr server started api_socket=/home/maresuke/.config/herdr/herdr.sock client_socket=/home/maresuke/.config/herdr/herdr-client.sock
+2026-10-02T19:10:04.725776Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=518115
+2026-10-02T19:10:04.977836Z  INFO herdr::server::headless: client connected client_id=2 cols=101 rows=65 cell_width_px=8 cell_height_px=16 surface_active=true render_encoding=SemanticFrame
+2026-10-02T19:10:09.730267Z  INFO herdr::persist::writer: preserved session recovery copy event="persist.backup" subsystem="persist" outcome="ok" path=/home/maresuke/.config/herdr/session.json backup_path=/home/maresuke/.config/herdr/session-snapshots/session-000000000000000000001790968209727586411-518115-0.json
+2026-10-02T19:10:09.730296Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/maresuke/.config/herdr/session.json workspaces=1
+2026-10-02T19:10:28.291624Z  INFO herdr::logging: integration action finished event="integration.action" subsystem="integration" outcome="ok" action="install" target="claude"
+2026-10-02T19:10:28.545221Z  INFO herdr::logging: integration action finished event="integration.action" subsystem="integration" outcome="ok" action="install" target="codex"
+2026-10-02T19:10:28.803224Z  INFO herdr::logging: integration action finished event="integration.action" subsystem="integration" outcome="ok" action="install" target="antigravity-cli"
+2026-10-02T19:11:29.917279Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 0, signal: None }"
+2026-10-02T19:11:29.917388Z  INFO herdr::pane: pane session terminated pane=1 pid=518137 signal=Hangup
+2026-10-02T19:11:29.917464Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=65 cols=101 scrollback_limit_bytes=10000000
+2026-10-02T19:11:29.918585Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=519049
+2026-10-02T19:11:29.918766Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w2" pane_id=2
+2026-10-02T19:11:29.918772Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-10-02T19:11:29.918776Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-10-02T19:11:34.932419Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/maresuke/.config/herdr/session.json workspaces=1
+2026-10-02T19:15:14.921359Z  INFO herdr::server::headless: client detached client_id=2

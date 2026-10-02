@@ -5,6 +5,7 @@ brew "git"
 brew "zsh"
 brew "gnupg"
 brew "mise"
+brew "chezmoi"
 brew "composer"
 
 # ==============================================================================

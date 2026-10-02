@@ -1,0 +1,7 @@
+abbr ".."="cd .."
+abbr "l"="ls -a"
+abbr "la"="ls -la"
+abbr "ll"="ls -l"
+abbr "ls"="ls -FG"
+abbr "sed"="gsed"
+abbr "vim"="nvim"
