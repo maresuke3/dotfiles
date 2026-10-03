@@ -38,3 +38,13 @@ zoxide = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
+
+[dotfiles]
+"~/.bashrc" = { source = "~/dotfiles/bash/.bashrc" }
+"~/.gitconfig" = { source = "~/dotfiles/git/.gitconfig" }
+"~/.gitconfig_global" = { source = "~/dotfiles/git/.gitconfig_global" }
+"~/.gitignore_global" = { source = "~/dotfiles/git/.gitignore_global" }
+"~/.zprofile" = { source = "~/dotfiles/zsh/.zprofile" }
+"~/.zshenv" = { source = "~/dotfiles/zsh/.zshenv" }
+"~/.zshrc" = { source = "~/dotfiles/zsh/.zshrc" }
+"~/Brewfile" = { source = "~/dotfiles/shell/Brewfile" }

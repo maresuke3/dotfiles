@@ -26,3 +26,23 @@
 2026-10-02T19:11:29.918776Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
 2026-10-02T19:11:34.932419Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/maresuke/.config/herdr/session.json workspaces=1
 2026-10-02T19:15:14.921359Z  INFO herdr::server::headless: client detached client_id=2
+2026-10-02T19:41:39.054177Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-02T20:13:15.349601Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-02T20:44:53.506336Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-02T21:16:31.997006Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-02T21:48:08.137851Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-02T22:19:48.971464Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-02T22:51:35.791651Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-02T23:23:19.571642Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-02T23:55:05.348990Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-03T00:26:50.504813Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-03T00:58:37.742571Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-03T01:13:05.556689Z  INFO herdr::platform::linux::shutdown: host shutdown requested; preserving session before pane termination
+2026-10-03T01:13:05.556765Z  INFO herdr::server::headless::lifecycle: server shutdown initiated
+2026-10-03T01:13:05.606894Z  INFO herdr::server::headless::lifecycle: completing server shutdown
+2026-10-03T01:13:05.609498Z  INFO herdr::persist::writer: preserved session recovery copy event="persist.backup" subsystem="persist" outcome="ok" path=/home/maresuke/.config/herdr/session.json backup_path=/home/maresuke/.config/herdr/session-snapshots/session-000000000000000000001790989985607235304-518115-0.json
+2026-10-03T01:13:05.609678Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/maresuke/.config/herdr/session.json workspaces=1
+2026-10-03T01:13:05.609688Z  INFO herdr::server::headless: headless server exiting
+2026-10-03T01:13:05.611252Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 1, signal: None }"
+2026-10-03T01:13:05.630503Z  INFO herdr::pane: pane session terminated pane=2 pid=519049 signal=Hangup
+2026-10-03T01:13:05.631698Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="server" outcome="completed" pid=518115
