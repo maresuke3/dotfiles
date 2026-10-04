@@ -1,3 +1,7 @@
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
 
+experimental = true
+
+[settings.age]
+key_file = "~/.config/mise/dotfiles-age.txt"

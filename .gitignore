@@ -1,1 +1,5 @@
 .keep
+dotfiles-age.txt
+.gitconfig
+.gitconfig_global
+.gitconfig_work

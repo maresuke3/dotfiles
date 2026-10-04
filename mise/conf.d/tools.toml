@@ -1,4 +1,5 @@
 [tools]
+age = "latest"
 antigravity-cli = "latest"
 aws-cli = { version = "latest", symlink_bins = "true" }
 bun = "latest"
