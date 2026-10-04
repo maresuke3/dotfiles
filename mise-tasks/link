@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#MISE description="Symlink dotfiles and global mise config"
+
+echo -e "\033[1;36m[INFO]\033[0m Linking dotfiles from symlinks.toml..."
+
+# Read symlinks.toml and create links
+grep -E '^\s*".*"\s*=\s*\{\s*source' ~/dotfiles/mise/conf.d/symlinks.toml | awk -F'"' '{print $2, $4}' | while read -r target source; do
+    # Expand tildes
+    target="${target/#\~/$HOME}"
+    source="${source/#\~/$HOME}"
+    
+    mkdir -p "$(dirname "$target")"
+    
+    if [ -e "$target" ] && [ ! -L "$target" ]; then
+        mv "$target" "${target}.bak.$(date +%Y%m%d%H%M%S)"
+        echo -e "  \033[1;33m[BACKUP]\033[0m $target"
+    fi
+    
+    ln -sfn "$source" "$target"
+    echo -e "  \033[1;32m[OK]\033[0m $target -> $source"
+done
+
+# Manually link the mise global config directory
+echo -e "\n\033[1;36m[INFO]\033[0m Linking global mise config..."
+mkdir -p ~/.config
+if [ -e ~/.config/mise ] && [ ! -L ~/.config/mise ]; then
+    mv ~/.config/mise ~/.config/mise.bak.$(date +%Y%m%d%H%M%S)
+    echo -e "  \033[1;33m[BACKUP]\033[0m ~/.config/mise"
+fi
+ln -sfn ~/dotfiles/mise ~/.config/mise
+echo -e "  \033[1;32m[OK]\033[0m ~/.config/mise -> ~/dotfiles/mise"

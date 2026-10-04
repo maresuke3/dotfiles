@@ -9,15 +9,11 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 # Cargo
-[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+# [[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
 # go env settings
 export GO111MODULE=on
 export GOPRIVATE=<REDACTED>
-
-# gcp sdk
-# export GOOGLE_APPLICATION_CREDENTIALS=<REDACTED>
-#export PATH="/usr/local/sbin:$PATH"
 
 # PHP env value
 export PHP_CONFIGURE_OPTS="--without-gd"

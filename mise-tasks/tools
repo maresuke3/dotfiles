@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#MISE description="Install global tools via mise"
+
+echo -e "\033[1;36m[INFO]\033[0m Installing global tools from mise config..."
+mise install
+echo -e "  \033[1;32m[OK]\033[0m Global tools installed!"

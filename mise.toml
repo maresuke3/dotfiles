@@ -1,0 +1,5 @@
+# This file serves as the local configuration for the dotfiles repository.
+# It delegates tasks to the `mise-tasks` directory automatically.
+
+[env]
+# Local env vars for setup tasks (if any)

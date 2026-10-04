@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#MISE description="Run Homebrew bundle"
+
+if ! command -v brew &>/dev/null; then
+    echo -e "\033[1;31m[ERROR]\033[0m Homebrew is not installed."
+    exit 1
+fi
+
+BREWFILE="${HOME}/dotfiles/shell/Brewfile"
+if [ -f "$BREWFILE" ]; then
+    echo -e "\033[1;36m[INFO]\033[0m Applying Brewfile..."
+    brew bundle --file="$BREWFILE" --no-lock
+    echo -e "  \033[1;32m[OK]\033[0m Brewfile applied successfully!"
+else
+    echo -e "\033[1;31m[ERROR]\033[0m Brewfile not found at $BREWFILE"
+    exit 1
+fi

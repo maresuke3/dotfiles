@@ -1,0 +1,16 @@
+[dotfiles]
+"~/.bashrc" = { source = "~/dotfiles/bash/.bashrc" }
+"~/.config/helix" = { source = "~/dotfiles/helix" }
+"~/.config/herdr" = { source = "~/dotfiles/herdr" }
+"~/.config/hunk" = { source = "~/dotfiles/hunk" }
+"~/.config/lazygit" = { source = "~/dotfiles/lazygit" }
+"~/.config/nvim" = { source = "~/dotfiles/nvim" }
+"~/.config/sheldon" = { source = "~/dotfiles/shell/sheldon" }
+"~/.config/starship.toml" = { source = "~/dotfiles/shell/starship.toml" }
+"~/.gitconfig" = { source = "~/dotfiles/git/.gitconfig" }
+"~/.gitconfig_global" = { source = "~/dotfiles/git/.gitconfig_global" }
+"~/.gitignore_global" = { source = "~/dotfiles/git/.gitignore_global" }
+"~/.zprofile" = { source = "~/dotfiles/zsh/.zprofile" }
+"~/.zshenv" = { source = "~/dotfiles/zsh/.zshenv" }
+"~/.zshrc" = { source = "~/dotfiles/zsh/.zshrc" }
+"~/Brewfile" = { source = "~/dotfiles/shell/Brewfile" }

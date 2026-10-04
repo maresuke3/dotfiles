@@ -157,3 +157,11 @@ if [ -n "$WSL_DISTRO_NAME" ]; then
     # PATHの先頭に追加
     export PATH="$HOME/.wsl_bin:$PATH"
 fi
+
+
+# =============================================================================
+# mise aliases
+# =============================================================================
+# `mise use -g` writes to config.toml, which breaks our conf.d/ separation.
+# Use `mguse` (mise global use) to safely write tools to tools.toml instead.
+alias mguse="mise use --path ~/dotfiles/mise/conf.d/tools.toml"
