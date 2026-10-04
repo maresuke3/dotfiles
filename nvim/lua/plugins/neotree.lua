@@ -8,6 +8,9 @@ return {
 	},
 	lazy = false,
   opts = {
+		trash = {
+			command = function(...) return require('neo-tree.trash.freedesktop').generate_trashfunc(...) end
+		},
 		filesystem = {
 			filtered_items = {
 				hide_dotfiles = false,
