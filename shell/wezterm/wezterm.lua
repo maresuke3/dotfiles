@@ -1,3 +1,4 @@
+-- 💡 NOTE: 設定を変更した場合は `Ctrl + Shift + R` で明示的にリロードして反映させること
 local wezterm = require("wezterm")
 
 -- initial setting
