@@ -135,6 +135,15 @@ if [ -n "$_TF_LATEST" ]; then
   complete -o nospace -C "$_TF_LATEST" terraform
 fi
 
+# AWS CLI completion
+if command -v mise >/dev/null 2>&1; then
+  _AWS_COMPLETER=$(mise which aws_completer 2>/dev/null)
+  if [ -n "$_AWS_COMPLETER" ]; then
+    complete -C "$_AWS_COMPLETER" aws
+  fi
+fi
+
+
 
 ## ───────────────────────────────────────────
 ## zoxide & starship (must be after compinit)
