@@ -141,3 +141,19 @@ fi
 ## ───────────────────────────────────────────
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+
+## ───────────────────────────────────────────
+## WSL用 CLIラッパー (Windowsの.exeをLinux名で扱えるようにする)
+## ───────────────────────────────────────────
+if [ -n "$WSL_DISTRO_NAME" ]; then
+    # wsl_binディレクトリを作成
+    mkdir -p "$HOME/.wsl_bin"
+    # wezterm -> wezterm.exe のラッパーを動的に作成
+    if [ ! -f "$HOME/.wsl_bin/wezterm" ]; then
+        echo '#!/bin/sh' > "$HOME/.wsl_bin/wezterm"
+        echo 'wezterm.exe "$@"' >> "$HOME/.wsl_bin/wezterm"
+        chmod +x "$HOME/.wsl_bin/wezterm"
+    fi
+    # PATHの先頭に追加
+    export PATH="$HOME/.wsl_bin:$PATH"
+fi
