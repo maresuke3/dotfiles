@@ -8,7 +8,6 @@
 "~/.config/sheldon" = { source = "~/dotfiles/shell/sheldon" }
 "~/.config/starship.toml" = { source = "~/dotfiles/shell/starship.toml" }
 "~/.gitconfig" = { source = "~/dotfiles/git/.gitconfig" }
-"~/.gitconfig_global" = { source = "~/dotfiles/git/.gitconfig_global" }
 "~/.gitignore_global" = { source = "~/dotfiles/git/.gitignore_global" }
 "~/.zprofile" = { source = "~/dotfiles/zsh/.zprofile" }
 "~/.zshenv" = { source = "~/dotfiles/zsh/.zshenv" }
