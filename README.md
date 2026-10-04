@@ -69,3 +69,16 @@ mguse node@20
 mise set --age-encrypt SECRET_TOKEN=super_secret
 ```
 
+## 🖥️ Windows (WSL) 固有のセットアップ
+
+### WezTerm の設定ファイル連動
+WSL環境では、Windows側にインストールした WezTerm（`.exe`）をメインのターミナルとして利用します。
+Windows側の WezTerm から WSL内の `wezterm.lua` を読み込ませるため、Windows側の設定ファイルに以下の1行を記述してください。
+
+**配置場所 (Windows側):** `C:\Users\<ユーザー名>\.config\wezterm\wezterm.lua`
+```lua
+-- WSL上のdotfiles内にある設定ファイルを動的にロードする
+dofile("\\\\wsl.localhost\\Ubuntu\\home\\maresuke\\dotfiles\\shell\\wezterm\\wezterm.lua")
+```
+*(※ `maresuke` や `Ubuntu` の部分はご自身の環境に合わせて適宜変更してください)*
+
