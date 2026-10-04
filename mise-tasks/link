@@ -3,8 +3,20 @@
 
 echo -e "\033[1;36m[INFO]\033[0m Linking dotfiles from symlinks.toml..."
 
+OS_NAME="$(uname -s)"
+
 # Read symlinks.toml and create links
 grep -E '^\s*".*"\s*=\s*\{\s*source' ~/dotfiles/mise/conf.d/symlinks.toml | awk -F'"' '{print $2, $4}' | while read -r target source; do
+    
+    # Check OS prefixes
+    if [[ "$target" == mac:* ]]; then
+        if [[ "$OS_NAME" != "Darwin" ]]; then continue; fi
+        target="${target#mac:}"
+    elif [[ "$target" == linux:* ]]; then
+        if [[ "$OS_NAME" != "Linux" ]]; then continue; fi
+        target="${target#linux:}"
+    fi
+
     # Expand tildes
     target="${target/#\~/$HOME}"
     source="${source/#\~/$HOME}"

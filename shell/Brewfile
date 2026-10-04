@@ -49,6 +49,7 @@ if OS.mac?
   cask "obsidian"
   cask "spotify"
   cask "wezterm"
+  cask "ghosty"
 end
 
 # ==============================================================================

@@ -12,3 +12,6 @@
 "~/.zshenv" = { source = "~/dotfiles/zsh/.zshenv" }
 "~/.zshrc" = { source = "~/dotfiles/zsh/.zshrc" }
 "~/Brewfile" = { source = "~/dotfiles/shell/Brewfile" }
+
+# OS-Specific links
+"mac:~/.config/ghosty" = { source = "~/dotfiles/shell/ghosty" }
