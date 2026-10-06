@@ -121,26 +121,45 @@ zstyle ':completion:*:warnings' format '%F{red}No matches%f'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# Google Cloud SDK のインストール先を取得して補完スクリプトを読み込む
-if [ -f "$(gcloud info --format='value(installation.sdk_root)')/completion.zsh.inc" ]; then
-  source "$(gcloud info --format='value(installation.sdk_root)')/completion.zsh.inc"
+# ==============================================================
+# 補完スクリプトのパスをキャッシュして起動を高速化
+# ==============================================================
+CACHE_FILE="$HOME/.zsh_comp_paths_cache"
+
+# キャッシュファイルが存在しない場合のみ、パスを探して保存する
+if [ ! -f "$CACHE_FILE" ]; then
+  _GCLOUD_ROOT=$(gcloud info --format='value(installation.sdk_root)' 2>/dev/null)
+  _TF_LATEST=$(find "$HOME/.local/share/mise/installs/terraform" -maxdepth 2 -type f -name terraform 2>/dev/null | sort -V | tail -n 1)
+  _AWS_COMPLETER=$(mise which aws_completer 2>/dev/null)
+  
+  echo "export _GCLOUD_ROOT=\"$_GCLOUD_ROOT\"" > "$CACHE_FILE"
+  echo "export _TF_LATEST=\"$_TF_LATEST\"" >> "$CACHE_FILE"
+  echo "export _AWS_COMPLETER=\"$_AWS_COMPLETER\"" >> "$CACHE_FILE"
+fi
+
+# キャッシュされたパスを読み込む
+source "$CACHE_FILE"
+
+# ==============================================================
+# 以下、既存のロジックと全く同じ補完の有効化処理
+# ==============================================================
+
+# Google Cloud SDK
+if [ -n "$_GCLOUD_ROOT" ] && [ -f "$_GCLOUD_ROOT/completion.zsh.inc" ]; then
+  source "$_GCLOUD_ROOT/completion.zsh.inc"
 elif [ -f "/usr/share/google-cloud-sdk/completion.zsh.inc" ]; then
   source "/usr/share/google-cloud-sdk/completion.zsh.inc"
 fi
 
 # Terraform completion (must be after compinit/sheldon)
 autoload -U +X bashcompinit && bashcompinit
-_TF_LATEST=$(find "$HOME/.local/share/mise/installs/terraform" -maxdepth 2 -type f -name terraform 2>/dev/null | sort -V | tail -n 1)
 if [ -n "$_TF_LATEST" ]; then
   complete -o nospace -C "$_TF_LATEST" terraform
 fi
 
 # AWS CLI completion
-if command -v mise >/dev/null 2>&1; then
-  _AWS_COMPLETER=$(mise which aws_completer 2>/dev/null)
-  if [ -n "$_AWS_COMPLETER" ]; then
-    complete -C "$_AWS_COMPLETER" aws
-  fi
+if [ -n "$_AWS_COMPLETER" ]; then
+  complete -C "$_AWS_COMPLETER" aws
 fi
 
 
