@@ -5,7 +5,7 @@ brew "git"
 brew "zsh"
 brew "gnupg"
 brew "mise"
-brew "chezmoi"
+brew "docker"
 brew "composer"
 
 # ==============================================================================
@@ -44,12 +44,16 @@ cask "font-symbols-only-nerd-font"
 # ==============================================================================
 if OS.mac?
   # --- Mac/Windows 共通ツール (GUIアプリ) ---
+  cask "alt-tab"
   cask "claude"
   cask "figma"
+  cask "ghostty"
+  cask "google-japanese-ime"
   cask "obsidian"
+  cask "orbstack"
+  cask "raycast"
   cask "spotify"
   cask "wezterm"
-  cask "ghosty"
 end
 
 # ==============================================================================

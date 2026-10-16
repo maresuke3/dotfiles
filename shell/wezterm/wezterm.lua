@@ -64,9 +64,9 @@ config.keys = {
 
 config.enable_kitty_keyboard = false
 -- mac setting
-if wezterm.target_triple == "x86_64-apple-darwin" then
+if wezterm.target_triple:find("darwin") then
 	-- window setting
-	config.window_background_opacity = 0.91
+	config.window_background_opacity = 0.8
 	config.window_padding = {
 		left = 10,
 		right = 10,
