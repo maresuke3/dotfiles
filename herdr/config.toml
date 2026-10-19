@@ -3,3 +3,9 @@ onboarding = false
 [theme]
 name = "tokyo-night"
 auto_switch = false
+
+[ui]
+status_indicators = "symbols"
+
+[ui.toast]
+delivery = "system"

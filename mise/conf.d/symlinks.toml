@@ -1,5 +1,7 @@
 [dotfiles]
 "~/.bashrc" = { source = "~/dotfiles/bash/.bashrc" }
+"~/.claude/settings.json" = { source = "~/dotfiles/claude/settings.json" }
+"~/.claude/skills/herdr-loop" = { source = "~/dotfiles/herdr/skills/herdr-loop" }
 "~/.claude/skills/hunk-review" = { source = "~/dotfiles/hunk/skills/hunk-review" }
 "~/.config/helix" = { source = "~/dotfiles/helix" }
 "~/.config/herdr" = { source = "~/dotfiles/herdr" }
@@ -8,6 +10,8 @@
 "~/.config/nvim" = { source = "~/dotfiles/nvim" }
 "~/.config/sheldon" = { source = "~/dotfiles/shell/sheldon" }
 "~/.config/starship.toml" = { source = "~/dotfiles/shell/starship.toml" }
+"~/.gemini/antigravity-cli/settings.json" = { source = "~/dotfiles/gemini/settings.json" }
+"~/.gemini/config/skills/herdr-loop" = { source = "~/dotfiles/herdr/skills/herdr-loop" }
 "~/.gemini/config/skills/hunk-review" = { source = "~/dotfiles/hunk/skills/hunk-review" }
 "~/.gitignore_global" = { source = "~/dotfiles/git/.gitignore_global" }
 "~/.zprofile" = { source = "~/dotfiles/zsh/.zprofile" }
