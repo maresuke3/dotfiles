@@ -1,5 +1,6 @@
 [dotfiles]
 "~/.bashrc" = { source = "~/dotfiles/bash/.bashrc" }
+"~/.claude/skills/hunk-review" = { source = "~/dotfiles/hunk/skills/hunk-review" }
 "~/.config/helix" = { source = "~/dotfiles/helix" }
 "~/.config/herdr" = { source = "~/dotfiles/herdr" }
 "~/.config/hunk" = { source = "~/dotfiles/hunk" }
@@ -7,6 +8,7 @@
 "~/.config/nvim" = { source = "~/dotfiles/nvim" }
 "~/.config/sheldon" = { source = "~/dotfiles/shell/sheldon" }
 "~/.config/starship.toml" = { source = "~/dotfiles/shell/starship.toml" }
+"~/.gemini/config/skills/hunk-review" = { source = "~/dotfiles/hunk/skills/hunk-review" }
 "~/.gitignore_global" = { source = "~/dotfiles/git/.gitignore_global" }
 "~/.zprofile" = { source = "~/dotfiles/zsh/.zprofile" }
 "~/.zshenv" = { source = "~/dotfiles/zsh/.zshenv" }

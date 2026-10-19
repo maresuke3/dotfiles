@@ -1,9 +1,10 @@
-theme = "solarized-dark"
-mode = "unified"
-line_numbers = false
-wrap_lines = false
-hunk_headers = true
-menu_bar = true
 agent_notes = true
 copy_decorations = false
 cursor_line = "row"
+hunk_headers = true
+line_numbers = false
+menu_bar = true
+mode = "unified"
+theme = "solarized-dark"
+watch = true
+wrap_lines = false
