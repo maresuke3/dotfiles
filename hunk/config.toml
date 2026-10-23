@@ -1,10 +1,10 @@
 agent_notes = true
 copy_decorations = false
 cursor_line = "row"
-hunk_headers = true
+hunk_headers = false
 line_numbers = false
 menu_bar = true
-mode = "unified"
+mode = "split"
 theme = "solarized-dark"
 watch = true
 wrap_lines = false
