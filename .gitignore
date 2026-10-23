@@ -3,3 +3,10 @@ dotfiles-age.txt
 .gitconfig
 .gitconfig_global
 .gitconfig_work
+
+# herdr runtime files
+herdr/session-snapshots/
+herdr/session.json
+herdr/*.log
+herdr/*.sock*
+herdr/release-notes.json
