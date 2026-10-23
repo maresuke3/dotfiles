@@ -66,6 +66,7 @@ config.enable_kitty_keyboard = false
 -- mac setting
 if wezterm.target_triple:find("darwin") then
 	-- window setting
+	config.font_size = 18.0
 	config.window_background_opacity = 0.8
 	config.window_padding = {
 		left = 10,

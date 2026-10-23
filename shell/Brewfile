@@ -47,13 +47,13 @@ if OS.mac?
   cask "alt-tab"
   cask "claude"
   cask "figma"
-  cask "ghostty"
   cask "google-japanese-ime"
   cask "obsidian"
   cask "orbstack"
   cask "raycast"
   cask "spotify"
   cask "wezterm"
+  cask "zoom"
 end
 
 # ==============================================================================
