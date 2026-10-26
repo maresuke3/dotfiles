@@ -68,7 +68,7 @@ fi
 
 # 3. Install mise (The task runner & tool manager)
 echo -e "\n\033[1;36m[INFO]\033[0m Checking mise..."
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
 if ! command -v mise &>/dev/null; then
     if ! $DRY_RUN; then curl https://mise.run | sh; else echo -e "  \033[1;33m[RUN]\033[0m  curl https://mise.run | sh"; fi
 else
@@ -78,6 +78,7 @@ fi
 # 4. Delegate to mise tasks
 echo -e "\n\033[1;34m=== Delegating setup to mise tasks ===\033[0m"
 cd "$(dirname "$0")"
+run_cmd mise trust --all
 
 # Execute the master setup task
 # Using eval to properly expand MISE_ARGS

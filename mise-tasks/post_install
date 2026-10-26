@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 #MISE description="Run post-installation steps (sheldon, npm globals, directories)"
+#MISE wait_for=["link", "tools", "secrets"]
+set -euo pipefail
+
+export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
 
 echo -e "\033[1;36m[INFO]\033[0m Creating working directories..."
 mkdir -p ~/work/{individual,prototype}
@@ -7,7 +11,14 @@ echo -e "  \033[1;32m[OK]\033[0m Working directories created."
 
 echo -e "\n\033[1;36m[INFO]\033[0m Updating sheldon plugins..."
 if command -v sheldon &>/dev/null; then
-    sheldon lock --update
+    SHELDON_BIN="$(mise which sheldon 2>/dev/null || command -v sheldon)"
+    # Run with clean HOME so libgit2 ignores ~/.gitconfig url.git@github.com:.insteadOf and uses HTTPS
+    tmp_home=$(mktemp -d)
+    SHELDON_CONFIG_DIR="$HOME/.config/sheldon" \
+    SHELDON_DATA_DIR="$HOME/.local/share/sheldon" \
+    HOME="$tmp_home" \
+    "$SHELDON_BIN" lock --update
+    rm -rf "$tmp_home"
     echo -e "  \033[1;32m[OK]\033[0m Sheldon plugins updated."
 else
     echo -e "  \033[1;33m[SKIP]\033[0m Sheldon is not installed yet."

@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 #MISE description="Install global tools via mise"
+#MISE wait_for=["link", "brew"]
+set -euo pipefail
+
+export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
+
+echo -e "\033[1;36m[INFO]\033[0m Installing core prerequisites (python, age) via mise..."
+mise install python age
+mise reshim
 
 echo -e "\033[1;36m[INFO]\033[0m Installing global tools from mise config..."
 mise install
+mise reshim
 echo -e "  \033[1;32m[OK]\033[0m Global tools installed!"

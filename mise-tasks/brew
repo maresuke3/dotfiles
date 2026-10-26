@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #MISE description="Run Homebrew bundle"
+#MISE wait_for=["link"]
 
 if ! command -v brew &>/dev/null; then
     echo -e "\033[1;31m[ERROR]\033[0m Homebrew is not installed."

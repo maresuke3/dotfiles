@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #MISE description="Runs the full dotfiles setup"
-#MISE depends=["link", "secrets", "brew", "tools", "post_install"]
+#MISE depends=["link", "brew", "tools", "secrets", "post_install"]
 
 # The actual work is done by the dependencies.
 echo -e "\033[1;32m[OK]\033[0m Dotfiles setup completed successfully!"
