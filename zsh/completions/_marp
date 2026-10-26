@@ -1,0 +1,111 @@
+#compdef marp
+
+_marp_theme() {
+  local -a builtin_themes
+  builtin_themes=(
+    'default:Default theme'
+    'gaia:Gaia theme'
+    'uncover:Uncover theme'
+  )
+  _describe -t themes 'built-in theme' builtin_themes
+  _files -g '*.css(-.)'
+}
+
+_marp() {
+  local ret=1
+
+  _arguments -s -S \
+    '(-v --version)'{-v,--version}'[Show versions]' \
+    '(-h --help)'{-h,--help}'[Show help]' \
+    '(-d --debug)'{-d,--debug}'[Show debug logs (bool or filter pattern)]::filter:(true false)' \
+    '(-o --output)'{-o,--output}'[Output file path (or directory when input-dir is passed)]:output path:_files' \
+    '(-I --input-dir)'{-I,--input-dir}'[The base directory to find markdown and theme CSS]:input directory:_files -/' \
+    '(-c --config-file --config --no-config-file --no-config)'{-c,--config-file,--config}'[Specify path to a configuration file]:config file:_files' \
+    '(-c --config-file --config --no-config-file --no-config)'{--no-config-file,--no-config}'[Prevent looking up for a configuration file]' \
+    '(-P --parallel --no-parallel)'{-P,--parallel}'[Number of max parallel processes for multiple conversions]:max processes:' \
+    '(-P --parallel --no-parallel)--no-parallel[Disable parallel processing]' \
+    '(-w --watch)'{-w,--watch}'[Watch input markdowns for changes]' \
+    '(-s --server)'{-s,--server}'[Enable server mode]' \
+    '(-p --preview)'{-p,--preview}'[Open preview window]' \
+    '--pdf[Convert slide deck into PDF]' \
+    '--pptx[Convert slide deck into PowerPoint document]' \
+    '--pptx-editable[(Experimental) Generate editable PPTX when converting to PPTX]' \
+    '--notes[Convert slide deck notes into a text file]' \
+    '--image[Convert the first slide page into an image file]:image type:(png jpeg)' \
+    '--images[Convert slide deck into multiple image files]:image type:(png jpeg)' \
+    '--image-scale[The scale factor for rendered images]:scale factor:' \
+    '--jpeg-quality[Set JPEG image quality]:quality (0-100):' \
+    '--allow-local-files[Allow to access local files from Markdown while converting PDF, PPTX, or image]' \
+    '--template[Choose HTML template]:template:(bare bespoke)' \
+    '--bespoke.osc[(Bespoke) Use on-screen controller]::enable:(true false)' \
+    '--bespoke.progress[(Bespoke) Use progress bar]::enable:(true false)' \
+    '--bespoke.transition[(Bespoke) Use transitions]::enable:(true false)' \
+    '--browser[The kind of browser to use for PDF, PPTX, and image conversion]:browser:(auto chrome edge firefox)' \
+    '--browser-path[Path to the browser executable]:browser executable:_files' \
+    '--browser-protocol[Preferred protocol to use for browser connection]:protocol:(cdp webdriver-bidi)' \
+    '--browser-timeout[Timeout for each browser operation in seconds (0 to disable)]:seconds:' \
+    '--pdf-notes[Add presenter notes to PDF as annotations]' \
+    '--pdf-outlines[Add outlines (bookmarks) to PDF]' \
+    '--pdf-outlines.pages[Make outlines from slide pages]::enable:(true false)' \
+    '--pdf-outlines.headings[Make outlines from Markdown headings]::enable:(true false)' \
+    '--title[Define title of the slide deck]:title:' \
+    '--description[Define description of the slide deck]:description:' \
+    '--author[Define author of the slide deck]:author:' \
+    '--keywords[Define comma-separated keywords for the slide deck]:keywords:' \
+    '--url[Define canonical URL]:url:' \
+    '--og-image[Define Open Graph image URL]:image url:' \
+    '--engine[Select Marpit based engine by module name or path]:engine:_files' \
+    '--html[Enable or disable HTML tags]::enable:(true false)' \
+    '--theme[Override theme by name or CSS file]:theme:_marp_theme' \
+    '*--theme-set[Path to additional theme CSS files]:theme CSS file:_files -g "*.css(-.)"' \
+    '*:markdown file:_files -g "*.(md|markdown)(-.)"' && ret=0
+
+  # Also show options when pressing <Tab> right after `marp ` (without typing `-` first)
+  if [[ -z "$PREFIX" ]]; then
+    local prev="${words[CURRENT-1]}"
+    case "$prev" in
+      -o|--output|-I|--input-dir|-c|--config|--config-file|-P|--parallel|--image|--images|--image-scale|--jpeg-quality|--template|--browser|--browser-path|--browser-protocol|--browser-timeout|--title|--description|--author|--keywords|--url|--og-image|--engine|--theme|--theme-set)
+        ;;
+      *)
+        local -a marp_opts
+        marp_opts=(
+          '-p:Open preview window'
+          '--preview:Open preview window'
+          '-w:Watch input markdowns for changes'
+          '--watch:Watch input markdowns for changes'
+          '-s:Enable server mode'
+          '--server:Enable server mode'
+          '--pdf:Convert slide deck into PDF'
+          '--pptx:Convert slide deck into PowerPoint document'
+          '--pptx-editable:(Experimental) Generate editable PPTX'
+          '--notes:Convert slide deck notes into a text file'
+          '--image:Convert the first slide page into an image file'
+          '--images:Convert slide deck into multiple image files'
+          '--html:Enable or disable HTML tags'
+          '--theme:Override theme by name or CSS file'
+          '--theme-set:Path to additional theme CSS files'
+          '--allow-local-files:Allow access to local files from Markdown'
+          '-o:Output file path'
+          '--output:Output file path'
+          '-I:The base directory to find markdown and theme CSS'
+          '--input-dir:The base directory to find markdown and theme CSS'
+          '-c:Specify path to a configuration file'
+          '--config:Specify path to a configuration file'
+          '--template:Choose HTML template (bare, bespoke)'
+          '--browser:Browser for PDF, PPTX, and image conversion'
+          '--pdf-notes:Add presenter notes to PDF as annotations'
+          '--pdf-outlines:Add outlines (bookmarks) to PDF'
+          '-v:Show versions'
+          '--version:Show versions'
+          '-h:Show help'
+          '--help:Show help'
+        )
+        _describe -O 'option' marp_opts && ret=0
+        ;;
+    esac
+  fi
+
+  return ret
+}
+
+_marp "$@"

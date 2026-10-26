@@ -1,5 +1,5 @@
 # plugin manager setting
-fpath=(~/.zsh $fpath)
+fpath=(~/dotfiles/zsh/completions ~/.zsh $fpath)
 
 ## ───────────────────────────────────────────
 ## ヒストリ設定
