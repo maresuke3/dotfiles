@@ -43,4 +43,25 @@ else
     echo -e "  \033[1;33m[SKIP]\033[0m claude-code already installed."
 fi
 
+echo -e "\n\033[1;36m[INFO]\033[0m Installing & syncing AI Agent plugins..."
+CLAUDE_PLUGINS=(
+    "figma@claude-plugins-official"
+)
+
+if command -v claude &>/dev/null; then
+    for plugin in "${CLAUDE_PLUGINS[@]}"; do
+        claude plugin install "$plugin"
+        echo -e "  \033[1;32m[OK]\033[0m claude plugin installed: $plugin"
+    done
+else
+    echo -e "  \033[1;33m[SKIP]\033[0m claude not found, skipping plugin install."
+fi
+
+if command -v agy &>/dev/null; then
+    agy plugin import claude
+    echo -e "  \033[1;32m[OK]\033[0m Imported Claude plugins into Antigravity (agy)."
+else
+    echo -e "  \033[1;33m[SKIP]\033[0m agy not found, skipping plugin import."
+fi
+
 echo -e "\n\033[1;32m[OK]\033[0m Post-installation completed!"
