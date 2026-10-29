@@ -17,11 +17,5 @@ export GO111MODULE=on
 # PHP env value
 export PHP_CONFIGURE_OPTS="--without-gd"
 
-# ClaudeCode
-# this setting is only office
-#export CLAUDE_CODE_USE_VERTEX=1
-#export CLOUD_ML_REGION=global
-#export ANTHROPIC_VERTEX_PROJECT_ID=<REDACTED>
-
 # local bin (sheldon etc...)
 path=($HOME/.local/bin $path)
