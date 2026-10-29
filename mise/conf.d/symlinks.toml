@@ -1,5 +1,6 @@
 [dotfiles]
 "~/.bashrc" = { source = "~/dotfiles/bash/.bashrc" }
+"~/.claude/hooks/ask-unless-auto.sh" = { source = "~/dotfiles/claude/hooks/ask-unless-auto.sh" }
 "~/.claude/settings.json" = { source = "~/dotfiles/claude/settings.json" }
 "~/.claude/skills/herdr-loop" = { source = "~/dotfiles/herdr/skills/herdr-loop" }
 "~/.claude/skills/hunk-review" = { source = "~/dotfiles/hunk/skills/hunk-review" }

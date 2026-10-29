@@ -1,6 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
+    "defaultMode": "auto",
     "allow": [
       "Bash(ls *)",
       "Bash(ls)",
@@ -77,29 +78,7 @@
       "Edit(/System/**)"
     ],
     "ask": [
-      "Bash(rm -r *)",
-      "Bash(rm *)",
-      "Bash(rmdir *)",
-      "Bash(git add *)",
-      "Bash(git checkout *)",
-      "Bash(git commit *)",
-      "Bash(git pull *)",
       "Bash(git push *)",
-      "Bash(git rebase *)",
-      "Bash(git reflog *)",
-      "Bash(git reset --soft *)",
-      "Bash(git switch *)",
-      "Bash(pnpm install *)",
-      "Bash(pnpm add *)",
-      "Bash(npm install *)",
-      "Bash(go build *)",
-      "Bash(go get *)",
-      "Bash(composer *)",
-      "Bash(docker *)",
-      "Bash(docker-compose *)",
-      "Bash(herdr *)",
-      "Bash(terraform *)",
-      "Bash(make clean *)",
       "Edit(~/work/obsidian_git/AGENT.md)",
       "Edit(~/work/obsidian_git/01_projects/AI憲法策定/憲法_草案.md)"
     ],
@@ -114,6 +93,18 @@
           {
             "type": "command",
             "command": "bash '/Users/daiki-fukushima/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/daiki-fukushima/.claude/hooks/ask-unless-auto.sh'",
             "timeout": 10
           }
         ]
