@@ -38,23 +38,28 @@ cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
 cask "font-symbols-only-nerd-font"
+cask "terminal-browser" # ネイティブWindows版なし（WSLではLinux版が入る）
 
 # ==============================================================================
 # macOS 専用設定
 # ==============================================================================
 if OS.mac?
   # --- Mac/Windows 共通ツール (GUIアプリ) ---
+  brew "mas"
   cask "alt-tab"
+  cask "chatwork"
   cask "claude"
   cask "figma"
+  cask "ghostty"
   cask "google-japanese-ime"
   cask "obsidian"
   cask "orbstack"
   cask "raycast"
+  cask "shortcat"
   cask "spotify"
+  cask "stats"
   cask "wezterm"
   cask "zoom"
-  cask "chatwork"
 end
 
 # ==============================================================================
