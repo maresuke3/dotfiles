@@ -9,3 +9,6 @@ status_indicators = "symbols"
 
 [ui.toast]
 delivery = "herdr"
+
+[experimental]
+kitty_graphics = true
