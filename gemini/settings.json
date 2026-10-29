@@ -45,7 +45,8 @@
       "write_file(/Users/daiki-fukushima/work/obsidian_git/01_projects)",
       "write_file(/Users/daiki-fukushima/work/obsidian_git/02_inbox)",
       "write_file(/Users/daiki-fukushima/work/obsidian_git/assets)",
-      "write_file(/Users/daiki-fukushima/work/obsidian_git/README.md)"
+      "write_file(/Users/daiki-fukushima/work/obsidian_git/README.md)",
+      "read_file(/Users/daiki-fukushima/.gitconfig_global)"
     ],
     "deny": [
       "command(rm -rf)",
@@ -73,37 +74,15 @@
       "write_file(/System)"
     ],
     "ask": [
-      "command(rm)",
-      "command(rmdir)",
-      "command(git add)",
-      "command(git checkout)",
-      "command(git commit)",
-      "command(git pull)",
       "command(git push)",
-      "command(git rebase)",
-      "command(git reflog)",
-      "command(git reset --soft)",
-      "command(git switch)",
-      "command(pnpm install)",
-      "command(pnpm add)",
-      "command(npm install)",
-      "command(go build)",
-      "command(go get)",
-      "command(composer)",
-      "command(docker)",
-      "command(docker-compose)",
-      "command(hunk)",
-      "command(herdr)",
-      "command(terraform)",
-      "command(make clean)",
-      "command(regex:^(echo|printf)\\b.*>>?\\s*[^&])",
       "write_file(/Users/daiki-fukushima/work/obsidian_git/AGENT.md)",
       "write_file(/Users/daiki-fukushima/work/obsidian_git/01_projects/AI憲法策定/憲法_草案.md)"
     ]
   },
   "trustedWorkspaces": [
     "/Users/daiki-fukushima",
-    "/Users/daiki-fukushima/work/obsidian_git",
-    "/Users/daiki-fukushima/dotfiles"
+    "/Users/daiki-fukushima/dotfiles",
+    "/Users/daiki-fukushima/geniee/cats/cats-service",
+    "/Users/daiki-fukushima/work/obsidian_git"
   ]
 }
