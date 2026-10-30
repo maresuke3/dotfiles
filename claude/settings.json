@@ -65,24 +65,43 @@
       "Read(~/.ssh/**)",
       "Read(~/.config/mise/dotfiles-age.txt)",
       "Read(~/dotfiles/mise/dotfiles-age.txt)",
+      "Read(~/.config/gcloud/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.config/github-copilot/**)",
+      "Read(~/.config/op/**)",
+      "Read(~/.config/sops/**)",
+      "Read(~/.config/rclone/**)",
+      "Read(~/.config/configstore/**)",
+      "Read(~/.config/hub)",
+      "Read(~/.config/**/credentials*)",
+      "Read(~/.config/**/*token*)",
+      "Read(~/.config/**/*secret*)",
+      "Read(~/.config/**/*.pem)",
       "Edit(~/work/obsidian_git/.agents/**)",
       "Edit(~/.gemini/**)",
       "Edit(~/.claude/**)",
       "Edit(~/dotfiles/gemini/**)",
       "Edit(~/dotfiles/claude/**)",
       "Edit(**/.git/**)",
-      "Edit(/etc/**)",
-      "Edit(/private/etc/**)",
-      "Edit(/Library/**)",
-      "Edit(/Volumes/**)",
-      "Edit(/System/**)"
+      "Edit(//etc/**)",
+      "Edit(//private/etc/**)",
+      "Edit(//Library/**)",
+      "Edit(//Volumes/**)",
+      "Edit(//System/**)",
+      "Edit(//Applications/**)"
     ],
     "ask": [
       "Bash(git push *)",
       "Edit(~/work/obsidian_git/AGENT.md)",
       "Edit(~/work/obsidian_git/01_projects/AI憲法策定/憲法_草案.md)"
     ],
-    "blockReadsOutsideWorkingDirectories": true
+    "blockReadsOutsideWorkingDirectories": true,
+    "additionalDirectories": [
+      "~/dotfiles",
+      "~/.config",
+      "~/Library/Application Support/com.mitchellh.ghostty",
+      "/Applications"
+    ]
   },
   "model": "opus",
   "hooks": {
