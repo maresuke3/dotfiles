@@ -23,5 +23,5 @@
 "~/Brewfile" = { source = "~/dotfiles/shell/Brewfile" }
 
 # OS-Specific links
-"mac:~/.config/ghosty" = { source = "~/dotfiles/shell/ghosty" }
+"mac:~/.config/ghostty" = { source = "~/dotfiles/shell/ghostty" }
 "mac:~/.config/wezterm" = { source = "~/dotfiles/shell/wezterm" }
