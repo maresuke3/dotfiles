@@ -1,5 +1,6 @@
 [tools]
 age = "latest"
+ansible = { version = "latest", python = "3.13" } # ansible-core は mise の python (latest) にまだ対応していない
 antigravity-cli = "latest"
 aws-cli = { version = "latest", symlink_bins = "true" }
 bun = "latest"
@@ -12,6 +13,7 @@ fd = "latest"
 firebase = "latest"
 fzf = "latest"
 gcloud = "latest"
+gh = "latest"
 glow = "latest"
 go = "1.24.5"
 golangci-lint = "latest"
@@ -36,6 +38,7 @@ sheldon = "latest"
 starship = "latest"
 terraform = "latest"
 tree-sitter = "latest"
+uv = "latest"
 yarn = "4.9.2"
 yazi = "latest"
 zoxide = "latest"
