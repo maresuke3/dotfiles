@@ -6,7 +6,33 @@ brew "zsh"
 brew "gnupg"
 brew "mise"
 brew "docker"
-brew "composer"
+brew "gh"
+
+# ==============================================================================
+# mise の php が実行時にリンクするライブラリ（composer は mise の php に同梱のものを使う）
+# 依存としてだけ入っていると brew の autoremove で消え、php も composer も起動しなくなる。
+# icu4c@78 にもリンクしているが非推奨のため載せていない。消えたら mise install --force php で作り直す
+# ==============================================================================
+brew "curl"
+brew "gd"
+brew "gettext"
+brew "gmp"
+brew "libiconv"
+brew "libpq"
+brew "libsodium"
+brew "libxml2"
+brew "oniguruma"
+brew "openssl@3"
+brew "readline"
+brew "sqlite"
+
+# ==============================================================================
+# PHP 7.4（cats-service が 7.4 固定）。mise の php はソースからビルドするため 7.4 は通らないので、
+# ビルド済みの shivammathur/php を keg-only で入れ、mise に登録して使う:
+#   mise link php@7.4.33 /opt/homebrew/opt/php@7.4
+# ==============================================================================
+tap "shivammathur/php"
+brew "shivammathur/php/php@7.4"
 
 # ==============================================================================
 # メディア・画像・PDF処理（Neovim連携など）
