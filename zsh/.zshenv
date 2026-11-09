@@ -19,3 +19,5 @@ export PHP_CONFIGURE_OPTS="--without-gd"
 
 # local bin (sheldon etc...)
 path=($HOME/.local/bin $path)
+
+export GOOGLE_OAUTH_CREDENTIALS="$HOME/.config/google-calendar-mcp/gcp-oauth.keys.json"

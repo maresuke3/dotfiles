@@ -1,5 +1,6 @@
 {
   "colorScheme": "tokyo night",
+  "agentMode": "auto",
   "model": "Gemini 4 Argon (Medium)",
   "permissions": {
     "allow": [
@@ -46,7 +47,20 @@
       "write_file(/Users/daiki-fukushima/work/obsidian_git/02_inbox)",
       "write_file(/Users/daiki-fukushima/work/obsidian_git/assets)",
       "write_file(/Users/daiki-fukushima/work/obsidian_git/README.md)",
-      "read_file(/Users/daiki-fukushima/.gitconfig_global)"
+      "read_file(/Users/daiki-fukushima/.gitconfig_global)",
+      "read_file(/Users/daiki-fukushima)",
+      "read_file(/Applications)",
+      "mcp(google-calendar/list-events)",
+      "mcp(google-calendar/list-calendars)",
+      "mcp(google-calendar/get-current-time)",
+      "mcp(google-calendar/get-event)",
+      "mcp(google-calendar/search-events)",
+      "mcp(google-calendar/get-freebusy)",
+      "mcp(google-calendar/list-colors)",
+      "write_file(/Users/daiki-fukushima/dotfiles)",
+      "write_file(/Users/daiki-fukushima/geniee)",
+      "write_file(/Users/daiki-fukushima/.config)",
+      "write_file(/Users/daiki-fukushima/Library/Application Support/com.mitchellh.ghostty)"
     ],
     "deny": [
       "command(rm -rf)",
@@ -71,7 +85,27 @@
       "write_file(/private/etc)",
       "write_file(/Library)",
       "write_file(/Volumes)",
-      "write_file(/System)"
+      "write_file(/System)",
+      "read_file(/Users/daiki-fukushima/.config/gcloud)",
+      "read_file(/Users/daiki-fukushima/.config/gh)",
+      "read_file(/Users/daiki-fukushima/.config/github-copilot)",
+      "read_file(/Users/daiki-fukushima/.config/op)",
+      "read_file(/Users/daiki-fukushima/.config/sops)",
+      "read_file(/Users/daiki-fukushima/.config/rclone)",
+      "read_file(/Users/daiki-fukushima/.config/configstore)",
+      "read_file(/Users/daiki-fukushima/.config/hub)",
+      "read_file(/Users/daiki-fukushima/.aws)",
+      "read_file(/Users/daiki-fukushima/.kube)",
+      "read_file(/Users/daiki-fukushima/.docker/config.json)",
+      "read_file(/Users/daiki-fukushima/.netrc)",
+      "read_file(/Users/daiki-fukushima/.git-credentials)",
+      "read_file(/Users/daiki-fukushima/.gnupg)",
+      "read_file(/Users/daiki-fukushima/Library/Keychains)",
+      "read_file(/Users/daiki-fukushima/Library/CloudStorage)",
+      "read_file(/Users/daiki-fukushima/.zsh_history)",
+      "read_file(/Users/daiki-fukushima/.bash_history)",
+      "write_file(/Users/daiki-fukushima/.claude)",
+      "write_file(/Applications)"
     ],
     "ask": [
       "command(git push)",
@@ -83,6 +117,9 @@
     "/Users/daiki-fukushima",
     "/Users/daiki-fukushima/dotfiles",
     "/Users/daiki-fukushima/geniee/cats/cats-service",
-    "/Users/daiki-fukushima/work/obsidian_git"
+    "/Users/daiki-fukushima/work/obsidian_git",
+    "/Users/daiki-fukushima/geniee/cats",
+    "/Users/daiki-fukushima/.gemini",
+    "/Users/daiki-fukushima/geniee/cats/cats-deploy-settings"
   ]
 }

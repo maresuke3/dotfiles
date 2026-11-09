@@ -1,3 +1,15 @@
 {
-  "mcpServers": {}
+  "mcpServers": {
+    "google-calendar": {
+      "command": "/Users/daiki-fukushima/.local/share/mise/shims/npx",
+      "args": [
+        "-y",
+        "@cocal/google-calendar-mcp"
+      ],
+      "env": {
+        "GOOGLE_OAUTH_CREDENTIALS": "/Users/daiki-fukushima/.config/google-calendar-mcp/gcp-oauth.keys.json",
+        "PATH": "/Users/daiki-fukushima/.local/share/mise/shims:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    }
+  }
 }
