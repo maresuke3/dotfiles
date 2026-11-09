@@ -4,11 +4,18 @@ onboarding = false
 name = "tokyo-night"
 auto_switch = false
 
+[session]
+resume_agents_on_restore = false
+
 [ui]
 status_indicators = "symbols"
+redraw_on_focus_gained = false
 
 [ui.toast]
 delivery = "herdr"
+
+[advanced]
+scrollback_limit_bytes = 2000000
 
 [experimental]
 kitty_graphics = true
