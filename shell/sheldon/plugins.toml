@@ -19,7 +19,9 @@ github = "romkatv/zsh-defer"
 apply = ["source"]
 
 [templates]
-defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
+# -p: 読み込みのたびに zle reset-prompt しない。既定だと遅延ロード 1 件ごとに starship が
+#     プロンプトを作り直し、起動直後に約 300ms 入力が詰まる
+defer = "{% for file in files %}zsh-defer -p source \"{{ file }}\"\n{% endfor %}"
 
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
@@ -28,10 +30,11 @@ apply = ["source"]
 [plugins.compinit]
 inline = '''
 autoload -Uz compinit
-# キャッシュのコンパイルだけ遅延させる
+# キャッシュのコンパイルだけ遅延させる。.zcompdump が更新されたときだけコンパイルする
 if [[ -f "${ZDOTDIR:-$HOME}/.zcompdump" ]]; then
   compinit -C
-  zsh-defer -c 'zcompile "${ZDOTDIR:-$HOME}/.zcompdump"'
+  [[ "${ZDOTDIR:-$HOME}/.zcompdump.zwc" -nt "${ZDOTDIR:-$HOME}/.zcompdump" ]] ||
+    zsh-defer -p -c 'zcompile "${ZDOTDIR:-$HOME}/.zcompdump"'
 else
   compinit
 fi

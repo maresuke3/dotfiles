@@ -52,7 +52,8 @@ alias devmarp='marp -s . --html'
 ## zsh-autosuggestions
 ## ───────────────────────────────────────────
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+# completion 戦略は打鍵ごとに補完システムを裏で動かすため、git などで 1 打鍵 100ms 超かかる。履歴のみにする
+ZSH_AUTOSUGGEST_STRATEGY=(history)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 bindkey '^ ' autosuggest-accept
 
@@ -143,7 +144,7 @@ source ~/.zsh/sheldon.zsh
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
-zsh-defer source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+zsh-defer -p source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 
 ## ───────────────────────────────────────────
@@ -226,8 +227,30 @@ fi
 ## ───────────────────────────────────────────
 ## zoxide, starship & fzf (must be after compinit)
 ## ───────────────────────────────────────────
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
+# init スクリプトを ~/.zsh にキャッシュする。mise の shim 経由で init を実行すると 1 回 50ms 以上かかるため、
+# 実体のバイナリを直接呼び、その解決先パス（＝バージョン）が変わったときだけ作り直す。
+# starship は PATH 上の自分のパスを PROMPT に埋め込むため、生成時は実体のディレクトリを PATH の先頭に置く
+# （shim のパスが埋め込まれると、プロンプト描画のたびに shim を経由して遅くなる）
+_cached_init() {
+  local name=$1; shift
+  local bin=$HOME/.local/share/mise/installs/$name/latest/$name
+  [[ -x $bin ]] || bin=${commands[$name]}
+  [[ -n $bin ]] || return 0
+  local cache=~/.zsh/$name-init.zsh stamp="# ${bin:A}" first=
+  [[ -f $cache ]] && read -r first < $cache
+  if [[ $first != $stamp ]]; then
+    if { print -r -- $stamp; PATH=${bin:h}:$PATH $bin "$@" } > $cache.tmp 2>/dev/null; then
+      mv -f $cache.tmp $cache
+    else
+      rm -f $cache.tmp
+      return 1
+    fi
+  fi
+  source $cache
+}
+_cached_init zoxide init zsh
+_cached_init starship init zsh
+unset -f _cached_init
 if [[ ! -f ~/.zsh/fzf.zsh ]] && command -v fzf >/dev/null 2>&1; then
   fzf --zsh > ~/.zsh/fzf.zsh 2>/dev/null
 fi
