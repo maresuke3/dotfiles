@@ -231,17 +231,19 @@ fi
 # 実体のバイナリを直接呼び、その解決先パス（＝バージョン）が変わったときだけ作り直す。
 # starship は PATH 上の自分のパスを PROMPT に埋め込むため、生成時は実体のディレクトリを PATH の先頭に置く
 # （shim のパスが埋め込まれると、プロンプト描画のたびに shim を経由して遅くなる）
+# zoxide は cd のたびに `\command zoxide add` を PATH 経由（＝shim、1 回 80ms 以上）で呼ぶため、実体のパスに置き換える
+# stamp の v2 はキャッシュの書式を変えたときに上げ、既存のキャッシュを作り直させる
 _cached_init() {
   local name=$1; shift
   local bin=$HOME/.local/share/mise/installs/$name/latest/$name
   [[ -x $bin ]] || bin=${commands[$name]}
   [[ -n $bin ]] || return 0
-  local cache=~/.zsh/$name-init.zsh stamp="# ${bin:A}" first=
+  local cache=~/.zsh/$name-init.zsh stamp="# v2 ${bin:A}" first= out
   [[ -f $cache ]] && read -r first < $cache
   if [[ $first != $stamp ]]; then
-    if { print -r -- $stamp; PATH=${bin:h}:$PATH $bin "$@" } > $cache.tmp 2>/dev/null; then
-      mv -f $cache.tmp $cache
-    else
+    out=$(PATH=${bin:h}:$PATH $bin "$@" 2>/dev/null) || return 1
+    out=${out//"\\command $name "/"\\command ${(q)bin} "}
+    if ! print -r -- "$stamp"$'\n'"$out" > $cache.tmp || ! mv -f $cache.tmp $cache; then
       rm -f $cache.tmp
       return 1
     fi
