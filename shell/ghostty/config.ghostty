@@ -9,7 +9,7 @@ adjust-cell-height = 2
 
 ## theme
 theme = TokyoNight Moon
-background-opacity = 0.7
+background-opacity = 0.8
 
 ## padding
 # 余白は WezTerm の window_padding (10) に合わせる。割り切れない端数の余白は上下左右に振り分ける
