@@ -72,14 +72,73 @@ path=($HOME/.local/share/mise/shims $path)
 # eval "$(mise activate zsh)"
 
 
+# ==============================================================
+# sheldon & mise CLI 補完スクリプトを ~/.zsh にキャッシュして高速化
+# ==============================================================
+mkdir -p ~/.zsh
+_ZCOMPDUMP_NEEDS_REFRESH=0
+
 # sheldon source の出力をキャッシュして高速化
 if [[ ! -f ~/.zsh/sheldon.zsh || ~/.config/sheldon/plugins.toml -nt ~/.zsh/sheldon.zsh ]]; then
-  mkdir -p ~/.zsh
   sheldon completions --shell zsh > ~/.zsh/_sheldon
   sheldon source > ~/.zsh/sheldon.zsh
+  _ZCOMPDUMP_NEEDS_REFRESH=1
+fi
 
+# 1) mise インストールディレクトリ内の同梱補完ファイルをコピー（プロセス起動不要）
+_copy_mise_comp() {
+  local target="$1" src="$2"
+  if [[ ! -f "$target" && -n "$src" && -f "$src" ]]; then
+    cp "$src" "$target"
+    _ZCOMPDUMP_NEEDS_REFRESH=1
+  fi
+}
+if [[ ! -f ~/.zsh/_rg || ! -f ~/.zsh/_fd || ! -f ~/.zsh/_glow || ! -f ~/.zsh/_yazi || ! -f ~/.zsh/_ya || ! -f ~/.zsh/_hx ]]; then
+  _copy_mise_comp ~/.zsh/_rg   "$HOME"/.local/share/mise/installs/ripgrep/*/ripgrep-*/complete/_rg(N[-1])
+  _copy_mise_comp ~/.zsh/_fd   "$HOME"/.local/share/mise/installs/fd/*/fd-*/autocomplete/_fd(N[-1])
+  _copy_mise_comp ~/.zsh/_glow "$HOME"/.local/share/mise/installs/glow/*/glow_*/completions/glow.zsh(N[-1])
+  _copy_mise_comp ~/.zsh/_yazi "$HOME"/.local/share/mise/installs/yazi/*/yazi-*/completions/_yazi(N[-1])
+  _copy_mise_comp ~/.zsh/_ya   "$HOME"/.local/share/mise/installs/yazi/*/yazi-*/completions/_ya(N[-1])
+  _copy_mise_comp ~/.zsh/_hx   "$HOME"/.local/share/mise/installs/helix/*/helix-*/contrib/completion/hx.zsh(N[-1])
+fi
+
+# 2) CLI の completion サブコマンドから生成してキャッシュ（初回のみ実行）
+_gen_zsh_comp() {
+  local target="$1"
+  shift
+  if [[ ! -f "$target" ]] && command -v "$1" >/dev/null 2>&1; then
+    if "$@" > "$target.tmp" 2>/dev/null && grep -q '^#compdef' "$target.tmp" 2>/dev/null; then
+      mv "$target.tmp" "$target"
+      _ZCOMPDUMP_NEEDS_REFRESH=1
+    else
+      rm -f "$target.tmp"
+    fi
+  fi
+}
+_gen_zsh_comp ~/.zsh/_herdr         herdr completion zsh
+# _gen_zsh_comp ~/.zsh/_hunk          hunk completion zsh
+_gen_zsh_comp ~/.zsh/_uv            uv generate-shell-completion zsh
+_gen_zsh_comp ~/.zsh/_pnpm          pnpm completion zsh
+_gen_zsh_comp ~/.zsh/_deno          deno completions zsh
+_gen_zsh_comp ~/.zsh/_golangci-lint golangci-lint completion zsh
+_gen_zsh_comp ~/.zsh/_starship      starship completions zsh
+_gen_zsh_comp ~/.zsh/_codex         codex completion zsh
+_gen_zsh_comp ~/.zsh/_tree-sitter   tree-sitter complete --shell zsh
+if [[ ! -f ~/.zsh/_bun ]] && command -v bun >/dev/null 2>&1; then
+  if SHELL=zsh bun completions > ~/.zsh/_bun.tmp 2>/dev/null && grep -q '^#compdef' ~/.zsh/_bun.tmp 2>/dev/null; then
+    mv ~/.zsh/_bun.tmp ~/.zsh/_bun
+    _ZCOMPDUMP_NEEDS_REFRESH=1
+  else
+    rm -f ~/.zsh/_bun.tmp
+  fi
+fi
+
+if (( _ZCOMPDUMP_NEEDS_REFRESH )); then
   rm -f "${ZDOTDIR:-$HOME}/.zcompdump"
 fi
+unset -f _copy_mise_comp _gen_zsh_comp
+unset _ZCOMPDUMP_NEEDS_REFRESH
+
 source ~/.zsh/sheldon.zsh
 
 # Added by OrbStack: command-line tools and integration
@@ -165,10 +224,14 @@ fi
 
 
 ## ───────────────────────────────────────────
-## zoxide & starship (must be after compinit)
+## zoxide, starship & fzf (must be after compinit)
 ## ───────────────────────────────────────────
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+if [[ ! -f ~/.zsh/fzf.zsh ]] && command -v fzf >/dev/null 2>&1; then
+  fzf --zsh > ~/.zsh/fzf.zsh 2>/dev/null
+fi
+[[ -f ~/.zsh/fzf.zsh ]] && source ~/.zsh/fzf.zsh
 
 ## ───────────────────────────────────────────
 ## WSL用 CLIラッパー (Windowsの.exeをLinux名で扱えるようにする)
