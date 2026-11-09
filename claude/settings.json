@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
-    "defaultMode": "auto",
     "allow": [
       "Bash(ls *)",
       "Bash(ls)",
@@ -88,16 +87,27 @@
       "Edit(//Library/**)",
       "Edit(//Volumes/**)",
       "Edit(//System/**)",
-      "Edit(//Applications/**)"
+      "Edit(//Applications/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.kube/**)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.netrc)",
+      "Read(~/.git-credentials)",
+      "Read(~/.gnupg/**)",
+      "Read(~/Library/Keychains/**)",
+      "Read(~/Library/CloudStorage/**)",
+      "Read(~/.zsh_history)",
+      "Read(~/.bash_history)"
     ],
     "ask": [
       "Bash(git push *)",
       "Edit(~/work/obsidian_git/AGENT.md)",
       "Edit(~/work/obsidian_git/01_projects/AI憲法策定/憲法_草案.md)"
     ],
-    "blockReadsOutsideWorkingDirectories": true,
+    "defaultMode": "auto",
     "additionalDirectories": [
       "~/dotfiles",
+      "~/geniee",
       "~/.config",
       "~/Library/Application Support/com.mitchellh.ghostty",
       "/Applications"
