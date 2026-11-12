@@ -68,3 +68,6 @@ go.work
 
 # local
 configs/local.toml
+
+# Serena MCP per-project config/cache (created wherever Claude Code starts)
+.serena/
