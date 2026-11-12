@@ -67,6 +67,7 @@ CLAUDE_HTTP_MCP_SERVERS=(
     "atlassian https://mcp.atlassian.com/v2/mcp"
     # Slack-published client ID (same as slackapi/slack-skills-plugin .mcp.json)
     "slack https://mcp.slack.com/mcp 1601185624273.8899143856786 3118"
+    "notion https://mcp.notion.com/mcp"
 )
 
 if command -v claude &>/dev/null; then
