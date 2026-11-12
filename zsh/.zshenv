@@ -21,3 +21,6 @@ export PHP_CONFIGURE_OPTS="--without-gd"
 path=($HOME/.local/bin $path)
 
 export GOOGLE_OAUTH_CREDENTIALS="$HOME/.config/google-calendar-mcp/gcp-oauth.keys.json"
+
+# Serena MCP: don't send usage info (OS, version, settings) to the developer on every start
+export SERENA_USAGE_REPORTING=false
