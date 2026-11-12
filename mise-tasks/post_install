@@ -57,6 +57,61 @@ else
     echo -e "  \033[1;33m[SKIP]\033[0m claude not found, skipping plugin install."
 fi
 
+echo -e "\n\033[1;36m[INFO]\033[0m Registering Claude Code MCP servers (user scope)..."
+# Remote HTTP MCP servers managed by Claude Code config (not claude.ai connectors).
+# Format: "<name> <url> [oauth_client_id] [oauth_callback_port]".
+# OAuth is done per machine via `/mcp` in a Claude Code session.
+# client_id is needed for servers without Dynamic Client Registration (e.g. Slack).
+# It is a public identifier, not a secret.
+CLAUDE_HTTP_MCP_SERVERS=(
+    "atlassian https://mcp.atlassian.com/v2/mcp"
+    # Slack-published client ID (same as slackapi/slack-skills-plugin .mcp.json)
+    "slack https://mcp.slack.com/mcp 1601185624273.8899143856786 3118"
+)
+
+if command -v claude &>/dev/null; then
+    for entry in "${CLAUDE_HTTP_MCP_SERVERS[@]}"; do
+        read -r name url client_id callback_port <<<"$entry"
+        if claude mcp get "$name" &>/dev/null; then
+            echo -e "  \033[1;33m[SKIP]\033[0m claude mcp already registered: $name"
+        else
+            oauth_args=()
+            [[ -n "${client_id:-}" ]] && oauth_args+=(--client-id "$client_id")
+            [[ -n "${callback_port:-}" ]] && oauth_args+=(--callback-port "$callback_port")
+            # ${arr[@]+...} keeps bash 3.2 (macOS default) happy with an empty array under `set -u`
+            claude mcp add --transport http --scope user ${oauth_args[@]+"${oauth_args[@]}"} "$name" "$url"
+            echo -e "  \033[1;32m[OK]\033[0m claude mcp registered: $name"
+        fi
+    done
+fi
+
+# Local stdio MCP servers launched with npx from mise shims.
+# Format: "<name> <npm package>".
+# Never pass tokens with `-e` here: `claude mcp add -e` writes them to ~/.claude.json in plaintext.
+# Secrets are inherited from the environment instead (age-encrypted in mise/conf.d/env.toml).
+CLAUDE_STDIO_MCP_SERVERS=(
+    # Requires CHATWORK_API_TOKEN:
+    #   read -rs 'T?Chatwork API token: ' && mise set --path ~/dotfiles/mise/conf.d/env.toml --age-encrypt CHATWORK_API_TOKEN="$T"; unset T
+    "chatwork @chatwork/mcp-server"
+)
+MISE_SHIMS="${MISE_DATA_DIR:-$HOME/.local/share/mise}/shims"
+
+if command -v claude &>/dev/null; then
+    for entry in "${CLAUDE_STDIO_MCP_SERVERS[@]}"; do
+        read -r name package <<<"$entry"
+        if claude mcp get "$name" &>/dev/null; then
+            echo -e "  \033[1;33m[SKIP]\033[0m claude mcp already registered: $name"
+        else
+            # PATH lets the npx shim find node even when Claude Code is started outside a mise-activated shell
+            claude mcp add --scope user -e "PATH=$MISE_SHIMS:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" \
+                "$name" -- "$MISE_SHIMS/npx" -y "$package"
+            echo -e "  \033[1;32m[OK]\033[0m claude mcp registered: $name"
+        fi
+    done
+else
+    echo -e "  \033[1;33m[SKIP]\033[0m claude not found, skipping MCP registration."
+fi
+
 if command -v agy &>/dev/null; then
     agy plugin import claude
     echo -e "  \033[1;32m[OK]\033[0m Imported Claude plugins into Antigravity (agy)."

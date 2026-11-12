@@ -102,7 +102,21 @@
     "ask": [
       "Bash(git push *)",
       "Edit(~/work/obsidian_git/AGENT.md)",
-      "Edit(~/work/obsidian_git/01_projects/AI憲法策定/憲法_草案.md)"
+      "Edit(~/work/obsidian_git/01_projects/AI憲法策定/憲法_草案.md)",
+      "mcp__chatwork__post_room_message",
+      "mcp__chatwork__update_room_message",
+      "mcp__chatwork__delete_room_message",
+      "mcp__chatwork__create_room",
+      "mcp__chatwork__update_room",
+      "mcp__chatwork__delete_or_leave_room",
+      "mcp__chatwork__update_room_members",
+      "mcp__chatwork__create_room_task",
+      "mcp__chatwork__update_room_task_status",
+      "mcp__chatwork__create_room_link",
+      "mcp__chatwork__update_room_link",
+      "mcp__chatwork__delete_room_link",
+      "mcp__chatwork__accept_incoming_request",
+      "mcp__chatwork__reject_incoming_request"
     ],
     "defaultMode": "auto",
     "additionalDirectories": [
