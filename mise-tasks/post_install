@@ -38,13 +38,16 @@ fi
 
 if command -v uv &>/dev/null; then
     if ! command -v serena &>/dev/null; then
-        # Serena MCP server (semantic code tools); `serena init` creates ~/.serena/serena_config.yml
+        # Serena MCP server (semantic code tools)
         uv tool install -p 3.13 serena-agent
-        serena init
         echo -e "  \033[1;32m[OK]\033[0m serena installed."
     else
         echo -e "  \033[1;33m[SKIP]\033[0m serena already installed."
     fi
+    # ~/.serena/serena_config.yml stays machine-local (Serena rewrites it and stores auth_secret in it);
+    # only the keys in serena/serena_config.managed.yml are applied from dotfiles.
+    [[ -f "${SERENA_HOME:-$HOME/.serena}/serena_config.yml" ]] || serena init
+    "$(uv tool dir)/serena-agent/bin/python" -I "$HOME/dotfiles/serena/apply_config.py"
 else
     echo -e "  \033[1;31m[ERROR]\033[0m uv not found. Make sure uv is installed via mise."
 fi

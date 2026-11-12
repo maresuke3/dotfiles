@@ -1,0 +1,10 @@
+# Serena global settings managed by dotfiles.
+# Applied to ~/.serena/serena_config.yml by apply_config.py (run from mise-tasks/post_install).
+# Only the keys listed here are overwritten. Keys Serena writes at runtime
+# (auth_secret, projects, web_dashboard_open_on_launch, ...) stay machine-local.
+
+# Classic per-operation MCP tools instead of the default `REPL` interface.
+# The REPL's serena_repl tool executes arbitrary Python, which bypasses Claude Code's
+# Bash permission rules and hooks. With `tools`, the claude-code context also keeps
+# execute_shell_command disabled.
+agent_interface: tools
