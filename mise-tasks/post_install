@@ -117,24 +117,40 @@ if command -v claude &>/dev/null; then
 fi
 
 # Local stdio MCP servers.
-# Format: "<name> <command> [args...]" (args must not contain spaces).
+# Format: "<name> [KEY=VALUE...] <command> [args...]" (no spaces inside a token).
+# Leading KEY=VALUE tokens become server env vars; use them only for non-secret switches.
 # The command is resolved via PATH (mise shims and ~/.local/bin are first, see top of file).
 # Never pass tokens with `-e` here: `claude mcp add -e` writes them to ~/.claude.json in plaintext.
 # Secrets are inherited from the environment instead (age-encrypted in mise/conf.d/env.toml).
+# Telemetry, update checks and other non-essential outbound requests are switched off per server.
 CLAUDE_STDIO_MCP_SERVERS=(
     # Requires CHATWORK_API_TOKEN:
     #   read -rs 'T?Chatwork API token: ' && mise set --path ~/dotfiles/mise/conf.d/env.toml --age-encrypt CHATWORK_API_TOKEN="$T"; unset T
     "chatwork npx -y @chatwork/mcp-server"
-    "chrome-devtools npx -y chrome-devtools-mcp@latest --no-usage-statistics --no-performance-crux"
+    # No Google usage statistics, no CrUX lookups of visited URLs, no npm update checks
+    "chrome-devtools CHROME_DEVTOOLS_MCP_NO_USAGE_STATISTICS=1 CHROME_DEVTOOLS_MCP_NO_UPDATE_CHECKS=1 npx -y chrome-devtools-mcp@latest --no-usage-statistics --no-performance-crux"
     "playwright npx -y @playwright/mcp@latest"
-    # Local tool server: diagrams stay on this machine (unlike the hosted mcp.draw.io)
-    "drawio npx -y @drawio/mcp"
-    "serena serena start-mcp-server --context claude-code --project-from-cwd"
+    # Local tool server: diagrams stay on this machine (unlike the hosted mcp.draw.io).
+    # Icon service off: search_shapes would send search terms to icons.diagrams.net
+    "drawio DRAWIO_ICON_SERVICE_URL=off npx -y @drawio/mcp"
+    # No usage info to the developer (news/PyPI checks are off via web_dashboard: false in serena/)
+    "serena SERENA_USAGE_REPORTING=false serena start-mcp-server --context claude-code --project-from-cwd"
 )
 
 if command -v claude &>/dev/null; then
     for entry in "${CLAUDE_STDIO_MCP_SERVERS[@]}"; do
-        read -r name cmd args <<<"$entry"
+        read -r -a parts <<<"$entry"
+        name="${parts[0]}"
+        # PATH lets npx shims find node even when Claude Code is started outside a mise-activated shell.
+        env_args=(-e "PATH=$MISE_SHIMS:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin")
+        i=1
+        while [[ $i -lt ${#parts[@]} && "${parts[$i]}" =~ ^[A-Z_][A-Z0-9_]*= ]]; do
+            env_args+=(-e "${parts[$i]}")
+            i=$((i + 1))
+        done
+        cmd="${parts[$i]}"
+        arg_list=()
+        [[ $((i + 1)) -lt ${#parts[@]} ]] && arg_list=("${parts[@]:$((i + 1))}")
         if claude mcp get "$name" &>/dev/null; then
             echo -e "  \033[1;33m[SKIP]\033[0m claude mcp already registered: $name"
             continue
@@ -143,11 +159,8 @@ if command -v claude &>/dev/null; then
             echo -e "  \033[1;31m[ERROR]\033[0m $cmd not found, skipping MCP registration: $name"
             continue
         fi
-        # shellcheck disable=SC2206 # intentional word splitting of args
-        arg_list=($args)
         # The server name must come before -e: -e is variadic and would swallow it.
-        # PATH lets npx shims find node even when Claude Code is started outside a mise-activated shell.
-        claude mcp add "$name" --scope user -e "PATH=$MISE_SHIMS:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" \
+        claude mcp add "$name" --scope user "${env_args[@]}" \
             -- "$cmd_path" ${arg_list[@]+"${arg_list[@]}"}
         echo -e "  \033[1;32m[OK]\033[0m claude mcp registered: $name"
     done

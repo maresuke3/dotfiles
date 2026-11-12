@@ -9,6 +9,10 @@
 # execute_shell_command disabled.
 agent_interface: tools
 
-# Serena starts with every Claude Code session; don't pop up the dashboard each time.
-# It stays available at http://localhost:24282/dashboard/ (port may be higher with several instances).
+# Dashboard off: its backend fetches news from oraios-software.de and checks PyPI for
+# new versions on every start, with no separate switch. Re-enable with `true` if needed.
+web_dashboard: false
+
+# Serena starts with every Claude Code session; if the dashboard is re-enabled,
+# don't pop it up each time (reachable at http://localhost:24282/dashboard/).
 web_dashboard_open_on_launch: false
