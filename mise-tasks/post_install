@@ -124,6 +124,8 @@ CLAUDE_STDIO_MCP_SERVERS=(
     "chatwork npx -y @chatwork/mcp-server"
     "chrome-devtools npx -y chrome-devtools-mcp@latest --no-usage-statistics --no-performance-crux"
     "playwright npx -y @playwright/mcp@latest"
+    # Local tool server: diagrams stay on this machine (unlike the hosted mcp.draw.io)
+    "drawio npx -y @drawio/mcp"
     "serena serena start-mcp-server --context claude-code --project-from-cwd"
 )
 
