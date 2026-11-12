@@ -36,6 +36,19 @@ else
     echo -e "  \033[1;31m[ERROR]\033[0m npm not found. Make sure node is installed via mise."
 fi
 
+if command -v uv &>/dev/null; then
+    if ! command -v serena &>/dev/null; then
+        # Serena MCP server (semantic code tools); `serena init` creates ~/.serena/serena_config.yml
+        uv tool install -p 3.13 serena-agent
+        serena init
+        echo -e "  \033[1;32m[OK]\033[0m serena installed."
+    else
+        echo -e "  \033[1;33m[SKIP]\033[0m serena already installed."
+    fi
+else
+    echo -e "  \033[1;31m[ERROR]\033[0m uv not found. Make sure uv is installed via mise."
+fi
+
 if ! command -v claude &>/dev/null; then
     curl -fsSL https://claude.ai/install.sh | bash
     echo -e "  \033[1;32m[OK]\033[0m claude-code installed."
@@ -86,28 +99,52 @@ if command -v claude &>/dev/null; then
     done
 fi
 
-# Local stdio MCP servers launched with npx from mise shims.
-# Format: "<name> <npm package>".
+MISE_SHIMS="${MISE_DATA_DIR:-$HOME/.local/share/mise}/shims"
+
+# GitHub remote MCP. No PAT is stored: headersHelper fetches the gh CLI token on each connect.
+if command -v claude &>/dev/null; then
+    if claude mcp get github &>/dev/null; then
+        echo -e "  \033[1;33m[SKIP]\033[0m claude mcp already registered: github"
+    else
+        gh_helper="printf '{\"Authorization\":\"Bearer %s\"}' \"\$($MISE_SHIMS/gh auth token)\""
+        claude mcp add-json --scope user github \
+            "$(jq -n --arg h "$gh_helper" '{type: "http", url: "https://api.githubcopilot.com/mcp/", headersHelper: $h}')"
+        echo -e "  \033[1;32m[OK]\033[0m claude mcp registered: github (requires \`gh auth login\`)"
+    fi
+fi
+
+# Local stdio MCP servers.
+# Format: "<name> <command> [args...]" (args must not contain spaces).
+# The command is resolved via PATH (mise shims and ~/.local/bin are first, see top of file).
 # Never pass tokens with `-e` here: `claude mcp add -e` writes them to ~/.claude.json in plaintext.
 # Secrets are inherited from the environment instead (age-encrypted in mise/conf.d/env.toml).
 CLAUDE_STDIO_MCP_SERVERS=(
     # Requires CHATWORK_API_TOKEN:
     #   read -rs 'T?Chatwork API token: ' && mise set --path ~/dotfiles/mise/conf.d/env.toml --age-encrypt CHATWORK_API_TOKEN="$T"; unset T
-    "chatwork @chatwork/mcp-server"
+    "chatwork npx -y @chatwork/mcp-server"
+    "chrome-devtools npx -y chrome-devtools-mcp@latest --no-usage-statistics --no-performance-crux"
+    "playwright npx -y @playwright/mcp@latest"
+    "serena serena start-mcp-server --context claude-code --project-from-cwd"
 )
-MISE_SHIMS="${MISE_DATA_DIR:-$HOME/.local/share/mise}/shims"
 
 if command -v claude &>/dev/null; then
     for entry in "${CLAUDE_STDIO_MCP_SERVERS[@]}"; do
-        read -r name package <<<"$entry"
+        read -r name cmd args <<<"$entry"
         if claude mcp get "$name" &>/dev/null; then
             echo -e "  \033[1;33m[SKIP]\033[0m claude mcp already registered: $name"
-        else
-            # PATH lets the npx shim find node even when Claude Code is started outside a mise-activated shell
-            claude mcp add --scope user -e "PATH=$MISE_SHIMS:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" \
-                "$name" -- "$MISE_SHIMS/npx" -y "$package"
-            echo -e "  \033[1;32m[OK]\033[0m claude mcp registered: $name"
+            continue
         fi
+        if ! cmd_path="$(command -v "$cmd")"; then
+            echo -e "  \033[1;31m[ERROR]\033[0m $cmd not found, skipping MCP registration: $name"
+            continue
+        fi
+        # shellcheck disable=SC2206 # intentional word splitting of args
+        arg_list=($args)
+        # The server name must come before -e: -e is variadic and would swallow it.
+        # PATH lets npx shims find node even when Claude Code is started outside a mise-activated shell.
+        claude mcp add "$name" --scope user -e "PATH=$MISE_SHIMS:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" \
+            -- "$cmd_path" ${arg_list[@]+"${arg_list[@]}"}
+        echo -e "  \033[1;32m[OK]\033[0m claude mcp registered: $name"
     done
 else
     echo -e "  \033[1;33m[SKIP]\033[0m claude not found, skipping MCP registration."
