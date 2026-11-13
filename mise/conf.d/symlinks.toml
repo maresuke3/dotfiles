@@ -12,6 +12,7 @@
 "~/.config/nvim" = { source = "~/dotfiles/config/nvim" }
 "~/.config/sheldon" = { source = "~/dotfiles/config/sheldon" }
 "~/.config/starship.toml" = { source = "~/dotfiles/config/starship.toml" }
+"~/.config/zsh-abbr" = { source = "~/dotfiles/config/zsh-abbr" }
 "~/.gemini/antigravity-cli/settings.json" = { source = "~/dotfiles/ai/gemini/settings.json" }
 "~/.gemini/config/skills/herdr-loop" = { source = "~/dotfiles/config/herdr/skills/herdr-loop" }
 "~/.gemini/config/skills/hunk-review" = { source = "~/dotfiles/config/hunk/skills/hunk-review" }
