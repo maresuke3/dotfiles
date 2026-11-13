@@ -5,6 +5,7 @@
 "~/.claude/skills/herdr-loop" = { source = "~/dotfiles/herdr/skills/herdr-loop" }
 "~/.claude/skills/hunk-review" = { source = "~/dotfiles/hunk/skills/hunk-review" }
 "~/.codex/config.toml" = { source = "~/dotfiles/codex/config.toml" }
+"~/.config/git/ignore" = { source = "~/dotfiles/git/.gitignore_global" }
 "~/.config/helix" = { source = "~/dotfiles/helix" }
 "~/.config/herdr" = { source = "~/dotfiles/herdr" }
 "~/.config/hunk" = { source = "~/dotfiles/hunk" }
