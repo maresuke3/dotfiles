@@ -1,6 +1,7 @@
 return {
 	{
 	  "folke/todo-comments.nvim",
+	  event = { "BufReadPost", "BufNewFile" },
 	  dependencies = { "nvim-lua/plenary.nvim" },
 	  --opts = {
 	  --  -- your configuration comes here
@@ -85,7 +86,7 @@ return {
       {
         "<leader>]t",
         function ()
-          require("todo_comments").jump_prev()
+          require("todo-comments").jump_prev()
         end,
         desc = "Previous todo comments"
       },

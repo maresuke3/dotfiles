@@ -15,8 +15,8 @@ opt.cursorline = true
 
 opt.clipboard:append({"unnamedplus"})
 
-opt.foldmethod = "expr"
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 opt.foldenable = false
 

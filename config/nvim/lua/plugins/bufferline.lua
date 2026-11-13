@@ -10,7 +10,7 @@
           style_preset = bufferline.style_preset.minimal,
           always_show_bufferline = false,
           color_icons = true,
-          diagnositcs = "nvim_lsp",
+          diagnostics = "nvim_lsp",
         }
       })
       

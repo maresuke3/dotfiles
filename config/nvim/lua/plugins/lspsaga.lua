@@ -1,6 +1,7 @@
 return {
 	{
 		"nvimdev/lspsaga.nvim",
+		event = "LspAttach",
 		dependencies = {
         'nvim-treesitter/nvim-treesitter', -- optional
         'nvim-tree/nvim-web-devicons',     -- optional
@@ -9,6 +10,9 @@ return {
       require('lspsaga').setup({
 				definition = {},
 				finder = {},
+				lightbulb = {
+					enable = false,
+				},
 			})
 
 			local keymap = vim.keymap.set

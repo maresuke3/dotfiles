@@ -1,6 +1,6 @@
 -- component
 -- clock
-local function curren_time()
+local function current_time()
   return os.date("%H:%M")
 end
 
@@ -20,12 +20,12 @@ local function lsp_clients()
     table.insert(client_names, client.name)
   end
 
-  return table.concat(client_name, ",")
+  return table.concat(client_names, ",")
 end
 
 -- style checker
 local function indent_style()
-  if vim.bo.expadtab then
+  if vim.bo.expandtab then
     return vim.bo.shiftwidth .. "space"
   else
     return vim.bo.tabstop .. "tab"

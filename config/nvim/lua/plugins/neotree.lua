@@ -6,7 +6,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 	},
-	lazy = false,
+	cmd = "Neotree",
   opts = {
 		trash = {
 			command = function(...) return require('neo-tree.trash.freedesktop').generate_trashfunc(...) end
