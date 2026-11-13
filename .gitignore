@@ -5,8 +5,8 @@ dotfiles-age.txt
 .gitconfig_work
 
 # herdr runtime files
-herdr/session-snapshots/
-herdr/session.json
-herdr/*.log
-herdr/*.sock*
-herdr/release-notes.json
+config/herdr/session-snapshots/
+config/herdr/session.json
+config/herdr/*.log
+config/herdr/*.sock*
+config/herdr/release-notes.json

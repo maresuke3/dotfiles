@@ -47,7 +47,7 @@ if command -v uv &>/dev/null; then
     # ~/.serena/serena_config.yml stays machine-local (Serena rewrites it and stores auth_secret in it);
     # only the keys in serena/serena_config.managed.yml are applied from dotfiles.
     [[ -f "${SERENA_HOME:-$HOME/.serena}/serena_config.yml" ]] || serena init
-    "$(uv tool dir)/serena-agent/bin/python" -I "$HOME/dotfiles/serena/apply_config.py"
+    "$(uv tool dir)/serena-agent/bin/python" -I "$HOME/dotfiles/ai/serena/apply_config.py"
 else
     echo -e "  \033[1;31m[ERROR]\033[0m uv not found. Make sure uv is installed via mise."
 fi
@@ -62,6 +62,7 @@ fi
 echo -e "\n\033[1;36m[INFO]\033[0m Installing & syncing AI Agent plugins..."
 CLAUDE_PLUGINS=(
     "figma@claude-plugins-official"
+    "ponytail@ponytail"
 )
 
 if command -v claude &>/dev/null; then
@@ -135,6 +136,7 @@ CLAUDE_STDIO_MCP_SERVERS=(
     "drawio DRAWIO_ICON_SERVICE_URL=off npx -y @drawio/mcp"
     # No usage info to the developer (news/PyPI checks are off via web_dashboard: false in serena/)
     "serena SERENA_USAGE_REPORTING=false serena start-mcp-server --context claude-code --project-from-cwd"
+    "context7 npx -y @upstash/context7-mcp"
 )
 
 if command -v claude &>/dev/null; then
@@ -171,8 +173,48 @@ fi
 if command -v agy &>/dev/null; then
     agy plugin import claude
     echo -e "  \033[1;32m[OK]\033[0m Imported Claude plugins into Antigravity (agy)."
+
+    echo -e "\n\033[1;36m[INFO]\033[0m Registering Antigravity (agy) MCP servers..."
+    agy_registered="$(agy mcp list 2>/dev/null | awk 'NR>1 {print $1}')"
+
+    # Remote HTTP MCP servers (Slack is skipped: requires clientId, unsupported by agy)
+    for entry in "${CLAUDE_HTTP_MCP_SERVERS[@]}"; do
+        read -r name url _rest <<<"$entry"
+        [[ "$name" == "slack" ]] && continue
+        if grep -qx "$name" <<<"$agy_registered"; then
+            echo -e "  \033[1;33m[SKIP]\033[0m agy mcp already registered: $name"
+        else
+            agy mcp add --type http "$name" "$url"
+            echo -e "  \033[1;32m[OK]\033[0m agy mcp registered: $name"
+        fi
+    done
+
+    # Local stdio MCP servers
+    for entry in "${CLAUDE_STDIO_MCP_SERVERS[@]}"; do
+        read -r -a parts <<<"$entry"
+        name="${parts[0]}"
+        if grep -qx "$name" <<<"$agy_registered"; then
+            echo -e "  \033[1;33m[SKIP]\033[0m agy mcp already registered: $name"
+            continue
+        fi
+        env_args=(-e "PATH=$MISE_SHIMS:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin")
+        i=1
+        while [[ $i -lt ${#parts[@]} && "${parts[$i]}" =~ ^[A-Z_][A-Z0-9_]*= ]]; do
+            env_args+=(-e "${parts[$i]}")
+            i=$((i + 1))
+        done
+        cmd="${parts[$i]}"
+        arg_list=()
+        [[ $((i + 1)) -lt ${#parts[@]} ]] && arg_list=("${parts[@]:$((i + 1))}")
+        if ! cmd_path="$(command -v "$cmd")"; then
+            echo -e "  \033[1;31m[ERROR]\033[0m $cmd not found, skipping agy MCP registration: $name"
+            continue
+        fi
+        agy mcp add "${env_args[@]}" "$name" "$cmd_path" ${arg_list[@]+"${arg_list[@]}"}
+        echo -e "  \033[1;32m[OK]\033[0m agy mcp registered: $name"
+    done
 else
-    echo -e "  \033[1;33m[SKIP]\033[0m agy not found, skipping plugin import."
+    echo -e "  \033[1;33m[SKIP]\033[0m agy not found, skipping plugin/MCP sync."
 fi
 
 echo -e "\n\033[1;32m[OK]\033[0m Post-installation completed!"

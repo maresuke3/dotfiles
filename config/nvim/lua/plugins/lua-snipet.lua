@@ -11,7 +11,7 @@ return {
     -- config
     config = function ()
       require("luasnip.loaders.from_lua").load({
-        paths = {"~/dotfiles/nvim/luasnippets"}
+        paths = {"~/dotfiles/config/nvim/luasnippets"}
       })
       require("luasnip.loaders.from_vscode").load()
     end,

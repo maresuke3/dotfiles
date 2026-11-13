@@ -6,7 +6,7 @@ so the global config can't be a symlink into dotfiles: Serena saves it via os.re
 which would replace the link, and it holds a secret.
 
 Run it with Serena's own interpreter, which ships ruamel.yaml:
-    "$(uv tool dir)/serena-agent/bin/python" -I ~/dotfiles/serena/apply_config.py
+    "$(uv tool dir)/serena-agent/bin/python" -I ~/dotfiles/ai/serena/apply_config.py
 """
 
 import os
