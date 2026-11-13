@@ -12,7 +12,8 @@ status_indicators = "symbols"
 redraw_on_focus_gained = false
 
 [ui.toast]
-delivery = "herdr"
+delivery = "terminal"
+delay_seconds = 1
 
 [advanced]
 scrollback_limit_bytes = 2000000
