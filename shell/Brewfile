@@ -17,7 +17,7 @@ brew "curl"
 brew "gd"
 brew "gettext"
 brew "gmp"
-brew "libiconv"
+brew "libiconv" if OS.mac?
 brew "libpq"
 brew "libsodium"
 brew "libxml2"

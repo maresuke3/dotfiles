@@ -38,32 +38,44 @@ run_cmd() {
 if [[ "$(uname)" == "Linux" ]]; then
     echo -e "\n\033[1;36m[INFO]\033[0m Checking Linux prerequisites (apt)..."
     if command -v apt-get &>/dev/null; then
-        run_cmd sudo apt-get update
-        run_cmd sudo apt-get install -y build-essential curl git python3-pip
+        if ! dpkg -s build-essential curl git python3-pip &>/dev/null; then
+            run_cmd sudo apt-get update
+            run_cmd sudo apt-get install -y build-essential curl git python3-pip
+        else
+            echo -e "  \033[1;32m[OK]\033[0m   Linux prerequisites are already installed."
+        fi
     fi
 fi
+
+# Configure Homebrew PATH in the current session (if already installed)
+configure_brew_path() {
+    if [[ "$(uname)" == "Darwin" ]]; then
+        if [ -f /opt/homebrew/bin/brew ]; then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        elif [ -f /usr/local/bin/brew ]; then
+            eval "$(/usr/local/bin/brew shellenv)"
+        fi
+    else
+        if [ -d /home/linuxbrew/.linuxbrew ]; then
+            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        elif [ -d "$HOME/.linuxbrew" ]; then
+            eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+        fi
+    fi
+}
 
 # 2. Install Homebrew
 echo -e "\n\033[1;36m[INFO]\033[0m Checking Homebrew..."
+configure_brew_path
 if ! command -v brew &>/dev/null; then
-    if ! $DRY_RUN; then /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; else echo -e "  \033[1;33m[RUN]\033[0m  /bin/bash -c \"$(curl -fsSL ...)\""; fi
+    if ! $DRY_RUN; then
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        configure_brew_path
+    else
+        echo -e "  \033[1;33m[RUN]\033[0m  /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+    fi
 else
     echo -e "  \033[1;32m[OK]\033[0m   Homebrew is already installed."
-fi
-
-# Configure Homebrew PATH in the current session
-if [[ "$(uname)" == "Darwin" ]]; then
-    if [ -f /opt/homebrew/bin/brew ]; then
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-    elif [ -f /usr/local/bin/brew ]; then
-        eval "$(/usr/local/bin/brew shellenv)"
-    fi
-else
-    if [ -d /home/linuxbrew/.linuxbrew ]; then
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    elif [ -d "$HOME/.linuxbrew" ]; then
-        eval "$($HOME/.linuxbrew/bin/brew shellenv)"
-    fi
 fi
 
 # 3. Install mise (The task runner & tool manager)

@@ -42,5 +42,5 @@ fi
 ln -sfn ~/dotfiles/mise ~/.config/mise
 echo -e "  \033[1;32m[OK]\033[0m ~/.config/mise -> ~/dotfiles/mise"
 if command -v mise &>/dev/null; then
-    mise trust ~/dotfiles/mise.toml ~/dotfiles/mise/config.toml &>/dev/null || true
+    mise trust --all &>/dev/null || true
 fi

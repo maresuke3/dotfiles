@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #MISE description="Run Homebrew bundle"
 #MISE wait_for=["link"]
+set -euo pipefail
 
 if ! command -v brew &>/dev/null; then
     echo -e "\033[1;31m[ERROR]\033[0m Homebrew is not installed."
@@ -10,7 +11,11 @@ fi
 BREWFILE="${HOME}/dotfiles/shell/Brewfile"
 if [ -f "$BREWFILE" ]; then
     echo -e "\033[1;36m[INFO]\033[0m Applying Brewfile..."
-    brew bundle --file="$BREWFILE" --no-lock
+    grep -E '^\s*tap\s+"' "$BREWFILE" | awk -F'"' '{print $2}' | while read -r tap_name; do
+        brew tap "$tap_name"
+        brew trust "$tap_name" &>/dev/null || true
+    done
+    brew bundle --file="$BREWFILE"
     echo -e "  \033[1;32m[OK]\033[0m Brewfile applied successfully!"
 else
     echo -e "\033[1;31m[ERROR]\033[0m Brewfile not found at $BREWFILE"

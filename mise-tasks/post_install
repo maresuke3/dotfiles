@@ -60,12 +60,26 @@ else
 fi
 
 echo -e "\n\033[1;36m[INFO]\033[0m Installing & syncing AI Agent plugins..."
+CLAUDE_MARKETPLACES=(
+    "ponytail DietrichGebert/ponytail"
+)
 CLAUDE_PLUGINS=(
     "figma@claude-plugins-official"
     "ponytail@ponytail"
 )
 
 if command -v claude &>/dev/null; then
+    existing_marketplaces="$(claude plugin marketplace list 2>/dev/null || true)"
+    for mp_entry in "${CLAUDE_MARKETPLACES[@]}"; do
+        read -r mp_name mp_source <<<"$mp_entry"
+        if grep -q "$mp_name" <<<"$existing_marketplaces"; then
+            echo -e "  \033[1;33m[SKIP]\033[0m claude marketplace already registered: $mp_name"
+        else
+            claude plugin marketplace add "$mp_source"
+            echo -e "  \033[1;32m[OK]\033[0m claude marketplace added: $mp_name ($mp_source)"
+        fi
+    done
+
     for plugin in "${CLAUDE_PLUGINS[@]}"; do
         claude plugin install "$plugin"
         echo -e "  \033[1;32m[OK]\033[0m claude plugin installed: $plugin"
