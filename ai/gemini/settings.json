@@ -60,7 +60,19 @@
       "write_file(/Users/daiki-fukushima/dotfiles)",
       "write_file(/Users/daiki-fukushima/geniee)",
       "write_file(/Users/daiki-fukushima/.config)",
-      "write_file(/Users/daiki-fukushima/Library/Application Support/com.mitchellh.ghostty)"
+      "write_file(/Users/daiki-fukushima/Library/Application Support/com.mitchellh.ghostty)",
+      "read_file(/home/maresuke/work/obsidian_git)",
+      "read_file(/home/maresuke/dotfiles)",
+      "write_file(/home/maresuke/work/obsidian_git/01_projects)",
+      "write_file(/home/maresuke/work/obsidian_git/02_inbox)",
+      "write_file(/home/maresuke/work/obsidian_git/assets)",
+      "write_file(/home/maresuke/work/obsidian_git/README.md)",
+      "read_file(/home/maresuke/.gitconfig_global)",
+      "read_file(/home/maresuke)",
+      "read_file(/home/linuxbrew)",
+      "write_file(/home/maresuke/dotfiles)",
+      "write_file(/home/maresuke/geniee)",
+      "write_file(/home/maresuke/.config)"
     ],
     "deny": [
       "command(rm -rf)",
@@ -105,12 +117,39 @@
       "read_file(/Users/daiki-fukushima/.zsh_history)",
       "read_file(/Users/daiki-fukushima/.bash_history)",
       "write_file(/Users/daiki-fukushima/.claude)",
-      "write_file(/Applications)"
+      "write_file(/Applications)",
+      "read_file(/home/maresuke/.ssh)",
+      "read_file(/home/maresuke/.config/mise/dotfiles-age.txt)",
+      "read_file(/home/maresuke/dotfiles/mise/dotfiles-age.txt)",
+      "write_file(/home/maresuke/work/obsidian_git/.agents)",
+      "write_file(/home/maresuke/.gemini)",
+      "write_file(/home/maresuke/dotfiles/ai/gemini)",
+      "write_file(/home/maresuke/dotfiles/ai/claude)",
+      "write_file(/home/maresuke/work/obsidian_git/.git)",
+      "read_file(/home/maresuke/.config/gcloud)",
+      "read_file(/home/maresuke/.config/gh)",
+      "read_file(/home/maresuke/.config/github-copilot)",
+      "read_file(/home/maresuke/.config/op)",
+      "read_file(/home/maresuke/.config/sops)",
+      "read_file(/home/maresuke/.config/rclone)",
+      "read_file(/home/maresuke/.config/configstore)",
+      "read_file(/home/maresuke/.config/hub)",
+      "read_file(/home/maresuke/.aws)",
+      "read_file(/home/maresuke/.kube)",
+      "read_file(/home/maresuke/.docker/config.json)",
+      "read_file(/home/maresuke/.netrc)",
+      "read_file(/home/maresuke/.git-credentials)",
+      "read_file(/home/maresuke/.gnupg)",
+      "read_file(/home/maresuke/.zsh_history)",
+      "read_file(/home/maresuke/.bash_history)",
+      "write_file(/home/maresuke/.claude)"
     ],
     "ask": [
       "command(git push)",
       "write_file(/Users/daiki-fukushima/work/obsidian_git/AGENT.md)",
-      "write_file(/Users/daiki-fukushima/work/obsidian_git/01_projects/AI憲法策定/憲法_草案.md)"
+      "write_file(/Users/daiki-fukushima/work/obsidian_git/01_projects/AI憲法策定/憲法_草案.md)",
+      "write_file(/home/maresuke/work/obsidian_git/AGENT.md)",
+      "write_file(/home/maresuke/work/obsidian_git/01_projects/AI憲法策定/憲法_草案.md)"
     ]
   },
   "trustedWorkspaces": [
@@ -120,6 +159,13 @@
     "/Users/daiki-fukushima/work/obsidian_git",
     "/Users/daiki-fukushima/geniee/cats",
     "/Users/daiki-fukushima/.gemini",
-    "/Users/daiki-fukushima/geniee/cats/cats-deploy-settings"
+    "/Users/daiki-fukushima/geniee/cats/cats-deploy-settings",
+    "/home/maresuke",
+    "/home/maresuke/dotfiles",
+    "/home/maresuke/geniee/cats/cats-service",
+    "/home/maresuke/work/obsidian_git",
+    "/home/maresuke/geniee/cats",
+    "/home/maresuke/.gemini",
+    "/home/maresuke/geniee/cats/cats-deploy-settings"
   ]
 }

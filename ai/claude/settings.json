@@ -248,7 +248,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '/Users/daiki-fukushima/.claude/hooks/herdr-agent-state.sh' session",
+            "command": "bash \"$HOME/.claude/hooks/herdr-agent-state.sh\" session",
             "timeout": 10
           }
         ]
@@ -260,7 +260,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '/Users/daiki-fukushima/.claude/hooks/ask-unless-auto.sh'",
+            "command": "bash \"$HOME/.claude/hooks/ask-unless-auto.sh\"",
             "timeout": 10
           }
         ]
