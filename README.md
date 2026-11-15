@@ -78,7 +78,7 @@ Windows側の WezTerm から WSL内の `wezterm.lua` を読み込ませるため
 **配置場所 (Windows側):** `C:\Users\<ユーザー名>\.config\wezterm\wezterm.lua`
 ```lua
 -- WSL上のdotfiles内にある設定ファイルを動的にロードする
-dofile("\\\\wsl.localhost\\Ubuntu\\home\\maresuke\\dotfiles\\shell\\wezterm\\wezterm.lua")
+return dofile("\\\\wsl.localhost\\Ubuntu\\home\\maresuke\\dotfiles\\config\\wezterm\\wezterm.lua")
 ```
 *(※ `maresuke` や `Ubuntu` の部分はご自身の環境に合わせて適宜変更してください)*
 
