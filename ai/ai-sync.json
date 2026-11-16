@@ -1,0 +1,123 @@
+{
+  "plugins": {
+    "claude": {
+      "marketplaces": [
+        {
+          "name": "ponytail",
+          "source": "DietrichGebert/ponytail"
+        }
+      ],
+      "install": [
+        "figma@claude-plugins-official",
+        "ponytail@ponytail"
+      ]
+    },
+    "agy": {
+      "import_from_claude": true,
+      "install": []
+    },
+    "codex": {
+      "marketplaces": [],
+      "install": []
+    }
+  },
+  "mcp": {
+    "http": [
+      {
+        "name": "atlassian",
+        "url": "https://mcp.atlassian.com/v2/mcp",
+        "agents": ["claude", "agy", "codex"]
+      },
+      {
+        "name": "slack",
+        "url": "https://mcp.slack.com/mcp",
+        "oauth": {
+          "client_id": "1601185624273.8899143856786",
+          "callback_port": 3118
+        },
+        "agents": ["claude"]
+      },
+      {
+        "name": "notion",
+        "url": "https://mcp.notion.com/mcp",
+        "agents": ["claude", "agy", "codex"]
+      },
+      {
+        "name": "github",
+        "url": "https://api.githubcopilot.com/mcp/",
+        "claude_headers_helper": "printf '{\"Authorization\":\"Bearer %s\"}' \"$(__MISE_SHIMS__/gh auth token)\"",
+        "agents": ["claude"]
+      }
+    ],
+    "stdio": [
+      {
+        "name": "chatwork",
+        "command": "npx",
+        "args": ["-y", "@chatwork/mcp-server"],
+        "env": {},
+        "agents": ["claude", "agy", "codex"]
+      },
+      {
+        "name": "chrome-devtools",
+        "command": "npx",
+        "args": [
+          "-y",
+          "chrome-devtools-mcp@latest",
+          "--no-usage-statistics",
+          "--no-performance-crux"
+        ],
+        "env": {
+          "CHROME_DEVTOOLS_MCP_NO_USAGE_STATISTICS": "1",
+          "CHROME_DEVTOOLS_MCP_NO_UPDATE_CHECKS": "1"
+        },
+        "agents": ["claude", "agy", "codex"]
+      },
+      {
+        "name": "playwright",
+        "command": "npx",
+        "args": ["-y", "@playwright/mcp@latest"],
+        "env": {},
+        "agents": ["claude", "agy", "codex"]
+      },
+      {
+        "name": "drawio",
+        "command": "npx",
+        "args": ["-y", "@drawio/mcp"],
+        "env": {
+          "DRAWIO_ICON_SERVICE_URL": "off"
+        },
+        "agents": ["claude", "agy", "codex"]
+      },
+      {
+        "name": "serena",
+        "command": "serena",
+        "args": [
+          "start-mcp-server",
+          "--context",
+          "claude-code",
+          "--project-from-cwd"
+        ],
+        "env": {
+          "SERENA_USAGE_REPORTING": "false"
+        },
+        "agents": ["claude", "agy", "codex"]
+      },
+      {
+        "name": "context7",
+        "command": "npx",
+        "args": ["-y", "@upstash/context7-mcp"],
+        "env": {},
+        "agents": ["claude", "agy", "codex"]
+      },
+      {
+        "name": "google-calendar",
+        "command": "npx",
+        "args": ["-y", "@cocal/google-calendar-mcp"],
+        "env": {
+          "GOOGLE_OAUTH_CREDENTIALS": "__HOME__/.config/google-calendar-mcp/gcp-oauth.keys.json"
+        },
+        "agents": ["claude", "agy", "codex"]
+      }
+    ]
+  }
+}
