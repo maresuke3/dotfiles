@@ -4,7 +4,6 @@
 "~/.claude/settings.json" = { source = "~/dotfiles/ai/claude/settings.json" }
 "~/.claude/skills/herdr-loop" = { source = "~/dotfiles/config/herdr/skills/herdr-loop" }
 "~/.claude/skills/hunk-review" = { source = "~/dotfiles/config/hunk/skills/hunk-review" }
-"~/.codex/config.toml" = { source = "~/dotfiles/ai/codex/config.toml" }
 "~/.config/git/ignore" = { source = "~/dotfiles/git/.gitignore_global" }
 "~/.config/herdr" = { source = "~/dotfiles/config/herdr" }
 "~/.config/hunk" = { source = "~/dotfiles/config/hunk" }

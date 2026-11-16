@@ -401,6 +401,19 @@ sync_agy_mcp() {
 # =============================================================================
 # Codex CLI
 # =============================================================================
+sync_codex_config() {
+    local apply_script="$HOME/dotfiles/ai/codex/apply_config.py"
+    [ -f "$apply_script" ] || return 0
+    if ! command -v python3 &>/dev/null; then
+        echo -e "  \033[1;33m[SKIP]\033[0m python3 not found, skipping codex config merge."
+        return 0
+    fi
+    echo -e "\n\033[1;36m[INFO]\033[0m Merging Codex shared config..."
+    local -a args=()
+    $DRY_RUN && args+=(--dry-run)
+    python3 "$apply_script" ${args[@]+"${args[@]}"}
+}
+
 sync_codex_plugins() {
     echo -e "\n\033[1;36m[INFO]\033[0m Syncing Codex plugins..."
     local existing_mp
@@ -552,7 +565,9 @@ run_agent_sync() {
     local log_file="$2"
     FAIL_COUNT=0
     if command -v "$agent" &>/dev/null; then
-        "sync_${agent}_plugins" >"$log_file" 2>&1
+        : >"$log_file"
+        [ "$agent" = "codex" ] && sync_codex_config >>"$log_file" 2>&1
+        "sync_${agent}_plugins" >>"$log_file" 2>&1
         "sync_${agent}_mcp" >>"$log_file" 2>&1
     else
         echo -e "\n\033[1;33m[SKIP]\033[0m $agent not found, skipping sync." >"$log_file" 2>&1
