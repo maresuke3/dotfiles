@@ -10,13 +10,11 @@ set -euo pipefail
 # =============================================================================
 
 DRY_RUN=false
-MISE_ARGS=""
 
 for arg in "$@"; do
   case "$arg" in
     --dry-run|-n)
       DRY_RUN=true
-      MISE_ARGS="--dry-run"
       ;;
     *) echo "Unknown option: $arg"; exit 1 ;;
   esac
@@ -93,5 +91,10 @@ cd "$(dirname "$0")"
 run_cmd mise trust --all
 
 # Execute the master setup task
-# Using eval to properly expand MISE_ARGS
-if $DRY_RUN; then echo -e "  \033[1;33m[RUN]\033[0m  mise run --dry-run setup"; mise run --dry-run setup || true; else echo -e "  \033[1;33m[RUN]\033[0m  mise run setup"; mise run setup; fi
+if $DRY_RUN; then
+  echo -e "  \033[1;33m[RUN]\033[0m  mise run --dry-run setup"
+  mise run --dry-run setup
+else
+  echo -e "  \033[1;33m[RUN]\033[0m  mise run setup"
+  mise run setup
+fi

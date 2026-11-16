@@ -36,6 +36,12 @@ done
 echo -e "\n\033[1;36m[INFO]\033[0m Linking global mise config..."
 mkdir -p ~/.config
 if [ -e ~/.config/mise ] && [ ! -L ~/.config/mise ]; then
+    # Preserve age key placed before bootstrap (README Step 1) before backing up ~/.config/mise
+    if [ -f ~/.config/mise/dotfiles-age.txt ] && [ ! -e ~/dotfiles/mise/dotfiles-age.txt ]; then
+        mv ~/.config/mise/dotfiles-age.txt ~/dotfiles/mise/dotfiles-age.txt
+        chmod 600 ~/dotfiles/mise/dotfiles-age.txt
+        echo -e "  \033[1;32m[OK]\033[0m   Preserved dotfiles-age.txt -> ~/dotfiles/mise/dotfiles-age.txt"
+    fi
     mv ~/.config/mise ~/.config/mise.bak.$(date +%Y%m%d%H%M%S)
     echo -e "  \033[1;33m[BACKUP]\033[0m ~/.config/mise"
 fi
