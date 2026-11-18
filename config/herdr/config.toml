@@ -4,6 +4,10 @@ onboarding = false
 name = "tokyo-night"
 auto_switch = false
 
+[theme.custom]
+selection_bg = "#3d59a1"
+accent = "#7aa2f7"
+
 [session]
 resume_agents_on_restore = false
 
