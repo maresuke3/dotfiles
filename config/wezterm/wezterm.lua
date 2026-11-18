@@ -90,6 +90,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 
 	config.default_prog = {
 		"wsl",
+		"--cd",
+		"~",
 	}
 
 	table.insert(config.keys, {
