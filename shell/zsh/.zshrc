@@ -281,3 +281,28 @@ fi
 # `mise use -g` writes to config.toml, which breaks our conf.d/ separation.
 # Use `mguse` (mise global use) to safely write tools to tools.toml instead.
 alias mguse="mise use --path ~/dotfiles/mise/conf.d/tools.toml"
+
+# =============================================================================
+# Zsh cache maintenance
+# =============================================================================
+# ツール更新・削除後に補完や init のキャッシュを一括削除して再生成を促す
+zsh-refresh-cache() {
+  setopt local_options null_glob
+  local targets=(
+    ~/.zsh/sheldon.zsh
+    ~/.zsh/_*
+    ~/.zsh/*-init.zsh
+    ~/.zsh/fzf.zsh
+    ~/.zsh_comp_paths_cache
+    "${ZDOTDIR:-$HOME}/.zcompdump"*
+  )
+  if (( ${#targets} > 0 )); then
+    rm -f "${targets[@]}"
+  fi
+  echo "Zsh cache cleared."
+  if [[ "${1:-}" == "--reload" || "${1:-}" == "-r" ]]; then
+    exec zsh
+  else
+    echo "Run 'exec zsh' (or 'zsh-refresh-cache --reload') to rebuild."
+  fi
+}

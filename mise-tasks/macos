@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+#MISE description="Apply macOS system defaults"
+set -euo pipefail
+
+DRY_RUN=false
+for arg in "$@"; do
+    case "$arg" in
+        --dry-run|-n) DRY_RUN=true ;;
+        *) echo "Unknown option: $arg" >&2; exit 1 ;;
+    esac
+done
+
+if [[ "$(uname -s)" != "Darwin" ]]; then
+    echo -e "\033[1;33m[SKIP]\033[0m Not macOS, skipping macOS defaults."
+    exit 0
+fi
+
+run_default() {
+    if $DRY_RUN; then
+        echo -e "  \033[1;33m[DRY-RUN]\033[0m defaults $*"
+    else
+        defaults "$@"
+        echo -e "  \033[1;32m[OK]\033[0m defaults $*"
+    fi
+}
+
+echo -e "\033[1;36m[INFO]\033[0m Applying macOS defaults..."
+
+# Dock
+run_default write com.apple.dock autohide -bool true
+run_default write com.apple.dock show-recents -bool false
+run_default write com.apple.dock orientation -string "left"
+
+# Keyboard
+run_default write NSGlobalDomain KeyRepeat -int 2
+run_default write NSGlobalDomain InitialKeyRepeat -int 15
+
+# Trackpad (Tap to click)
+run_default write com.apple.AppleMultitouchTrackpad Clicking -bool true
+
+# Optional Finder / Input presets (uncomment as needed)
+# run_default write NSGlobalDomain AppleShowAllExtensions -bool true
+# run_default write com.apple.finder AppleShowAllFiles -bool true
+# run_default write com.apple.finder ShowPathbar -bool true
+# run_default write com.apple.finder ShowStatusBar -bool true
+
+if ! $DRY_RUN; then
+    killall Dock 2>/dev/null || true
+    echo -e "  \033[1;32m[OK]\033[0m Restarted Dock to apply changes."
+fi
+
+echo -e "\033[1;32m[OK]\033[0m macOS defaults applied!"

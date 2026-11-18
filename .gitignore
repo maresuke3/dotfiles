@@ -10,3 +10,7 @@ config/herdr/session.json
 config/herdr/*.log
 config/herdr/*.sock*
 config/herdr/release-notes.json
+
+# Python cache
+__pycache__/
+*.py[cod]

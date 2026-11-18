@@ -1,0 +1,55 @@
+name: Dotfiles CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install zsh and shellcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zsh shellcheck jq
+
+      - name: Check bash script syntax
+        run: |
+          bash -n bootstrap.sh
+          bash -n cmd/preview.sh
+          for f in mise-tasks/* ai/claude/hooks/*.sh; do
+            [ -f "$f" ] || continue
+            echo "Checking bash syntax: $f"
+            bash -n "$f"
+          done
+
+      - name: Check zsh script syntax
+        run: |
+          for f in shell/zsh/.zshrc shell/zsh/.zshenv shell/zsh/.zprofile; do
+            echo "Checking zsh syntax: $f"
+            zsh -n "$f"
+          done
+
+      - name: Run shellcheck (errors only)
+        run: |
+          shellcheck --severity=error bootstrap.sh cmd/preview.sh mise-tasks/* ai/claude/hooks/*.sh
+
+      - name: Validate JSON files
+        run: |
+          for f in ai/ai-sync.json ai/claude/settings.json ai/gemini/settings.json ai/gemini/mcp_config.json; do
+            echo "Validating JSON: $f"
+            jq empty "$f"
+          done
+
+      - name: Check Python scripts syntax
+        run: |
+          python3 -m py_compile ai/codex/apply_config.py ai/serena/apply_config.py
+
+      - name: Smoke test mise-tasks/macos (non-macOS skip)
+        run: |
+          bash mise-tasks/macos --dry-run
