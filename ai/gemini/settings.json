@@ -1,7 +1,9 @@
 {
   "colorScheme": "tokyo night",
   "agentMode": "auto",
-  "model": "Gemini 4 Argon (Medium)",
+  "model": "Gemini 4 Hydrogen (Medium)",
+  "editorMode": "vim",
+  "vimInsertFirst": false,
   "permissions": {
     "allow": [
       "command(awk)",

@@ -78,7 +78,6 @@
       "Read(~/.config/**/*.pem)",
       "Edit(~/work/obsidian_git/.agents/**)",
       "Edit(~/.gemini/**)",
-      "Edit(~/.claude/**)",
       "Edit(~/dotfiles/ai/gemini/**)",
       "Edit(~/dotfiles/ai/claude/**)",
       "Edit(**/.git/**)",
@@ -229,7 +228,8 @@
       "mcp__chrome-devtools__install_extension",
       "mcp__playwright__browser_file_upload",
       "mcp__playwright__browser_run_code_unsafe",
-      "mcp__drawio__set_page"
+      "mcp__drawio__set_page",
+      "Edit(~/.claude/**)"
     ],
     "defaultMode": "auto",
     "additionalDirectories": [
@@ -284,7 +284,6 @@
       "effortLevel": "high"
     }
   },
-  "theme": "dark",
   "pluginConfigs": {
     "ponytail@ponytail": {
       "options": {
@@ -292,5 +291,7 @@
         "sendNames": false
       }
     }
-  }
+  },
+  "theme": "dark",
+  "switchModelsOnFlag": true
 }
