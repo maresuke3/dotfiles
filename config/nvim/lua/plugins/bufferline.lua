@@ -18,5 +18,7 @@
       local opt = { noremap = true, silent = true }
       keymap("n", "gt", ":BufferLineCycleNext<CR>", opt)
       keymap("n", "gf", ":BufferLineCyclePrev<CR>", opt)
+      keymap("n", "L", ":BufferLineCycleNext<CR>", opt)
+      keymap("n", "H", ":BufferLineCyclePrev<CR>", opt)
     end
   }
