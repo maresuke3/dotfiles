@@ -18,7 +18,7 @@ export GO111MODULE=on
 export PHP_CONFIGURE_OPTS="--without-gd"
 
 # local bin (sheldon etc...)
-path=($HOME/.local/bin $HOME/dotfiles/cmd $path)
+path=($HOME/.local/bin $HOME/dotfiles/cmd $HOME/work/mermd $path)
 
 export GOOGLE_OAUTH_CREDENTIALS="$HOME/.config/google-calendar-mcp/gcp-oauth.keys.json"
 

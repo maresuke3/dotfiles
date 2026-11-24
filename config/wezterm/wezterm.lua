@@ -63,6 +63,7 @@ config.keys = {
 }
 
 config.enable_kitty_keyboard = false
+config.enable_kitty_graphics = true
 -- mac setting
 if wezterm.target_triple:find("darwin") then
 	-- window setting
